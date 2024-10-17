@@ -2,6 +2,7 @@
 #define SENECA_TIMEDTASK_H
 
 #include <iostream>
+#include <chrono>
 
 namespace seneca
 {
