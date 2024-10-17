@@ -1,5 +1,5 @@
-#ifndef FOODORDER_H
-#define FOODORDER_H
+#ifndef SENECA_FOODORDER_H
+#define SENECA_FOODORDER_H
 #include <iostream>
 
 extern double g_taxrate;
