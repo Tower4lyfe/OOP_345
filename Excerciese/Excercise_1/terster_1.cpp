@@ -25,7 +25,7 @@ int cout = 0; // won't compile if headers don't follow convention regarding name
 
 // TODO: write the prototype for the main function
 //         to accept command line arguments
-
+int main(int argc, char** argv)
 {
 	std::cout << "Command Line:\n";
 	std::cout << "--------------------------\n";
@@ -34,7 +34,11 @@ int cout = 0; // won't compile if headers don't follow convention regarding name
 	//   2: second argument
 	//   3: third argument
 	//   ...
-
+	for(int count = 0; count < argc; ++count)
+	{
+		std::cout << count+1 << ": ";
+		std::cout << argv[count] << std::endl;
+	}
 
 	std::cout << "--------------------------\n\n";
 
