@@ -12,7 +12,7 @@ namespace seneca
 
         public:
         ProteinDatabase(){};
-        ProteinDatabase(std::string);
+        ProteinDatabase(const std::string&);
         ~ProteinDatabase();
         ProteinDatabase(const ProteinDatabase&);
         ProteinDatabase &operator=(const ProteinDatabase&);

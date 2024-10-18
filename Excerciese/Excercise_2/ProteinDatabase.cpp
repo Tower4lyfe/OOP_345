@@ -3,7 +3,7 @@
 
 namespace seneca
 {
-    ProteinDatabase::ProteinDatabase(std::string fileName)
+    ProteinDatabase::ProteinDatabase(const std::string& fileName)
     {
         // set them to zero first
         count = 0;
@@ -89,7 +89,7 @@ namespace seneca
                 }
             }
         }
-        
+
         return *this;
     }
 
@@ -129,10 +129,8 @@ namespace seneca
         {
             return amino_acid[i];
         }
-        else
-        {
             return "";
-        }
+
     }
 
     std::string ProteinDatabase::getUID(size_t i) const
@@ -141,9 +139,6 @@ namespace seneca
         {
             return unique_id[i];
         }
-        else
-        {
             return "None";
-        }
     }
 }
