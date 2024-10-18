@@ -37,7 +37,7 @@ namespace seneca
         line.clear();              // clear out the string, makes it empty
 
         // I just want to know if this work or not
-        for (struct {size_t count{-1}; std::string buffer{}; } temp;
+        for (struct {int count{-1}; std::string buffer{}; } temp;
              std::getline(file, temp.buffer);)
         {
             // if you see > you know this is a new thing, and you do the storing id thing
