@@ -7,10 +7,10 @@
 
 namespace seneca
 {
-    constexpr size_t Max = 10;
+    constexpr int Max = 10;
     class TimedTask
     {
-        size_t numberOfRecords{};
+        int numberOfRecords{0};
         std::chrono::time_point<std::chrono::steady_clock> start;
         std::chrono::time_point<std::chrono::steady_clock> end;
         struct task 

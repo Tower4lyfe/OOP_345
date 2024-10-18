@@ -16,9 +16,11 @@ namespace seneca
         ProteinDatabase(const std::string&);
         ~ProteinDatabase();
         ProteinDatabase(const ProteinDatabase&);
-        ProteinDatabase &operator=(const ProteinDatabase&);
         ProteinDatabase(ProteinDatabase&&)noexcept;
-        ProteinDatabase &operator=(ProteinDatabase&&)noexcept;
+
+        ProteinDatabase& operator=(const ProteinDatabase&);
+        ProteinDatabase& operator=(ProteinDatabase&&)noexcept;
+
         size_t size() const;
         std::string operator[](size_t) const;
         std::string getUID(size_t) const;
