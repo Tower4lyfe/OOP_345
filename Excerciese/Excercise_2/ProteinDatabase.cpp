@@ -88,9 +88,9 @@ namespace seneca
                     unique_id[i] = copy.unique_id[i];
                 }
             }
-
-            return *this;
         }
+        
+        return *this;
     }
 
     ProteinDatabase::ProteinDatabase(ProteinDatabase &&move) noexcept
