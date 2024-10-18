@@ -36,23 +36,41 @@ namespace seneca
         file.seekg(std::ios::beg); // moving the file pointer to the beggining of the file
         line.clear();              // clear out the string, makes it empty
 
-        // I just want to know if this work or not
-        for (struct {int count{-1}; std::string buffer{}; } temp;
-             std::getline(file, temp.buffer);)
+        int i = -1;
+        while(std::getline(file, line))
         {
-            // if you see > you know this is a new thing, and you do the storing id thing
-            // then you move on to the next line, assuming you could
-            // it doesn't start with >, you store that line to amino_acid
-            if (temp.buffer[0] == '>')
+            if(line[0] == '>')
             {
-                ++temp.count;
-                unique_id[temp.count] = temp.buffer.substr(4, temp.buffer.find('|', 4) - 4);
+                ++i;
+
+                unique_id[i] = line.substr(4u, line.find_first_of('|', 4u) - 4u);
             }
             else
             {
-                amino_acid[count] += temp.buffer;
+                amino_acid[i] += line;
             }
         }
+
+
+
+
+        // I just want to know if this work or not
+        // for (struct {int count{-1}; std::string buffer{}; } temp;
+        //      std::getline(file, temp.buffer);)
+        // {
+        //     // if you see > you know this is a new thing, and you do the storing id thing
+        //     // then you move on to the next line, assuming you could
+        //     // it doesn't start with >, you store that line to amino_acid
+        //     if (temp.buffer[0] == '>')
+        //     {
+        //         ++temp.count;
+        //         unique_id[temp.count] = temp.buffer.substr(4, temp.buffer.find('|', 4) - 4);
+        //     }
+        //     else
+        //     {
+        //         amino_acid[count] += temp.buffer;
+        //     }
+        // }
     }
 
     ProteinDatabase::~ProteinDatabase()
