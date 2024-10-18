@@ -30,7 +30,7 @@ namespace seneca
     {
         os << "Execution Times:\n";
         os << "--------------------------\n";
-        for (size_t count = 0; count < obj.numberOfRecords; count++)
+        for (int count = 0; count < obj.numberOfRecords; count++)
         {
             os << std::setw(21) << std::left << obj.tasks[count].task_name << " "
                << std::setw(13) << std::right
