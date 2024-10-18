@@ -49,7 +49,7 @@ namespace seneca
         }
     }
 
-    std::ostream &seneca::operator<<(std::ostream &os, const TimedTask& obj)
+    std::ostream &operator<<(std::ostream &os, const TimedTask& obj)
     {
         os << "Execution Times:\n";
         os << "--------------------------\n";
@@ -60,6 +60,8 @@ namespace seneca
                << obj.tasks[count].time_unit << std::endl;
         }
         os << "--------------------------\n";
+
+        return os;
     }
 
 }
