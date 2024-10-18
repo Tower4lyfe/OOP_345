@@ -12,7 +12,7 @@ namespace seneca
         size_t count;
 
         public:
-        ProteinDatabase(){};
+        ProteinDatabase(){amino_acid = nullptr; count = 0;};
         ProteinDatabase(const std::string&);
         ~ProteinDatabase();
         ProteinDatabase(const ProteinDatabase&);

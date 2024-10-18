@@ -23,7 +23,7 @@ namespace seneca
 
         // As long as getline is fine, no eofbit, failbit, badbit
         // counting!!
-        while (std::getline(file, line)) // hmmm? why not just std::getline(file,line)
+        while (std::getline(file, line).good()) // hmmm? why not just std::getline(file,line)
         {
             // if the the first character of the line is > we encounter a new protein
             if (line[0] == '>')
@@ -38,7 +38,7 @@ namespace seneca
         line.clear();              // clear out the string, makes it empty
 
         int i = -1;
-        while(std::getline(file, line))
+        while(std::getline(file, line).good())
         {
             if(line[0] == '>')
             {
