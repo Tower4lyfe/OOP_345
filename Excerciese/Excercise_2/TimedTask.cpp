@@ -4,30 +4,6 @@
 namespace seneca
 {
 
-    seneca::TimedTask::TimedTask(TimedTask &copy)
-    {
-        if (this != &copy)
-            *this = copy;
-    }
-
-    seneca::TimedTask &seneca::TimedTask::operator=(const TimedTask &copy)
-    {
-        if (this != &copy)
-        {
-            numberOfRecords = copy.numberOfRecords;
-            start = copy.start;
-            end = copy.end;
-            for (size_t count = 0; count < Max; ++count)
-            {
-                tasks[count].duration = copy.tasks[count].duration;
-                tasks[count].task_name = copy.tasks[count].task_name;
-                tasks[count].time_unit = copy.tasks[count].time_unit;
-            }
-        }
-
-        return *this;
-    }
-
     void seneca::TimedTask::startClock()
     {
         start = std::chrono::steady_clock::now();
@@ -37,6 +13,7 @@ namespace seneca
     {
         end = std::chrono::steady_clock::now();
     }
+
 
     void seneca::TimedTask::addTask(const char *str)
     {

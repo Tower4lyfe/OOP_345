@@ -11,8 +11,8 @@ namespace seneca
     class TimedTask
     {
         size_t numberOfRecords{};
-        std::chrono::time_point<std::chrono::steady_clock> start {};
-        std::chrono::time_point<std::chrono::steady_clock> end{};
+        std::chrono::time_point<std::chrono::steady_clock> start;
+        std::chrono::time_point<std::chrono::steady_clock> end;
         struct task 
         {
             std::string task_name{};
@@ -21,10 +21,6 @@ namespace seneca
         } tasks[Max];
 
         public:
-            TimedTask(){};
-            ~TimedTask(){};
-            TimedTask(TimedTask& copy);
-            TimedTask& operator = (const TimedTask& Copy);
             void startClock();
             void stopClock();
             void addTask(const char* str);
