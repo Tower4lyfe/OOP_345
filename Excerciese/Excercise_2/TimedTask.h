@@ -10,8 +10,8 @@ namespace seneca
     class TimedTask
     {
         int numberOfRecords{};
-        std::chrono::time_point<std::chrono::system_clock> start {};
-        std::chrono::time_point<std::chrono::system_clock> end{};
+        std::chrono::time_point<std::chrono::steady_clock> start {};
+        std::chrono::time_point<std::chrono::steady_clock> end{};
         struct task 
         {
             std::string task_name{};
@@ -21,13 +21,13 @@ namespace seneca
 
         public:
             TimedTask(){};
-            ~TimedTask();
+            ~TimedTask(){};
             TimedTask(TimedTask& copy);
-            TimedTask& operator = (TimedTask& Copy);
+            TimedTask& operator = (const TimedTask& Copy);
             void startClock();
             void stopClock();
-            void addTask(char* str);
-            friend std::ostream& operator <<(std::ostream& os, TimedTask obj);
+            void addTask(const char* str);
+            friend std::ostream& operator <<(std::ostream& os, const TimedTask obj);
     };
 
 
