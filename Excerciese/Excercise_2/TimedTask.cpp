@@ -20,9 +20,9 @@ namespace seneca
         auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
         if (numberOfRecords < Max)
         {
-            tasks[numberOfRecords].task_name = str;
-            tasks[numberOfRecords].time_unit = "nanoseconds";
-            tasks[numberOfRecords].duration = duration;
+            this->tasks[numberOfRecords].task_name = str;
+            this->tasks[numberOfRecords].time_unit = "nanoseconds";
+            this->tasks[numberOfRecords].duration = duration;
             numberOfRecords++;
         }
     }
