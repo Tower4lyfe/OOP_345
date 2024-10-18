@@ -57,7 +57,7 @@ std::ostream &seneca::operator<<(std::ostream &os,const TimedTask obj)
     for(size_t count = 0; count < obj.numberOfRecords; ++count)
     {
         os << obj.tasks[count].task_name << " "
-        << obj.tasks[count].duration << " " 
+        << obj.tasks[count].duration.count() << " " 
         << obj.tasks[count].time_unit << std::endl;
     }
     os << "--------------------------\n";
