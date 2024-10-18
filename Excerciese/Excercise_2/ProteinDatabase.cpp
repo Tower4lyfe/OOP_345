@@ -95,7 +95,7 @@ namespace seneca
 
     ProteinDatabase::ProteinDatabase(ProteinDatabase &&move) noexcept
     {
-        *this = move;
+        *this = std::move(move);
     }
 
     ProteinDatabase &ProteinDatabase::operator=(ProteinDatabase &&move) noexcept
