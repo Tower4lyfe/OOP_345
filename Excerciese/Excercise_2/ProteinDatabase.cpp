@@ -1,5 +1,6 @@
 #include "ProteinDatabase.h"
 #include <fstream>
+#include <utility>
 
 namespace seneca
 {

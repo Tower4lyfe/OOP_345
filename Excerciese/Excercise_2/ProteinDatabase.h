@@ -1,6 +1,7 @@
 #ifndef SENECA_PROTEINDATABASE_H
 #define SENECA_PROTEINDATABASE_H
 #include <iostream>
+#include <string>
 
 namespace seneca
 {
