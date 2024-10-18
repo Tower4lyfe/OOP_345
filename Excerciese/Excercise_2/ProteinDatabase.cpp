@@ -101,7 +101,7 @@ namespace seneca
                 amino_acid = new std::string[count];
                 unique_id = new std::string[count];
 
-                for (size_t i = 0; i < count; ++i)
+                for (auto i = 0u; i < count; ++i)
                 {
                     amino_acid[i] = copy.amino_acid[i];
                     unique_id[i] = copy.unique_id[i];
