@@ -1,4 +1,4 @@
-// Corrected code for Team and Guild classes to handle memory management issues
+// team.h
 #ifndef SENECA_TEAM_H
 #define SENECA_TEAM_H
 
@@ -29,11 +29,7 @@ namespace seneca {
         // Copy assignment operator
         Team& operator=(const Team& other) {
             if (this != &other) {
-                for (auto& member : m_members) {
-                    delete member; // Free old memory
-                }
-                m_members.clear(); // Clear the vector before copying new members
-
+                clearMembers();
                 m_name = other.m_name;
                 for (const auto& member : other.m_members) {
                     m_members.push_back(member->clone());
@@ -50,11 +46,7 @@ namespace seneca {
         // Move assignment operator
         Team& operator=(Team&& other) noexcept {
             if (this != &other) {
-                for (auto& member : m_members) {
-                    delete member;
-                }
-                m_members.clear(); // Clear current members before taking ownership
-
+                clearMembers();
                 m_name = std::move(other.m_name);
                 m_members = std::move(other.m_members);
                 other.m_members.clear(); // Prevent double deletion
@@ -64,10 +56,7 @@ namespace seneca {
 
         // Destructor
         ~Team() {
-            for (auto& member : m_members) {
-                delete member;
-            }
-            m_members.clear(); // Ensure vector is empty to avoid dangling pointers
+            clearMembers();
         }
 
         // Add a member to the team
@@ -109,6 +98,14 @@ namespace seneca {
             for (size_t i = 0; i < m_members.size(); ++i) {
                 std::cout << i + 1 << ": " << *m_members[i] << std::endl;
             }
+        }
+
+    private:
+        void clearMembers() {
+            for (auto& member : m_members) {
+                delete member;
+            }
+            m_members.clear();
         }
     };
 }

@@ -28,11 +28,7 @@ namespace seneca {
         // Copy assignment operator
         Guild& operator=(const Guild& other) {
             if (this != &other) {
-                for (auto& member : m_members) {
-                    delete member; // Free old memory
-                }
-                m_members.clear(); // Clear the vector before copying new members
-
+                clearMembers();
                 m_name = other.m_name;
                 for (const auto& member : other.m_members) {
                     m_members.push_back(member->clone());
@@ -49,11 +45,7 @@ namespace seneca {
         // Move assignment operator
         Guild& operator=(Guild&& other) noexcept {
             if (this != &other) {
-                for (auto& member : m_members) {
-                    delete member;
-                }
-                m_members.clear(); // Clear current members before taking ownership
-
+                clearMembers();
                 m_name = std::move(other.m_name);
                 m_members = std::move(other.m_members);
                 other.m_members.clear(); // Prevent double deletion
@@ -63,10 +55,7 @@ namespace seneca {
 
         // Destructor
         ~Guild() {
-            for (auto& member : m_members) {
-                delete member;
-            }
-            m_members.clear(); // Ensure vector is empty to avoid dangling pointers
+            clearMembers();
         }
 
         // Add a member to the guild
@@ -76,7 +65,7 @@ namespace seneca {
                     return; // Do not add duplicate members
                 }
             }
-            c->setHealthMax(c->getHealthMax() + 300);
+            c->setHealthMax(c->getHealthMax() + 300); // Increase health when added to guild
             m_members.push_back(c->clone());
         }
 
@@ -84,7 +73,7 @@ namespace seneca {
         void removeMember(const std::string& name) {
             for (auto it = m_members.begin(); it != m_members.end(); ++it) {
                 if ((*it)->getName() == name) {
-                    (*it)->setHealthMax((*it)->getHealthMax() - 300);
+                    (*it)->setHealthMax((*it)->getHealthMax() - 300); // Decrease health when removed from guild
                     delete *it;
                     m_members.erase(it);
                     return;
@@ -110,6 +99,14 @@ namespace seneca {
             for (size_t i = 0; i < m_members.size(); ++i) {
                 std::cout << i + 1 << ": " << *m_members[i] << std::endl;
             }
+        }
+
+    private:
+        void clearMembers() {
+            for (auto& member : m_members) {
+                delete member;
+            }
+            m_members.clear();
         }
     };
 }
