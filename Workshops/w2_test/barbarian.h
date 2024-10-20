@@ -49,9 +49,13 @@ namespace seneca
 {
     std::cout << this->getName() << " is attacked for " << dmg << " damage.\n";
     std::cout << "Barbarian has a defense of " << m_baseDefense << ". Reducing damage received.\n";
+    // Apply ability transformations to damage received
+    int reduced_dmg = dmg -m_baseDefense;
+    m_ability.transformDamageReceived(reduced_dmg);
 
-    CharacterTpl<T>::takeDamage(dmg);  // The reduction is handled by CharacterTpl
+    CharacterTpl<T>::takeDamage(reduced_dmg);  // The reduction is handled by CharacterTpl
 }
+
 
     };
 }

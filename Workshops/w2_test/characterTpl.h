@@ -43,14 +43,17 @@ public:
 
     void takeDamage(int dmg) override
     {
-        int reduced_dmg = dmg - getDefenseAmnt();
-        reduced_dmg = std::max(0, reduced_dmg);
+ 
 
         // Apply damage using operator-= if T supports it
-        m_health -= reduced_dmg;
+        m_health -= dmg;
 
-        // Print remaining health
-        std::cout << this->getName() << " has " << getHealth() << " health remaining.\n";
+        if(m_health <= 0) 
+        {
+            m_health = 0;
+            std::cout << this->getName() << " has been defeated!\n";
+        }else
+        std::cout << this->getName() << " took "<< dmg << " damage, " << getHealth() << " health remaining.\n";
     }
 };
 }
