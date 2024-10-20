@@ -26,13 +26,15 @@ namespace seneca
         Character* clone() const override { return new Barbarian<T, Ability_t, Weapon_t>(*this); }
     
 
-        void attack(Character* enemy) override
-        {
-            int total_attack = this->getAttackAmnt() + static_cast<int>(m_weapon1) + static_cast<int>(m_weapon2);
-            m_ability.transformDamageDealt(total_attack);
-            std::cout << this->getName() << " attacks " << enemy->getName() << " with both weapons for " << total_attack << " damage!\n";
-            enemy->takeDamage(total_attack);
-        }
+void attack(Character* enemy) override
+{
+    int total_attack = this->getAttackAmnt() + static_cast<int>(m_weapon1) + static_cast<int>(m_weapon2);
+    m_ability.transformDamageDealt(total_attack); // Modify total_attack using the ability
+    std::cout << this->getName() << " attacks " << enemy->getName() << " with both weapons for " << total_attack << " damage!\n";
+    enemy->takeDamage(total_attack); // Apply the modified total_attack value
+}
+
+
 
         void takeDamage(int dmg) override
         {

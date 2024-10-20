@@ -26,14 +26,15 @@ namespace seneca
         Character* clone() const override { return new Rogue<T, FirstAbility_t, SecondAbility_t>(*this); }
     
 
-        void attack(Character* enemy) override
-        {
-            int total_attack = this->getAttackAmnt() + static_cast<int>(m_dagger);
-            m_ability1.transformDamageDealt(total_attack);
-            m_ability2.transformDamageDealt(total_attack);
-            std::cout << this->getName() << " attacks " << enemy->getName() << " with dagger for " << total_attack << " damage!\n";
-            enemy->takeDamage(total_attack);
-        }
+void attack(Character* enemy) override
+{
+    int total_attack = this->getAttackAmnt() + static_cast<int>(m_dagger);
+    m_ability1.transformDamageDealt(total_attack);
+    m_ability2.transformDamageDealt(total_attack); // Apply both ability transformations
+    std::cout << this->getName() << " attacks " << enemy->getName() << " with dagger for " << total_attack << " damage!\n";
+    enemy->takeDamage(total_attack); // Apply the modified total_attack value
+}
+
 
         void takeDamage(int dmg) override
         {

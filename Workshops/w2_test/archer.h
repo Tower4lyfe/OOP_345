@@ -24,11 +24,13 @@ namespace seneca
     
 
         void attack(Character* enemy) override
-        {
-            int total_attack = this->getAttackAmnt() + static_cast<int>(m_weapon);
-            std::cout << this->getName() << " shoots an arrow at " << enemy->getName() << " for " << total_attack << " damage!\n";
-            enemy->takeDamage(total_attack);
-        }
+{
+    int total_attack = this->getAttackAmnt() + static_cast<int>(m_weapon);
+    // Assuming there could be an ability or transformation that modifies total_attack (if applicable)
+    std::cout << this->getName() << " shoots an arrow at " << enemy->getName() << " for " << total_attack << " damage!\n";
+    enemy->takeDamage(total_attack);
+}
+
 
         void takeDamage(int dmg) override
         {
