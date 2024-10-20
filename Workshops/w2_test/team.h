@@ -31,7 +31,7 @@ namespace seneca {
             if (this != &other) {
                 m_name = other.m_name;
                 for (const auto& member : m_members) {
-                    delete member;
+                    delete[] member;
                 }
                 m_members.clear();
                 for (const auto& member : other.m_members) {
@@ -56,7 +56,7 @@ namespace seneca {
         // Destructor
         ~Team() {
             for (const auto& member : m_members) {
-                delete member;
+                delete[] member;
             }
         }
 
