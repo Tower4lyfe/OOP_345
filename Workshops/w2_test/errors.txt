@@ -6,8 +6,8 @@ team.h:13:21: warning: 'seneca::Team::m_name' will be initialized after [-Wreord
 team.h:12:33: warning:   'std::vector<seneca::Character*> seneca::Team::m_members' [-Wreorder]
    12 |         std::vector<Character*> m_members;
       |                                 ^~~~~~~~~
-team.h:46:9: warning:   when initialized here [-Wreorder]
-   46 |         Team(Team&& other) noexcept : m_name(std::move(other.m_name)), m_members(std::move(other.m_members)) {
+team.h:42:9: warning:   when initialized here [-Wreorder]
+   42 |         Team(Team&& other) noexcept : m_name(std::move(other.m_name)), m_members(std::move(other.m_members)) {
       |         ^~~~
 In file included from tester_1.cpp:13:
 guild.h: In constructor 'seneca::Guild::Guild(seneca::Guild&&)':
@@ -17,6 +17,6 @@ guild.h:12:21: warning: 'seneca::Guild::m_name' will be initialized after [-Wreo
 guild.h:11:33: warning:   'std::vector<seneca::Character*> seneca::Guild::m_members' [-Wreorder]
    11 |         std::vector<Character*> m_members;
       |                                 ^~~~~~~~~
-guild.h:45:9: warning:   when initialized here [-Wreorder]
-   45 |         Guild(Guild&& other) noexcept : m_name(std::move(other.m_name)), m_members(std::move(other.m_members)) {
+guild.h:41:9: warning:   when initialized here [-Wreorder]
+   41 |         Guild(Guild&& other) noexcept : m_name(std::move(other.m_name)), m_members(std::move(other.m_members)) {
       |         ^~~~~
