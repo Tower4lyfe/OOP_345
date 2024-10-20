@@ -1,131 +1,752 @@
-==66612== Memcheck, a memory error detector
-==66612== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==66612== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==66612== Command: ws
-==66612== Parent PID: 66299
-==66612== 
-==66612== Invalid read of size 8
-==66612==    at 0x403C7A: seneca::Team::~Team() (team.h:59)
-==66612==    by 0x402C15: main (tester_1.cpp:62)
-==66612==  Address 0x5afe450 is 0 bytes inside a block of size 88 free'd
-==66612==    at 0x4C2B6DF: operator delete(void*, unsigned long) (vg_replace_malloc.c:595)
-==66612==    by 0x4069E0: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::~Barbarian() (barbarian.h:10)
-==66612==    by 0x4042F3: seneca::Guild::~Guild() (guild.h:59)
-==66612==    by 0x402BF7: main (tester_1.cpp:117)
-==66612==  Block was alloc'd at
-==66612==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==66612==    by 0x40752C: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:50)
-==66612==    by 0x403D73: seneca::Team::addMember(seneca::Character const*) (team.h:70)
-==66612==    by 0x402154: main (tester_1.cpp:101)
-==66612== 
-==66612== Jump to the invalid address stated on the next line
-==66612==    at 0x0: ???
-==66612==    by 0x402C15: main (tester_1.cpp:62)
-==66612==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
-==66612== 
-==66612== 
-==66612== Process terminating with default action of signal 11 (SIGSEGV)
-==66612==  Bad permissions for mapped region at address 0x0
-==66612==    at 0x0: ???
-==66612==    by 0x402C15: main (tester_1.cpp:62)
-==66612== 
-==66612== HEAP SUMMARY:
-==66612==     in use at exit: 485 bytes in 8 blocks
-==66612==   total heap usage: 59 allocs, 51 frees, 75,752 bytes allocated
-==66612== 
-==66612== 17 bytes in 1 blocks are still reachable in loss record 1 of 8
-==66612==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==66612==    by 0x4062A1: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (basic_string.tcc:219)
-==66612==    by 0x405C68: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct_aux<char const*>(char const*, char const*, std::__false_type) (basic_string.h:247)
-==66612==    by 0x40544E: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*) (basic_string.h:266)
-==66612==    by 0x4047A6: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) (basic_string.h:527)
-==66612==    by 0x403859: seneca::Team::Team(char const*) (team.h:19)
-==66612==    by 0x401BE4: main (tester_1.cpp:62)
-==66612== 
-==66612== 20 bytes in 1 blocks are still reachable in loss record 2 of 8
-==66612==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==66612==    by 0x4062A1: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (basic_string.tcc:219)
-==66612==    by 0x405C68: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct_aux<char const*>(char const*, char const*, std::__false_type) (basic_string.h:247)
-==66612==    by 0x40544E: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*) (basic_string.h:266)
-==66612==    by 0x4047A6: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) (basic_string.h:527)
-==66612==    by 0x403859: seneca::Team::Team(char const*) (team.h:19)
-==66612==    by 0x401BD0: main (tester_1.cpp:61)
-==66612== 
-==66612== 64 bytes in 1 blocks are still reachable in loss record 3 of 8
-==66612==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==66612==    by 0x406711: __gnu_cxx::new_allocator<seneca::Character*>::allocate(unsigned long, void const*) (new_allocator.h:115)
-==66612==    by 0x40656E: std::allocator_traits<std::allocator<seneca::Character*> >::allocate(std::allocator<seneca::Character*>&, unsigned long) (alloc_traits.h:460)
-==66612==    by 0x4061B3: std::_Vector_base<seneca::Character*, std::allocator<seneca::Character*> >::_M_allocate(unsigned long) (stl_vector.h:346)
-==66612==    by 0x405D91: void std::vector<seneca::Character*, std::allocator<seneca::Character*> >::_M_realloc_insert<seneca::Character*>(__gnu_cxx::__normal_iterator<seneca::Character**, std::vector<seneca::Character*, std::allocator<seneca::Character*> > >, seneca::Character*&&) (vector.tcc:440)
-==66612==    by 0x4055E1: seneca::Character*& std::vector<seneca::Character*, std::allocator<seneca::Character*> >::emplace_back<seneca::Character*>(seneca::Character*&&) (vector.tcc:121)
-==66612==    by 0x404989: std::vector<seneca::Character*, std::allocator<seneca::Character*> >::push_back(seneca::Character*&&) (stl_vector.h:1204)
-==66612==    by 0x403D86: seneca::Team::addMember(seneca::Character const*) (team.h:70)
-==66612==    by 0x4020BE: main (tester_1.cpp:94)
-==66612== 
-==66612== 64 bytes in 1 blocks are still reachable in loss record 4 of 8
-==66612==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==66612==    by 0x406711: __gnu_cxx::new_allocator<seneca::Character*>::allocate(unsigned long, void const*) (new_allocator.h:115)
-==66612==    by 0x40656E: std::allocator_traits<std::allocator<seneca::Character*> >::allocate(std::allocator<seneca::Character*>&, unsigned long) (alloc_traits.h:460)
-==66612==    by 0x4061B3: std::_Vector_base<seneca::Character*, std::allocator<seneca::Character*> >::_M_allocate(unsigned long) (stl_vector.h:346)
-==66612==    by 0x405D91: void std::vector<seneca::Character*, std::allocator<seneca::Character*> >::_M_realloc_insert<seneca::Character*>(__gnu_cxx::__normal_iterator<seneca::Character**, std::vector<seneca::Character*, std::allocator<seneca::Character*> > >, seneca::Character*&&) (vector.tcc:440)
-==66612==    by 0x4055E1: seneca::Character*& std::vector<seneca::Character*, std::allocator<seneca::Character*> >::emplace_back<seneca::Character*>(seneca::Character*&&) (vector.tcc:121)
-==66612==    by 0x404989: std::vector<seneca::Character*, std::allocator<seneca::Character*> >::push_back(seneca::Character*&&) (stl_vector.h:1204)
-==66612==    by 0x403D86: seneca::Team::addMember(seneca::Character const*) (team.h:70)
-==66612==    by 0x40216D: main (tester_1.cpp:102)
-==66612== 
-==66612== 72 bytes in 1 blocks are still reachable in loss record 5 of 8
-==66612==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==66612==    by 0x407F12: seneca::Archer<seneca::Crossbow>::clone() const (archer.h:43)
-==66612==    by 0x403D73: seneca::Team::addMember(seneca::Character const*) (team.h:70)
-==66612==    by 0x40208C: main (tester_1.cpp:92)
-==66612== 
-==66612== 80 bytes in 1 blocks are still reachable in loss record 6 of 8
-==66612==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==66612==    by 0x408B76: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
-==66612==    by 0x403D73: seneca::Team::addMember(seneca::Character const*) (team.h:70)
-==66612==    by 0x402041: main (tester_1.cpp:89)
-==66612== 
-==66612== 80 bytes in 1 blocks are still reachable in loss record 7 of 8
-==66612==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==66612==    by 0x4071F0: seneca::Barbarian<seneca::InfiniteHealth, seneca::Fireball, seneca::BareHands>::clone() const (barbarian.h:50)
-==66612==    by 0x403D73: seneca::Team::addMember(seneca::Character const*) (team.h:70)
-==66612==    by 0x4020BE: main (tester_1.cpp:94)
-==66612== 
-==66612== 88 bytes in 1 blocks are still reachable in loss record 8 of 8
-==66612==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==66612==    by 0x40786A: seneca::Barbarian<double, seneca::Bersek, seneca::Sword>::clone() const (barbarian.h:50)
-==66612==    by 0x403D73: seneca::Team::addMember(seneca::Character const*) (team.h:70)
-==66612==    by 0x4020A5: main (tester_1.cpp:93)
-==66612== 
-==66612== LEAK SUMMARY:
-==66612==    definitely lost: 0 bytes in 0 blocks
-==66612==    indirectly lost: 0 bytes in 0 blocks
-==66612==      possibly lost: 0 bytes in 0 blocks
-==66612==    still reachable: 485 bytes in 8 blocks
-==66612==         suppressed: 0 bytes in 0 blocks
-==66612== 
-==66612== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
-==66612== 
-==66612== 1 errors in context 1 of 2:
-==66612== Jump to the invalid address stated on the next line
-==66612==    at 0x0: ???
-==66612==    by 0x402C15: main (tester_1.cpp:62)
-==66612==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
-==66612== 
-==66612== 
-==66612== 1 errors in context 2 of 2:
-==66612== Invalid read of size 8
-==66612==    at 0x403C7A: seneca::Team::~Team() (team.h:59)
-==66612==    by 0x402C15: main (tester_1.cpp:62)
-==66612==  Address 0x5afe450 is 0 bytes inside a block of size 88 free'd
-==66612==    at 0x4C2B6DF: operator delete(void*, unsigned long) (vg_replace_malloc.c:595)
-==66612==    by 0x4069E0: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::~Barbarian() (barbarian.h:10)
-==66612==    by 0x4042F3: seneca::Guild::~Guild() (guild.h:59)
-==66612==    by 0x402BF7: main (tester_1.cpp:117)
-==66612==  Block was alloc'd at
-==66612==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==66612==    by 0x40752C: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:50)
-==66612==    by 0x403D73: seneca::Team::addMember(seneca::Character const*) (team.h:70)
-==66612==    by 0x402154: main (tester_1.cpp:101)
-==66612== 
-==66612== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==73463== Memcheck, a memory error detector
+==73463== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==73463== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==73463== Command: ws
+==73463== Parent PID: 66299
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x403D42: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x4025A1: main (tester_1.cpp:143)
+==73463==  Address 0x5afe768 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40399B: seneca::Team::Team(seneca::Team const&) (team.h:25)
+==73463==    by 0x402574: main (tester_1.cpp:143)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x403D83: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x4025A1: main (tester_1.cpp:143)
+==73463==  Address 0x5afe768 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40399B: seneca::Team::Team(seneca::Team const&) (team.h:25)
+==73463==    by 0x402574: main (tester_1.cpp:143)
+==73463== 
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x403DAD: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x4025A1: main (tester_1.cpp:143)
+==73463==  Address 0x5afe768 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40399B: seneca::Team::Team(seneca::Team const&) (team.h:25)
+==73463==    by 0x402574: main (tester_1.cpp:143)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x403A99: seneca::Team::operator=(seneca::Team const&) (team.h:34)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463==  Address 0x5afec28 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x4025EC: main (tester_1.cpp:151)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x403ADA: seneca::Team::operator=(seneca::Team const&) (team.h:34)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463==  Address 0x5afec28 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x4025EC: main (tester_1.cpp:151)
+==73463== 
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x403B04: seneca::Team::operator=(seneca::Team const&) (team.h:34)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463==  Address 0x5afec28 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x4025EC: main (tester_1.cpp:151)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x403D42: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x40265A: main (tester_1.cpp:150)
+==73463==  Address 0x5aff088 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x403D83: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x40265A: main (tester_1.cpp:150)
+==73463==  Address 0x5aff088 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463== 
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x403DAD: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x40265A: main (tester_1.cpp:150)
+==73463==  Address 0x5aff088 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x40447A: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x40277E: main (tester_1.cpp:175)
+==73463==  Address 0x5aff378 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40411F: seneca::Guild::Guild(seneca::Guild const&) (guild.h:25)
+==73463==    by 0x402751: main (tester_1.cpp:175)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x4044BB: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x40277E: main (tester_1.cpp:175)
+==73463==  Address 0x5aff378 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40411F: seneca::Guild::Guild(seneca::Guild const&) (guild.h:25)
+==73463==    by 0x402751: main (tester_1.cpp:175)
+==73463== 
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x4044E5: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x40277E: main (tester_1.cpp:175)
+==73463==  Address 0x5aff378 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40411F: seneca::Guild::Guild(seneca::Guild const&) (guild.h:25)
+==73463==    by 0x402751: main (tester_1.cpp:175)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x40421D: seneca::Guild::operator=(seneca::Guild const&) (guild.h:34)
+==73463==    by 0x40280A: main (tester_1.cpp:188)
+==73463==  Address 0x5aff5a8 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x404315: seneca::Guild::operator=(seneca::Guild const&) (guild.h:38)
+==73463==    by 0x4027C9: main (tester_1.cpp:183)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x40425E: seneca::Guild::operator=(seneca::Guild const&) (guild.h:34)
+==73463==    by 0x40280A: main (tester_1.cpp:188)
+==73463==  Address 0x5aff5a8 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x404315: seneca::Guild::operator=(seneca::Guild const&) (guild.h:38)
+==73463==    by 0x4027C9: main (tester_1.cpp:183)
+==73463== 
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x404288: seneca::Guild::operator=(seneca::Guild const&) (guild.h:34)
+==73463==    by 0x40280A: main (tester_1.cpp:188)
+==73463==  Address 0x5aff5a8 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x404315: seneca::Guild::operator=(seneca::Guild const&) (guild.h:38)
+==73463==    by 0x4027C9: main (tester_1.cpp:183)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x40447A: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x402C47: main (tester_1.cpp:117)
+==73463==  Address 0x5afe448 is 8 bytes before a block of size 88 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x407724: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:50)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4021A4: main (tester_1.cpp:101)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x4044BB: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x402C47: main (tester_1.cpp:117)
+==73463==  Address 0x5afe448 is 8 bytes before a block of size 88 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x407724: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:50)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4021A4: main (tester_1.cpp:101)
+==73463== 
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x4044E5: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x402C47: main (tester_1.cpp:117)
+==73463==  Address 0x5afe448 is 8 bytes before a block of size 88 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x407724: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:50)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4021A4: main (tester_1.cpp:101)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x40447A: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x402C56: main (tester_1.cpp:116)
+==73463==  Address 0x5afde18 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4020C3: main (tester_1.cpp:91)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x4044BB: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x402C56: main (tester_1.cpp:116)
+==73463==  Address 0x5afde18 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4020C3: main (tester_1.cpp:91)
+==73463== 
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x4044E5: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x402C56: main (tester_1.cpp:116)
+==73463==  Address 0x5afde18 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4020C3: main (tester_1.cpp:91)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x403D42: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x402C65: main (tester_1.cpp:62)
+==73463==  Address 0x5afe198 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402140: main (tester_1.cpp:97)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x403D83: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x402C65: main (tester_1.cpp:62)
+==73463==  Address 0x5afe198 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402140: main (tester_1.cpp:97)
+==73463== 
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x403DAD: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x402C65: main (tester_1.cpp:62)
+==73463==  Address 0x5afe198 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402140: main (tester_1.cpp:97)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x403D42: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x402C74: main (tester_1.cpp:61)
+==73463==  Address 0x5afdd38 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402091: main (tester_1.cpp:89)
+==73463== 
+==73463== Invalid read of size 8
+==73463==    at 0x403D83: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x402C74: main (tester_1.cpp:61)
+==73463==  Address 0x5afdd38 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402091: main (tester_1.cpp:89)
+==73463== 
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x403DAD: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x402C74: main (tester_1.cpp:61)
+==73463==  Address 0x5afdd38 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402091: main (tester_1.cpp:89)
+==73463== 
+==73463== 
+==73463== HEAP SUMMARY:
+==73463==     in use at exit: 2,336 bytes in 29 blocks
+==73463==   total heap usage: 59 allocs, 62 frees, 75,752 bytes allocated
+==73463== 
+==73463== 72 bytes in 1 blocks are definitely lost in loss record 1 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x40810A: seneca::Archer<seneca::Crossbow>::clone() const (archer.h:43)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4020DC: main (tester_1.cpp:92)
+==73463== 
+==73463== 72 bytes in 1 blocks are definitely lost in loss record 2 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x40810A: seneca::Archer<seneca::Crossbow>::clone() const (archer.h:43)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402159: main (tester_1.cpp:98)
+==73463== 
+==73463== 72 bytes in 1 blocks are definitely lost in loss record 3 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x407E38: seneca::Archer<seneca::Bow>::clone() const (archer.h:43)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402172: main (tester_1.cpp:99)
+==73463== 
+==73463== 72 bytes in 1 blocks are definitely lost in loss record 4 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x40810A: seneca::Archer<seneca::Crossbow>::clone() const (archer.h:43)
+==73463==    by 0x40399B: seneca::Team::Team(seneca::Team const&) (team.h:25)
+==73463==    by 0x402574: main (tester_1.cpp:143)
+==73463== 
+==73463== 72 bytes in 1 blocks are definitely lost in loss record 5 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x40810A: seneca::Archer<seneca::Crossbow>::clone() const (archer.h:43)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x4025EC: main (tester_1.cpp:151)
+==73463== 
+==73463== 72 bytes in 1 blocks are definitely lost in loss record 6 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x40810A: seneca::Archer<seneca::Crossbow>::clone() const (archer.h:43)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463== 
+==73463== 72 bytes in 1 blocks are definitely lost in loss record 7 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x407E38: seneca::Archer<seneca::Bow>::clone() const (archer.h:43)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463== 
+==73463== 80 bytes in 1 blocks are definitely lost in loss record 8 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402091: main (tester_1.cpp:89)
+==73463== 
+==73463== 80 bytes in 1 blocks are definitely lost in loss record 9 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4020C3: main (tester_1.cpp:91)
+==73463== 
+==73463== 80 bytes in 1 blocks are definitely lost in loss record 10 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4073E8: seneca::Barbarian<seneca::InfiniteHealth, seneca::Fireball, seneca::BareHands>::clone() const (barbarian.h:50)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x40210E: main (tester_1.cpp:94)
+==73463== 
+==73463== 80 bytes in 1 blocks are definitely lost in loss record 11 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402140: main (tester_1.cpp:97)
+==73463== 
+==73463== 80 bytes in 1 blocks are definitely lost in loss record 12 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40399B: seneca::Team::Team(seneca::Team const&) (team.h:25)
+==73463==    by 0x402574: main (tester_1.cpp:143)
+==73463== 
+==73463== 80 bytes in 1 blocks are definitely lost in loss record 13 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40399B: seneca::Team::Team(seneca::Team const&) (team.h:25)
+==73463==    by 0x402574: main (tester_1.cpp:143)
+==73463== 
+==73463== 80 bytes in 1 blocks are definitely lost in loss record 14 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4073E8: seneca::Barbarian<seneca::InfiniteHealth, seneca::Fireball, seneca::BareHands>::clone() const (barbarian.h:50)
+==73463==    by 0x40399B: seneca::Team::Team(seneca::Team const&) (team.h:25)
+==73463==    by 0x402574: main (tester_1.cpp:143)
+==73463== 
+==73463== 80 bytes in 1 blocks are definitely lost in loss record 15 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x4025EC: main (tester_1.cpp:151)
+==73463== 
+==73463== 80 bytes in 1 blocks are definitely lost in loss record 16 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x4025EC: main (tester_1.cpp:151)
+==73463== 
+==73463== 80 bytes in 1 blocks are definitely lost in loss record 17 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4073E8: seneca::Barbarian<seneca::InfiniteHealth, seneca::Fireball, seneca::BareHands>::clone() const (barbarian.h:50)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x4025EC: main (tester_1.cpp:151)
+==73463== 
+==73463== 80 bytes in 1 blocks are definitely lost in loss record 18 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463== 
+==73463== 80 bytes in 1 blocks are definitely lost in loss record 19 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40411F: seneca::Guild::Guild(seneca::Guild const&) (guild.h:25)
+==73463==    by 0x402751: main (tester_1.cpp:175)
+==73463== 
+==73463== 80 bytes in 1 blocks are definitely lost in loss record 20 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x404315: seneca::Guild::operator=(seneca::Guild const&) (guild.h:38)
+==73463==    by 0x4027C9: main (tester_1.cpp:183)
+==73463== 
+==73463== 88 bytes in 1 blocks are definitely lost in loss record 21 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x407A62: seneca::Barbarian<double, seneca::Bersek, seneca::Sword>::clone() const (barbarian.h:50)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4020F5: main (tester_1.cpp:93)
+==73463== 
+==73463== 88 bytes in 1 blocks are definitely lost in loss record 22 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x407724: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:50)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4021A4: main (tester_1.cpp:101)
+==73463== 
+==73463== 88 bytes in 1 blocks are definitely lost in loss record 23 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x406FE2: seneca::Barbarian<double, seneca::Fireball, seneca::Sword>::clone() const (barbarian.h:50)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4021BD: main (tester_1.cpp:102)
+==73463== 
+==73463== 88 bytes in 1 blocks are definitely lost in loss record 24 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x407A62: seneca::Barbarian<double, seneca::Bersek, seneca::Sword>::clone() const (barbarian.h:50)
+==73463==    by 0x40399B: seneca::Team::Team(seneca::Team const&) (team.h:25)
+==73463==    by 0x402574: main (tester_1.cpp:143)
+==73463== 
+==73463== 88 bytes in 1 blocks are definitely lost in loss record 25 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x407A62: seneca::Barbarian<double, seneca::Bersek, seneca::Sword>::clone() const (barbarian.h:50)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x4025EC: main (tester_1.cpp:151)
+==73463== 
+==73463== 88 bytes in 1 blocks are definitely lost in loss record 26 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x407724: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:50)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463== 
+==73463== 88 bytes in 1 blocks are definitely lost in loss record 27 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x406FE2: seneca::Barbarian<double, seneca::Fireball, seneca::Sword>::clone() const (barbarian.h:50)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463== 
+==73463== 88 bytes in 1 blocks are definitely lost in loss record 28 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x406FE2: seneca::Barbarian<double, seneca::Fireball, seneca::Sword>::clone() const (barbarian.h:50)
+==73463==    by 0x40411F: seneca::Guild::Guild(seneca::Guild const&) (guild.h:25)
+==73463==    by 0x402751: main (tester_1.cpp:175)
+==73463== 
+==73463== 88 bytes in 1 blocks are definitely lost in loss record 29 of 29
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x406FE2: seneca::Barbarian<double, seneca::Fireball, seneca::Sword>::clone() const (barbarian.h:50)
+==73463==    by 0x404315: seneca::Guild::operator=(seneca::Guild const&) (guild.h:38)
+==73463==    by 0x4027C9: main (tester_1.cpp:183)
+==73463== 
+==73463== LEAK SUMMARY:
+==73463==    definitely lost: 2,336 bytes in 29 blocks
+==73463==    indirectly lost: 0 bytes in 0 blocks
+==73463==      possibly lost: 0 bytes in 0 blocks
+==73463==    still reachable: 0 bytes in 0 blocks
+==73463==         suppressed: 0 bytes in 0 blocks
+==73463== 
+==73463== ERROR SUMMARY: 125 errors from 56 contexts (suppressed: 0 from 0)
+==73463== 
+==73463== 1 errors in context 1 of 56:
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x4044E5: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x402C47: main (tester_1.cpp:117)
+==73463==  Address 0x5afe448 is 8 bytes before a block of size 88 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x407724: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:50)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4021A4: main (tester_1.cpp:101)
+==73463== 
+==73463== 
+==73463== 1 errors in context 2 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x4044BB: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x402C47: main (tester_1.cpp:117)
+==73463==  Address 0x5afe448 is 8 bytes before a block of size 88 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x407724: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:50)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4021A4: main (tester_1.cpp:101)
+==73463== 
+==73463== 
+==73463== 1 errors in context 3 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x40447A: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x402C47: main (tester_1.cpp:117)
+==73463==  Address 0x5afe448 is 8 bytes before a block of size 88 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x407724: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:50)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4021A4: main (tester_1.cpp:101)
+==73463== 
+==73463== 
+==73463== 2 errors in context 4 of 56:
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x4044E5: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x402C56: main (tester_1.cpp:116)
+==73463==  Address 0x5afde18 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4020C3: main (tester_1.cpp:91)
+==73463== 
+==73463== 
+==73463== 2 errors in context 5 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x4044BB: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x402C56: main (tester_1.cpp:116)
+==73463==  Address 0x5afde18 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4020C3: main (tester_1.cpp:91)
+==73463== 
+==73463== 
+==73463== 2 errors in context 6 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x40447A: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x402C56: main (tester_1.cpp:116)
+==73463==  Address 0x5afde18 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x4020C3: main (tester_1.cpp:91)
+==73463== 
+==73463== 
+==73463== 2 errors in context 7 of 56:
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x404288: seneca::Guild::operator=(seneca::Guild const&) (guild.h:34)
+==73463==    by 0x40280A: main (tester_1.cpp:188)
+==73463==  Address 0x5aff5a8 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x404315: seneca::Guild::operator=(seneca::Guild const&) (guild.h:38)
+==73463==    by 0x4027C9: main (tester_1.cpp:183)
+==73463== 
+==73463== 
+==73463== 2 errors in context 8 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x40425E: seneca::Guild::operator=(seneca::Guild const&) (guild.h:34)
+==73463==    by 0x40280A: main (tester_1.cpp:188)
+==73463==  Address 0x5aff5a8 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x404315: seneca::Guild::operator=(seneca::Guild const&) (guild.h:38)
+==73463==    by 0x4027C9: main (tester_1.cpp:183)
+==73463== 
+==73463== 
+==73463== 2 errors in context 9 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x40421D: seneca::Guild::operator=(seneca::Guild const&) (guild.h:34)
+==73463==    by 0x40280A: main (tester_1.cpp:188)
+==73463==  Address 0x5aff5a8 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x404315: seneca::Guild::operator=(seneca::Guild const&) (guild.h:38)
+==73463==    by 0x4027C9: main (tester_1.cpp:183)
+==73463== 
+==73463== 
+==73463== 2 errors in context 10 of 56:
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x4044E5: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x40277E: main (tester_1.cpp:175)
+==73463==  Address 0x5aff378 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40411F: seneca::Guild::Guild(seneca::Guild const&) (guild.h:25)
+==73463==    by 0x402751: main (tester_1.cpp:175)
+==73463== 
+==73463== 
+==73463== 2 errors in context 11 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x4044BB: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x40277E: main (tester_1.cpp:175)
+==73463==  Address 0x5aff378 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40411F: seneca::Guild::Guild(seneca::Guild const&) (guild.h:25)
+==73463==    by 0x402751: main (tester_1.cpp:175)
+==73463== 
+==73463== 
+==73463== 2 errors in context 12 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x40447A: seneca::Guild::~Guild() (guild.h:59)
+==73463==    by 0x40277E: main (tester_1.cpp:175)
+==73463==  Address 0x5aff378 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4088B0: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40411F: seneca::Guild::Guild(seneca::Guild const&) (guild.h:25)
+==73463==    by 0x402751: main (tester_1.cpp:175)
+==73463== 
+==73463== 
+==73463== 5 errors in context 13 of 56:
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x403DAD: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x402C74: main (tester_1.cpp:61)
+==73463==  Address 0x5afdd38 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402091: main (tester_1.cpp:89)
+==73463== 
+==73463== 
+==73463== 5 errors in context 14 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x403D83: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x402C74: main (tester_1.cpp:61)
+==73463==  Address 0x5afdd38 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402091: main (tester_1.cpp:89)
+==73463== 
+==73463== 
+==73463== 5 errors in context 15 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x403D42: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x402C74: main (tester_1.cpp:61)
+==73463==  Address 0x5afdd38 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402091: main (tester_1.cpp:89)
+==73463== 
+==73463== 
+==73463== 5 errors in context 16 of 56:
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x403DAD: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x402C65: main (tester_1.cpp:62)
+==73463==  Address 0x5afe198 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402140: main (tester_1.cpp:97)
+==73463== 
+==73463== 
+==73463== 5 errors in context 17 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x403D83: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x402C65: main (tester_1.cpp:62)
+==73463==  Address 0x5afe198 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402140: main (tester_1.cpp:97)
+==73463== 
+==73463== 
+==73463== 5 errors in context 18 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x403D42: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x402C65: main (tester_1.cpp:62)
+==73463==  Address 0x5afe198 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403E97: seneca::Team::addMember(seneca::Character const*) (team.h:70)
+==73463==    by 0x402140: main (tester_1.cpp:97)
+==73463== 
+==73463== 
+==73463== 5 errors in context 19 of 56:
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x403DAD: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x40265A: main (tester_1.cpp:150)
+==73463==  Address 0x5aff088 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463== 
+==73463== 
+==73463== 5 errors in context 20 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x403D83: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x40265A: main (tester_1.cpp:150)
+==73463==  Address 0x5aff088 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463== 
+==73463== 
+==73463== 5 errors in context 21 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x403D42: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x40265A: main (tester_1.cpp:150)
+==73463==  Address 0x5aff088 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x4083EC: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463== 
+==73463== 
+==73463== 5 errors in context 22 of 56:
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x403B04: seneca::Team::operator=(seneca::Team const&) (team.h:34)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463==  Address 0x5afec28 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x4025EC: main (tester_1.cpp:151)
+==73463== 
+==73463== 
+==73463== 5 errors in context 23 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x403ADA: seneca::Team::operator=(seneca::Team const&) (team.h:34)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463==  Address 0x5afec28 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x4025EC: main (tester_1.cpp:151)
+==73463== 
+==73463== 
+==73463== 5 errors in context 24 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x403A99: seneca::Team::operator=(seneca::Team const&) (team.h:34)
+==73463==    by 0x40262D: main (tester_1.cpp:156)
+==73463==  Address 0x5afec28 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x403B91: seneca::Team::operator=(seneca::Team const&) (team.h:38)
+==73463==    by 0x4025EC: main (tester_1.cpp:151)
+==73463== 
+==73463== 
+==73463== 5 errors in context 25 of 56:
+==73463== Invalid free() / delete / delete[] / realloc()
+==73463==    at 0x4C2BD51: operator delete[](void*, unsigned long) (vg_replace_malloc.c:662)
+==73463==    by 0x403DAD: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x4025A1: main (tester_1.cpp:143)
+==73463==  Address 0x5afe768 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40399B: seneca::Team::Team(seneca::Team const&) (team.h:25)
+==73463==    by 0x402574: main (tester_1.cpp:143)
+==73463== 
+==73463== 
+==73463== 5 errors in context 26 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x403D83: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x4025A1: main (tester_1.cpp:143)
+==73463==  Address 0x5afe768 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40399B: seneca::Team::Team(seneca::Team const&) (team.h:25)
+==73463==    by 0x402574: main (tester_1.cpp:143)
+==73463== 
+==73463== 
+==73463== 5 errors in context 27 of 56:
+==73463== Invalid read of size 8
+==73463==    at 0x403D42: seneca::Team::~Team() (team.h:59)
+==73463==    by 0x4025A1: main (tester_1.cpp:143)
+==73463==  Address 0x5afe768 is 8 bytes before a block of size 80 alloc'd
+==73463==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==73463==    by 0x408D6E: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:51)
+==73463==    by 0x40399B: seneca::Team::Team(seneca::Team const&) (team.h:25)
+==73463==    by 0x402574: main (tester_1.cpp:143)
+==73463== 
+==73463== ERROR SUMMARY: 125 errors from 56 contexts (suppressed: 0 from 0)
