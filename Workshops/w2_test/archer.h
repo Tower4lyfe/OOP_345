@@ -13,8 +13,8 @@ namespace seneca {
         Weapon_t m_weapon;
 
     public:
-        Archer(const char* name, int healthMax, int baseAttack, int baseDefense, Weapon_t weapon)
-            : CharacterTpl<seneca::SuperHealth>(name, healthMax), m_baseAttack(baseAttack), m_baseDefense(baseDefense), m_weapon(weapon) {}
+        Archer(const char* name, int healthMax, int baseDefense, int baseAttack, Weapon_t weapon)
+            : CharacterTpl<seneca::SuperHealth>(name, healthMax), m_baseDefense(baseDefense), m_baseAttack(baseAttack), m_weapon(weapon) {}
 
         int getAttackAmnt() const override {
             return static_cast<int>(1.3 * m_baseAttack);

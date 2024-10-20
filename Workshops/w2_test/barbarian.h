@@ -14,8 +14,8 @@ namespace seneca {
         Weapon_t m_weapon[2];
 
     public:
-        Barbarian(const char* name, int healthMax, int baseAttack, int baseDefense, Weapon_t primaryWeapon, Weapon_t secondaryWeapon)
-            : CharacterTpl<T>(name, healthMax), m_baseAttack(baseAttack), m_baseDefense(baseDefense) {
+        Barbarian(const char* name, int healthMax, int baseDefense, int baseAttack, Weapon_t primaryWeapon, Weapon_t secondaryWeapon)
+            : CharacterTpl<T>(name, healthMax), m_baseDefense(baseDefense), m_baseAttack(baseAttack) {
             m_weapon[0] = primaryWeapon;
             m_weapon[1] = secondaryWeapon;
         }
