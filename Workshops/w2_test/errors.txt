@@ -1,3 +1,25 @@
+In file included from tester_1.cpp:11:
+team.h: In constructor 'seneca::Team::Team(seneca::Team&&)':
+team.h:13:21: warning: 'seneca::Team::m_name' will be initialized after [-Wreorder]
+   13 |         std::string m_name;
+      |                     ^~~~~~
+team.h:12:33: warning:   'std::vector<seneca::Character*> seneca::Team::m_members' [-Wreorder]
+   12 |         std::vector<Character*> m_members;
+      |                                 ^~~~~~~~~
+team.h:46:9: warning:   when initialized here [-Wreorder]
+   46 |         Team(Team&& other) noexcept : m_name(std::move(other.m_name)), m_members(std::move(other.m_members)) {
+      |         ^~~~
+In file included from tester_1.cpp:13:
+guild.h: In constructor 'seneca::Guild::Guild(seneca::Guild&&)':
+guild.h:12:21: warning: 'seneca::Guild::m_name' will be initialized after [-Wreorder]
+   12 |         std::string m_name;
+      |                     ^~~~~~
+guild.h:11:33: warning:   'std::vector<seneca::Character*> seneca::Guild::m_members' [-Wreorder]
+   11 |         std::vector<Character*> m_members;
+      |                                 ^~~~~~~~~
+guild.h:45:9: warning:   when initialized here [-Wreorder]
+   45 |         Guild(Guild&& other) noexcept : m_name(std::move(other.m_name)), m_members(std::move(other.m_members)) {
+      |         ^~~~~
 In file included from tester_1.cpp:17:
 rogue.h: In instantiation of 'seneca::Rogue<T, FirstAbility_t, SecondAbility_t>::Rogue(const char*, int, int, int) [with T = seneca::SuperHealth; FirstAbility_t = seneca::Heal; SecondAbility_t = seneca::Fireball]':
 tester_1.cpp:65:102:   required from here
