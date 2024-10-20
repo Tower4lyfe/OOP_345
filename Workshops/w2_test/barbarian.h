@@ -3,6 +3,7 @@
 
 #include "characterTpl.h"
 #include <iostream>
+#include "health.h"
 
 namespace seneca {
     template <typename T, typename Ability_t, typename Weapon_t>

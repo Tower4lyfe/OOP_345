@@ -2,6 +2,7 @@
 #define SENECA_CHARACTERTPL_H
 
 #include "character.h"
+#include "health.h"
 #include <iostream>
 
 namespace seneca {

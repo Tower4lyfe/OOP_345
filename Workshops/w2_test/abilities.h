@@ -2,6 +2,7 @@
 #define SENECA_ABILITIES_H
 #include <iostream>
 #include "character.h"
+#include "health.h"
 
 namespace seneca
 {
