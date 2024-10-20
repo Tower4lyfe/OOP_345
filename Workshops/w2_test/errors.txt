@@ -1,0 +1,229 @@
+In file included from tester_1.cpp:11:
+team.h: In constructor 'seneca::Team::Team(seneca::Team&&)':
+team.h:13:15: warning: 'seneca::Team::m_name' will be initialized after [-Wreorder]
+   13 |   std::string m_name;
+      |               ^~~~~~
+team.h:12:28: warning:   'std::vector<seneca::Character*> seneca::Team::m_members' [-Wreorder]
+   12 |   std::vector<Character *> m_members;
+      |                            ^~~~~~~~~
+team.h:46:3: warning:   when initialized here [-Wreorder]
+   46 |   Team(Team &&other) noexcept
+      |   ^~~~
+In file included from tester_1.cpp:13:
+guild.h: In constructor 'seneca::Guild::Guild(seneca::Guild&&)':
+guild.h:13:15: warning: 'seneca::Guild::m_name' will be initialized after [-Wreorder]
+   13 |   std::string m_name;
+      |               ^~~~~~
+guild.h:12:28: warning:   'std::vector<seneca::Character*> seneca::Guild::m_members' [-Wreorder]
+   12 |   std::vector<Character *> m_members;
+      |                            ^~~~~~~~~
+guild.h:46:3: warning:   when initialized here [-Wreorder]
+   46 |   Guild(Guild &&other) noexcept
+      |   ^~~~~
+In file included from tester_1.cpp:17:
+rogue.h: In instantiation of 'seneca::Rogue<T, FirstAbility_t, SecondAbility_t>::Rogue(const char*, int, int, int) [with T = seneca::SuperHealth; FirstAbility_t = seneca::Heal; SecondAbility_t = seneca::Fireball]':
+tester_1.cpp:65:102:   required from here
+rogue.h:12:13: warning: 'seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::m_baseAttack' will be initialized after [-Wreorder]
+   12 |         int m_baseAttack;
+      |             ^~~~~~~~~~~~
+rogue.h:11:13: warning:   'int seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::m_baseDefense' [-Wreorder]
+   11 |         int m_baseDefense;
+      |             ^~~~~~~~~~~~~
+rogue.h:18:9: warning:   when initialized here [-Wreorder]
+   18 |         Rogue(const char* name, int healthMax, int baseAttack, int baseDefense)
+      |         ^~~~~
+rogue.h: In instantiation of 'seneca::Rogue<T, FirstAbility_t, SecondAbility_t>::Rogue(const char*, int, int, int) [with T = double; FirstAbility_t = seneca::Fireball; SecondAbility_t = seneca::Fireball]':
+tester_1.cpp:66:92:   required from here
+rogue.h:12:13: warning: 'seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::m_baseAttack' will be initialized after [-Wreorder]
+   12 |         int m_baseAttack;
+      |             ^~~~~~~~~~~~
+rogue.h:11:13: warning:   'int seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::m_baseDefense' [-Wreorder]
+   11 |         int m_baseDefense;
+      |             ^~~~~~~~~~~~~
+rogue.h:18:9: warning:   when initialized here [-Wreorder]
+   18 |         Rogue(const char* name, int healthMax, int baseAttack, int baseDefense)
+      |         ^~~~~
+rogue.h: In instantiation of 'seneca::Rogue<T, FirstAbility_t, SecondAbility_t>::Rogue(const char*, int, int, int) [with T = seneca::InfiniteHealth; FirstAbility_t = seneca::Bersek; SecondAbility_t = seneca::Bersek]':
+tester_1.cpp:67:102:   required from here
+rogue.h:12:13: warning: 'seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::m_baseAttack' will be initialized after [-Wreorder]
+   12 |         int m_baseAttack;
+      |             ^~~~~~~~~~~~
+rogue.h:11:13: warning:   'int seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::m_baseDefense' [-Wreorder]
+   11 |         int m_baseDefense;
+      |             ^~~~~~~~~~~~~
+rogue.h:18:9: warning:   when initialized here [-Wreorder]
+   18 |         Rogue(const char* name, int healthMax, int baseAttack, int baseDefense)
+      |         ^~~~~
+In file included from tester_1.cpp:19:
+archer.h: In instantiation of 'seneca::Archer<Weapon_t>::Archer(const char*, int, int, int, Weapon_t) [with Weapon_t = seneca::Crossbow]':
+tester_1.cpp:69:96:   required from here
+archer.h:12:13: warning: 'seneca::Archer<seneca::Crossbow>::m_baseAttack' will be initialized after [-Wreorder]
+   12 |         int m_baseAttack;
+      |             ^~~~~~~~~~~~
+archer.h:11:13: warning:   'int seneca::Archer<seneca::Crossbow>::m_baseDefense' [-Wreorder]
+   11 |         int m_baseDefense;
+      |             ^~~~~~~~~~~~~
+archer.h:16:9: warning:   when initialized here [-Wreorder]
+   16 |         Archer(const char* name, int healthMax, int baseAttack, int baseDefense, Weapon_t weapon)
+      |         ^~~~~~
+archer.h: In instantiation of 'seneca::Archer<Weapon_t>::Archer(const char*, int, int, int, Weapon_t) [with Weapon_t = seneca::Bow]':
+tester_1.cpp:71:84:   required from here
+archer.h:12:13: warning: 'seneca::Archer<seneca::Bow>::m_baseAttack' will be initialized after [-Wreorder]
+   12 |         int m_baseAttack;
+      |             ^~~~~~~~~~~~
+archer.h:11:13: warning:   'int seneca::Archer<seneca::Bow>::m_baseDefense' [-Wreorder]
+   11 |         int m_baseDefense;
+      |             ^~~~~~~~~~~~~
+archer.h:16:9: warning:   when initialized here [-Wreorder]
+   16 |         Archer(const char* name, int healthMax, int baseAttack, int baseDefense, Weapon_t weapon)
+      |         ^~~~~~
+In file included from tester_1.cpp:15:
+barbarian.h: In instantiation of 'seneca::Barbarian<T, Ability_t, Weapon_t>::Barbarian(const char*, int, int, int, Weapon_t, Weapon_t) [with T = double; Ability_t = seneca::Bersek; Weapon_t = seneca::Sword]':
+tester_1.cpp:73:138:   required from here
+barbarian.h:12:13: warning: 'seneca::Barbarian<double, seneca::Bersek, seneca::Sword>::m_baseAttack' will be initialized after [-Wreorder]
+   12 |         int m_baseAttack;
+      |             ^~~~~~~~~~~~
+barbarian.h:11:13: warning:   'int seneca::Barbarian<double, seneca::Bersek, seneca::Sword>::m_baseDefense' [-Wreorder]
+   11 |         int m_baseDefense;
+      |             ^~~~~~~~~~~~~
+barbarian.h:17:9: warning:   when initialized here [-Wreorder]
+   17 |         Barbarian(const char* name, int healthMax, int baseAttack, int baseDefense, Weapon_t primaryWeapon, Weapon_t secondaryWeapon)
+      |         ^~~~~~~~~
+barbarian.h: In instantiation of 'seneca::Barbarian<T, Ability_t, Weapon_t>::Barbarian(const char*, int, int, int, Weapon_t, Weapon_t) [with T = double; Ability_t = seneca::Heal; Weapon_t = seneca::Axe]':
+tester_1.cpp:74:104:   required from here
+barbarian.h:12:13: warning: 'seneca::Barbarian<double, seneca::Heal, seneca::Axe>::m_baseAttack' will be initialized after [-Wreorder]
+   12 |         int m_baseAttack;
+      |             ^~~~~~~~~~~~
+barbarian.h:11:13: warning:   'int seneca::Barbarian<double, seneca::Heal, seneca::Axe>::m_baseDefense' [-Wreorder]
+   11 |         int m_baseDefense;
+      |             ^~~~~~~~~~~~~
+barbarian.h:17:9: warning:   when initialized here [-Wreorder]
+   17 |         Barbarian(const char* name, int healthMax, int baseAttack, int baseDefense, Weapon_t primaryWeapon, Weapon_t secondaryWeapon)
+      |         ^~~~~~~~~
+barbarian.h: In instantiation of 'seneca::Barbarian<T, Ability_t, Weapon_t>::Barbarian(const char*, int, int, int, Weapon_t, Weapon_t) [with T = seneca::InfiniteHealth; Ability_t = seneca::Fireball; Weapon_t = seneca::BareHands]':
+tester_1.cpp:75:119:   required from here
+barbarian.h:12:13: warning: 'seneca::Barbarian<seneca::InfiniteHealth, seneca::Fireball, seneca::BareHands>::m_baseAttack' will be initialized after [-Wreorder]
+   12 |         int m_baseAttack;
+      |             ^~~~~~~~~~~~
+barbarian.h:11:13: warning:   'int seneca::Barbarian<seneca::InfiniteHealth, seneca::Fireball, seneca::BareHands>::m_baseDefense' [-Wreorder]
+   11 |         int m_baseDefense;
+      |             ^~~~~~~~~~~~~
+barbarian.h:17:9: warning:   when initialized here [-Wreorder]
+   17 |         Barbarian(const char* name, int healthMax, int baseAttack, int baseDefense, Weapon_t primaryWeapon, Weapon_t secondaryWeapon)
+      |         ^~~~~~~~~
+barbarian.h: In instantiation of 'seneca::Barbarian<T, Ability_t, Weapon_t>::Barbarian(const char*, int, int, int, Weapon_t, Weapon_t) [with T = double; Ability_t = seneca::Fireball; Weapon_t = seneca::Sword]':
+tester_1.cpp:76:107:   required from here
+barbarian.h:12:13: warning: 'seneca::Barbarian<double, seneca::Fireball, seneca::Sword>::m_baseAttack' will be initialized after [-Wreorder]
+   12 |         int m_baseAttack;
+      |             ^~~~~~~~~~~~
+barbarian.h:11:13: warning:   'int seneca::Barbarian<double, seneca::Fireball, seneca::Sword>::m_baseDefense' [-Wreorder]
+   11 |         int m_baseDefense;
+      |             ^~~~~~~~~~~~~
+barbarian.h:17:9: warning:   when initialized here [-Wreorder]
+   17 |         Barbarian(const char* name, int healthMax, int baseAttack, int baseDefense, Weapon_t primaryWeapon, Weapon_t secondaryWeapon)
+      |         ^~~~~~~~~
+In file included from barbarian.h:4,
+                 from tester_1.cpp:15:
+characterTpl.h: In instantiation of 'seneca::CharacterTpl<T>::CharacterTpl(const char*, int) [with T = seneca::SuperHealth]':
+rogue.h:19:100:   required from 'seneca::Rogue<T, FirstAbility_t, SecondAbility_t>::Rogue(const char*, int, int, int) [with T = seneca::SuperHealth; FirstAbility_t = seneca::Heal; SecondAbility_t = seneca::Fireball]'
+tester_1.cpp:65:102:   required from here
+characterTpl.h:15:116: error: no matching function for call to 'seneca::SuperHealth::SuperHealth(int&)'
+   15 |         CharacterTpl(const char* name, int healthMax) : Character(name), m_healthMax(healthMax), m_health(healthMax) {}
+      |                                                                                                                    ^
+In file included from abilities.h:5,
+                 from tester_1.cpp:5:
+health.h:10:8: note: candidate: 'constexpr seneca::SuperHealth::SuperHealth()'
+   10 |  class SuperHealth
+      |        ^~~~~~~~~~~
+health.h:10:8: note:   candidate expects 0 arguments, 1 provided
+health.h:10:8: note: candidate: 'constexpr seneca::SuperHealth::SuperHealth(const seneca::SuperHealth&)'
+health.h:10:8: note:   no known conversion for argument 1 from 'int' to 'const seneca::SuperHealth&'
+health.h:10:8: note: candidate: 'constexpr seneca::SuperHealth::SuperHealth(seneca::SuperHealth&&)'
+health.h:10:8: note:   no known conversion for argument 1 from 'int' to 'seneca::SuperHealth&&'
+In file included from barbarian.h:4,
+                 from tester_1.cpp:15:
+characterTpl.h: In instantiation of 'seneca::CharacterTpl<T>::CharacterTpl(const char*, int) [with T = seneca::InfiniteHealth]':
+rogue.h:19:100:   required from 'seneca::Rogue<T, FirstAbility_t, SecondAbility_t>::Rogue(const char*, int, int, int) [with T = seneca::InfiniteHealth; FirstAbility_t = seneca::Bersek; SecondAbility_t = seneca::Bersek]'
+tester_1.cpp:67:102:   required from here
+characterTpl.h:15:116: error: no matching function for call to 'seneca::InfiniteHealth::InfiniteHealth(int&)'
+   15 |         CharacterTpl(const char* name, int healthMax) : Character(name), m_healthMax(healthMax), m_health(healthMax) {}
+      |                                                                                                                    ^
+In file included from abilities.h:5,
+                 from tester_1.cpp:5:
+health.h:48:9: note: candidate: 'constexpr seneca::InfiniteHealth::InfiniteHealth()'
+   48 |  struct InfiniteHealth
+      |         ^~~~~~~~~~~~~~
+health.h:48:9: note:   candidate expects 0 arguments, 1 provided
+health.h:48:9: note: candidate: 'constexpr seneca::InfiniteHealth::InfiniteHealth(const seneca::InfiniteHealth&)'
+health.h:48:9: note:   no known conversion for argument 1 from 'int' to 'const seneca::InfiniteHealth&'
+health.h:48:9: note: candidate: 'constexpr seneca::InfiniteHealth::InfiniteHealth(seneca::InfiniteHealth&&)'
+health.h:48:9: note:   no known conversion for argument 1 from 'int' to 'seneca::InfiniteHealth&&'
+In file included from barbarian.h:4,
+                 from tester_1.cpp:15:
+characterTpl.h: In instantiation of 'seneca::Character* seneca::CharacterTpl<T>::clone() const [with T = seneca::InfiniteHealth]':
+characterTpl.h:43:20:   required from here
+characterTpl.h:44:20: error: invalid new-expression of abstract class type 'seneca::CharacterTpl<seneca::InfiniteHealth>'
+   44 |             return new CharacterTpl<T>(*this);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from barbarian.h:4,
+                 from tester_1.cpp:15:
+characterTpl.h:10:11: note:   because the following virtual functions are pure within 'seneca::CharacterTpl<seneca::InfiniteHealth>':
+   10 |     class CharacterTpl : public Character {
+      |           ^~~~~~~~~~~~
+In file included from abilities.h:4,
+                 from tester_1.cpp:5:
+character.h:39:15: note:     'virtual int seneca::Character::getAttackAmnt() const'
+   39 |   virtual int getAttackAmnt() const = 0;
+      |               ^~~~~~~~~~~~~
+character.h:45:15: note:     'virtual int seneca::Character::getDefenseAmnt() const'
+   45 |   virtual int getDefenseAmnt() const = 0;
+      |               ^~~~~~~~~~~~~~
+character.h:81:16: note:     'virtual void seneca::Character::attack(seneca::Character*)'
+   81 |   virtual void attack(Character* enemy) = 0;
+      |                ^~~~~~
+In file included from barbarian.h:4,
+                 from tester_1.cpp:15:
+characterTpl.h: In instantiation of 'seneca::Character* seneca::CharacterTpl<T>::clone() const [with T = double]':
+characterTpl.h:43:20:   required from here
+characterTpl.h:44:20: error: invalid new-expression of abstract class type 'seneca::CharacterTpl<double>'
+   44 |             return new CharacterTpl<T>(*this);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from barbarian.h:4,
+                 from tester_1.cpp:15:
+characterTpl.h:10:11: note:   because the following virtual functions are pure within 'seneca::CharacterTpl<double>':
+   10 |     class CharacterTpl : public Character {
+      |           ^~~~~~~~~~~~
+In file included from abilities.h:4,
+                 from tester_1.cpp:5:
+character.h:39:15: note:     'virtual int seneca::Character::getAttackAmnt() const'
+   39 |   virtual int getAttackAmnt() const = 0;
+      |               ^~~~~~~~~~~~~
+character.h:45:15: note:     'virtual int seneca::Character::getDefenseAmnt() const'
+   45 |   virtual int getDefenseAmnt() const = 0;
+      |               ^~~~~~~~~~~~~~
+character.h:81:16: note:     'virtual void seneca::Character::attack(seneca::Character*)'
+   81 |   virtual void attack(Character* enemy) = 0;
+      |                ^~~~~~
+In file included from barbarian.h:4,
+                 from tester_1.cpp:15:
+characterTpl.h: In instantiation of 'seneca::Character* seneca::CharacterTpl<T>::clone() const [with T = seneca::SuperHealth]':
+characterTpl.h:43:20:   required from here
+characterTpl.h:44:20: error: invalid new-expression of abstract class type 'seneca::CharacterTpl<seneca::SuperHealth>'
+   44 |             return new CharacterTpl<T>(*this);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from barbarian.h:4,
+                 from tester_1.cpp:15:
+characterTpl.h:10:11: note:   because the following virtual functions are pure within 'seneca::CharacterTpl<seneca::SuperHealth>':
+   10 |     class CharacterTpl : public Character {
+      |           ^~~~~~~~~~~~
+In file included from abilities.h:4,
+                 from tester_1.cpp:5:
+character.h:39:15: note:     'virtual int seneca::Character::getAttackAmnt() const'
+   39 |   virtual int getAttackAmnt() const = 0;
+      |               ^~~~~~~~~~~~~
+character.h:45:15: note:     'virtual int seneca::Character::getDefenseAmnt() const'
+   45 |   virtual int getDefenseAmnt() const = 0;
+      |               ^~~~~~~~~~~~~~
+character.h:81:16: note:     'virtual void seneca::Character::attack(seneca::Character*)'
+   81 |   virtual void attack(Character* enemy) = 0;
+      |                ^~~~~~
