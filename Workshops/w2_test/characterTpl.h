@@ -12,7 +12,13 @@ namespace seneca {
         T m_health;
 
     public:
-        CharacterTpl(const char* name, int healthMax) : Character(name), m_healthMax(healthMax), m_health(healthMax) {}
+        CharacterTpl(const char* name, int healthMax) : Character(name), m_healthMax(healthMax) {
+            if constexpr (std::is_same_v<T, SuperHealth> || std::is_same_v<T, InfiniteHealth>) {
+                m_health = T();
+            } else {
+                m_health = healthMax;
+            }
+        }
 
         void takeDamage(int dmg) override {
             m_health -= dmg;
@@ -38,6 +44,18 @@ namespace seneca {
         void setHealthMax(int health) override {
             m_healthMax = health;
             m_health = health;
+        }
+
+        int getAttackAmnt() const override {
+            return 0; // Default implementation, should be overridden by derived classes
+        }
+
+        int getDefenseAmnt() const override {
+            return 0; // Default implementation, should be overridden by derived classes
+        }
+
+        void attack(Character* enemy) override {
+            // Default implementation, should be overridden by derived classes
         }
 
         Character* clone() const override {
