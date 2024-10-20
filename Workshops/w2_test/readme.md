@@ -3,36 +3,6 @@
 In this workshop, you will create an application that implements a rudimentary structure of an RPG game. The game will feature multiple classes of characters, each one capable of using weapons and special abilities in their quest to defeat their enemies. Each player will be part of a team and can join a guild for extra bonuses.
 
 
-
-## Compiling and Testing Your Program
-
-All your code should be compiled using this command on `matrix`:
-
-```bash
-/usr/local/gcc/10.2.0/bin/g++ -Wall -std=c++17 -g -o ws file1.cpp file2.cpp ...
-```
-
-- `-Wall`: compiler will report all warnings
-- `-std=c++17`: the code will be compiled using the C++17 standard
-- `-g`: the executable file will contain debugging symbols, allowing *valgrind* to create better reports
-- `-o ws`: the compiled application will be named `ws`
-
-After compiling and testing your code, run your program as following to check for possible memory leaks (assuming your executable name is `ws`):
-
-```bash
-valgrind --show-error-list=yes --leak-check=full --show-leak-kinds=all --track-origins=yes ws
-```
-
-- `--show-error-list=yes`: show the list of detected errors
-- `--leak-check=full`: check for all types of memory problems
-- `--show-leak-kinds=all`: show all types of memory leaks identified (enabled by the previous flag)
-- `--track-origins=yes`: tracks the origin of uninitialized values (`g++` must use `-g` flag for compilation, so the information displayed here is meaningful).
-
-To check the output, use a program that can compare text files.  Search online for such a program for your platform, or use `diff` available on `matrix`.
-
-
-
-
 ## Dictionary
 
 This application will implement three different classes of characters that the player can choose at the begining of the game and will simulate the fight between two players.
@@ -402,24 +372,3 @@ the output should look like the one from the `sample_output.txt` file.
 
 > [!CAUTION]
 > Please note that a matching output is not a guarantee that the program is bug-free; it only means that in the specific tests this tester performed, no bugs/issues were identified. It is possible to write a tester that looks at other aspects of your code that will reveal bugs.
-
-
-
-
-
-### Submission
-
-To test and demonstrate execution of your program use the same data as shown in the sample output.
-
-Upload the source code to your `matrix` account. Compile and run your code using the latest version of the `g++` compiler (available at `/usr/local/gcc/10.2.0/bin/g++`) and make sure that everything works properly.
-
-Then, run the following command from your account (replace `profname.proflastname` with your professor’s Seneca userid):
-
-  ```bash
-  ~profname.proflastname/submit 345_w2
-  ```
-
-and follow the instructions.
-
-> [!WARNING]
-> Please note that a successful submission does not guarantee full credit for this workshop. If the professor is not satisfied with your implementation, your professor may ask you to resubmit. Resubmissions will attract a penalty.

@@ -19,8 +19,7 @@ namespace seneca {
         Guild(const char* name) : m_name(name) {}
 
         // Copy constructor
-        Guild(const Guild& other) {
-            m_name = other.m_name;
+        Guild(const Guild& other) : m_name(other.m_name) {
             for (const auto& member : other.m_members) {
                 m_members.push_back(member->clone());
             }
@@ -29,11 +28,12 @@ namespace seneca {
         // Copy assignment operator
         Guild& operator=(const Guild& other) {
             if (this != &other) {
-                m_name = other.m_name;
-                for (const auto& member : m_members) {
-                    delete[] member;
+                for (auto& member : m_members) {
+                    delete member; // Free old memory
                 }
-                m_members.clear();
+                m_members.clear(); // Clear the vector before copying new members
+
+                m_name = other.m_name;
                 for (const auto& member : other.m_members) {
                     m_members.push_back(member->clone());
                 }
@@ -42,22 +42,31 @@ namespace seneca {
         }
 
         // Move constructor
-        Guild(Guild&& other) noexcept : m_members(std::move(other.m_members)), m_name(std::move(other.m_name)) {}
+        Guild(Guild&& other) noexcept : m_name(std::move(other.m_name)), m_members(std::move(other.m_members)) {
+            other.m_members.clear(); // Prevent original object from deleting moved pointers
+        }
 
         // Move assignment operator
         Guild& operator=(Guild&& other) noexcept {
             if (this != &other) {
-                m_members = std::move(other.m_members);
+                for (auto& member : m_members) {
+                    delete member;
+                }
+                m_members.clear(); // Clear current members before taking ownership
+
                 m_name = std::move(other.m_name);
+                m_members = std::move(other.m_members);
+                other.m_members.clear(); // Prevent double deletion
             }
             return *this;
         }
 
         // Destructor
         ~Guild() {
-            for (const auto& member : m_members) {
-                delete[] member;
+            for (auto& member : m_members) {
+                delete member;
             }
+            m_members.clear(); // Ensure vector is empty to avoid dangling pointers
         }
 
         // Add a member to the guild
@@ -68,7 +77,7 @@ namespace seneca {
                 }
             }
             c->setHealthMax(c->getHealthMax() + 300);
-            m_members.push_back(c);
+            m_members.push_back(c->clone());
         }
 
         // Remove a member from the guild by name
@@ -76,6 +85,7 @@ namespace seneca {
             for (auto it = m_members.begin(); it != m_members.end(); ++it) {
                 if ((*it)->getName() == name) {
                     (*it)->setHealthMax((*it)->getHealthMax() - 300);
+                    delete *it;
                     m_members.erase(it);
                     return;
                 }
@@ -83,13 +93,12 @@ namespace seneca {
         }
 
         // Access a member by index
-Character* operator[](std::size_t idx) const {
-    if (idx < m_members.size()) {
-        return m_members[idx];
-    }
-    return nullptr;
-}
-
+        Character* operator[](std::size_t idx) const {
+            if (idx < m_members.size()) {
+                return m_members[idx];
+            }
+            return nullptr;
+        }
 
         // Display guild members
         void showMembers() const {

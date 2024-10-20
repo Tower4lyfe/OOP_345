@@ -1,3 +1,4 @@
+// Corrected code for Team and Guild classes to handle memory management issues
 #ifndef SENECA_TEAM_H
 #define SENECA_TEAM_H
 
@@ -19,8 +20,7 @@ namespace seneca {
         Team(const char* name) : m_name(name) {}
 
         // Copy constructor
-        Team(const Team& other) {
-            m_name = other.m_name;
+        Team(const Team& other) : m_name(other.m_name) {
             for (const auto& member : other.m_members) {
                 m_members.push_back(member->clone());
             }
@@ -29,11 +29,12 @@ namespace seneca {
         // Copy assignment operator
         Team& operator=(const Team& other) {
             if (this != &other) {
-                m_name = other.m_name;
-                for (const auto& member : m_members) {
-                    delete[] member;
+                for (auto& member : m_members) {
+                    delete member; // Free old memory
                 }
-                m_members.clear();
+                m_members.clear(); // Clear the vector before copying new members
+
+                m_name = other.m_name;
                 for (const auto& member : other.m_members) {
                     m_members.push_back(member->clone());
                 }
@@ -42,22 +43,31 @@ namespace seneca {
         }
 
         // Move constructor
-        Team(Team&& other) noexcept : m_members(std::move(other.m_members)), m_name(std::move(other.m_name)) {}
+        Team(Team&& other) noexcept : m_name(std::move(other.m_name)), m_members(std::move(other.m_members)) {
+            other.m_members.clear(); // Prevent original object from deleting moved pointers
+        }
 
         // Move assignment operator
         Team& operator=(Team&& other) noexcept {
             if (this != &other) {
-                m_members = std::move(other.m_members);
+                for (auto& member : m_members) {
+                    delete member;
+                }
+                m_members.clear(); // Clear current members before taking ownership
+
                 m_name = std::move(other.m_name);
+                m_members = std::move(other.m_members);
+                other.m_members.clear(); // Prevent double deletion
             }
             return *this;
         }
 
         // Destructor
         ~Team() {
-            for (const auto& member : m_members) {
-                delete[] member;
+            for (auto& member : m_members) {
+                delete member;
             }
+            m_members.clear(); // Ensure vector is empty to avoid dangling pointers
         }
 
         // Add a member to the team
@@ -82,13 +92,12 @@ namespace seneca {
         }
 
         // Access a member by index
-Character* operator[](std::size_t idx) const {
-    if (idx < m_members.size()) {
-        return m_members[idx];
-    }
-    return nullptr;
-}
-
+        Character* operator[](std::size_t idx) const {
+            if (idx < m_members.size()) {
+                return m_members[idx];
+            }
+            return nullptr;
+        }
 
         // Display team members
         void showMembers() const {
