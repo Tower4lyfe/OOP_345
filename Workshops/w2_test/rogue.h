@@ -51,16 +51,16 @@ namespace seneca
         }
 
         void takeDamage(int dmg) override
-        {
-            std::cout << this->getName() << " is attacked for " << dmg << " damage.\n";
+{
+    std::cout << this->getName() << " is attacked for " << dmg << " damage.\n";
 
-            // Modify damage using abilities
-            m_ability1.transformDamageReceived(dmg);
-            m_ability2.transformDamageReceived(dmg);
+    // Damage transformation using abilities
+    m_ability1.transformDamageReceived(dmg);
+    m_ability2.transformDamageReceived(dmg);
 
-            // Reduce health by modified damage
-            CharacterTpl<T>::takeDamage(dmg);
-        }
+    CharacterTpl<T>::takeDamage(dmg);  // The reduction and health handling is managed by CharacterTpl
+}
+
     };
 }
 

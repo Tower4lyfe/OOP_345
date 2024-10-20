@@ -18,38 +18,19 @@ public:
     CharacterTpl(const char* name, int healthMax)
         : Character(name), m_healthMax(healthMax)
     {
-        if constexpr (std::is_constructible_v<T, int>)
-        {
-            m_health = T(healthMax); // For types that can be constructed with an int
-        }
-        else
-        {
-            m_health = T(); // For types that require a default constructor
-        }
+        // Initialize health based on the type of T
+        m_health = healthMax;  // This will use operator= if T supports it
     }
 
     int getHealth() const override
     {
-        if constexpr (std::is_class_v<T>)
-        {
-            return m_health.getHealth();
-        }
-        else
-        {
-            return m_health;
-        }
+        return static_cast<int>(m_health);  // Use conversion operator to get health value as int
     }
 
     void setHealth(int health) override
     {
-        if constexpr (std::is_class_v<T>)
-        {
-            m_health.setHealth(std::max(0, health));
-        }
-        else
-        {
-            m_health = std::max(0, health);
-        }
+        // Assign health using operator= if T allows it
+        m_health = std::max(0, std::min(health, m_healthMax));
     }
 
     int getHealthMax() const override { return m_healthMax; }
@@ -57,32 +38,21 @@ public:
     void setHealthMax(int health) override
     {
         m_healthMax = health;
-        if constexpr (std::is_class_v<T>)
-        {
-            m_health.setHealth(health);
-        }
-        else
-        {
-            m_health = health;
-        }
+        m_health = health;  // Update current health to match new max, if applicable
     }
 
     void takeDamage(int dmg) override
     {
         int reduced_dmg = dmg - getDefenseAmnt();
+        reduced_dmg = std::max(0, reduced_dmg);
 
-        // Allow for 0 damage if defenses are high enough
-        if (reduced_dmg > 0)
-        {
-            setHealth(getHealth() - reduced_dmg);
-        }
-        else
-        {
-            std::cout << this->getName() << " blocked all incoming damage!\n";
-        }
+        // Apply damage using operator-= if T supports it
+        m_health -= reduced_dmg;
+
+        // Print remaining health
+        std::cout << this->getName() << " has " << getHealth() << " health remaining.\n";
     }
 };
-
 }
 
 #endif

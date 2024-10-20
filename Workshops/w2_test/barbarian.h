@@ -46,17 +46,13 @@ namespace seneca
         }
 
         void takeDamage(int dmg) override
-        {
-            std::cout << this->getName() << " is attacked for " << dmg << " damage.\n";
-            std::cout << "Barbarian has a defense of " << m_baseDefense << ". Reducing damage received.\n";
+{
+    std::cout << this->getName() << " is attacked for " << dmg << " damage.\n";
+    std::cout << "Barbarian has a defense of " << m_baseDefense << ". Reducing damage received.\n";
 
-            int reduced_dmg = dmg - m_baseDefense;
-            reduced_dmg = std::max(0, reduced_dmg);
+    CharacterTpl<T>::takeDamage(dmg);  // The reduction is handled by CharacterTpl
+}
 
-            m_ability.transformDamageReceived(reduced_dmg);  // Further reduce damage using ability
-
-            CharacterTpl<T>::takeDamage(reduced_dmg);
-        }
     };
 }
 

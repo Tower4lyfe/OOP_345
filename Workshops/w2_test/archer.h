@@ -42,15 +42,13 @@ namespace seneca
         }
 
         void takeDamage(int dmg) override
-        {
-            std::cout << this->getName() << " is attacked for " << dmg << " damage.\n";
-            std::cout << "Archer has a defense of " << getDefenseAmnt() << ". Reducing damage received.\n";
+{
+    std::cout << this->getName() << " is attacked for " << dmg << " damage.\n";
+    std::cout << "Archer has a defense of " << getDefenseAmnt() << ". Reducing damage received.\n";
 
-            int reduced_dmg = dmg - getDefenseAmnt();
-            reduced_dmg = std::max(0, reduced_dmg); // Damage cannot be less than 0
+    CharacterTpl<seneca::SuperHealth>::takeDamage(dmg);  // The reduction and health handling is managed by CharacterTpl
+}
 
-            CharacterTpl<seneca::SuperHealth>::takeDamage(reduced_dmg);
-        }
     };
 }
 
