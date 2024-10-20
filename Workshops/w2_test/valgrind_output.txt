@@ -1,156 +1,154 @@
-==88907== Memcheck, a memory error detector
-==88907== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==88907== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==88907== Command: ws
-==88907== Parent PID: 66299
-==88907== 
-==88907== 
-==88907== Process terminating with default action of signal 2 (SIGINT)
-==88907==    at 0x580DB9E: __write_nocancel (in /usr/lib64/libc-2.17.so)
-==88907==    by 0x57982F2: _IO_file_write@@GLIBC_2.2.5 (in /usr/lib64/libc-2.17.so)
-==88907==    by 0x5799B0D: _IO_do_write@@GLIBC_2.2.5 (in /usr/lib64/libc-2.17.so)
-==88907==    by 0x579A002: _IO_file_overflow@@GLIBC_2.2.5 (in /usr/lib64/libc-2.17.so)
-==88907==    by 0x5795BD8: putc (in /usr/lib64/libc-2.17.so)
-==88907==    by 0x4F5A468: sputc (streambuf:441)
-==88907==    by 0x4F5A468: sputc (streambuf:431)
-==88907==    by 0x4F5A468: std::ostream::put(char) (ostream.tcc:163)
-==88907==    by 0x4F5A643: std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&) (ostream:682)
-==88907==    by 0x40739D: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::takeDamage(int) (barbarian.h:43)
-==88907==    by 0x407637: seneca::Barbarian<double, seneca::Bersek, seneca::Sword>::attack(seneca::Character*) (barbarian.h:38)
-==88907==    by 0x402900: main (tester_1.cpp:214)
-==88907== 
-==88907== HEAP SUMMARY:
-==88907==     in use at exit: 1,165 bytes in 17 blocks
-==88907==   total heap usage: 61 allocs, 44 frees, 75,973 bytes allocated
-==88907== 
-==88907== 17 bytes in 1 blocks are still reachable in loss record 1 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x405DC1: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (basic_string.tcc:219)
-==88907==    by 0x405942: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct_aux<char const*>(char const*, char const*, std::__false_type) (basic_string.h:247)
-==88907==    by 0x4052F2: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*) (basic_string.h:266)
-==88907==    by 0x4046C6: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) (basic_string.h:527)
-==88907==    by 0x4037D9: seneca::Team::Team(char const*) (team.h:20)
-==88907==    by 0x401B64: main (tester_1.cpp:62)
-==88907== 
-==88907== 20 bytes in 1 blocks are still reachable in loss record 2 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x405DC1: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (basic_string.tcc:219)
-==88907==    by 0x405942: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct_aux<char const*>(char const*, char const*, std::__false_type) (basic_string.h:247)
-==88907==    by 0x4052F2: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*) (basic_string.h:266)
-==88907==    by 0x4046C6: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) (basic_string.h:527)
-==88907==    by 0x4037D9: seneca::Team::Team(char const*) (team.h:20)
-==88907==    by 0x401B50: main (tester_1.cpp:61)
-==88907== 
-==88907== 32 bytes in 1 blocks are still reachable in loss record 3 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x40639F: __gnu_cxx::new_allocator<seneca::Character*>::allocate(unsigned long, void const*) (new_allocator.h:115)
-==88907==    by 0x40622E: std::allocator_traits<std::allocator<seneca::Character*> >::allocate(std::allocator<seneca::Character*>&, unsigned long) (alloc_traits.h:460)
-==88907==    by 0x406001: std::_Vector_base<seneca::Character*, std::allocator<seneca::Character*> >::_M_allocate(unsigned long) (stl_vector.h:346)
-==88907==    by 0x405A6B: void std::vector<seneca::Character*, std::allocator<seneca::Character*> >::_M_realloc_insert<seneca::Character*>(__gnu_cxx::__normal_iterator<seneca::Character**, std::vector<seneca::Character*, std::allocator<seneca::Character*> > >, seneca::Character*&&) (vector.tcc:440)
-==88907==    by 0x405485: seneca::Character*& std::vector<seneca::Character*, std::allocator<seneca::Character*> >::emplace_back<seneca::Character*>(seneca::Character*&&) (vector.tcc:121)
-==88907==    by 0x4048A9: std::vector<seneca::Character*, std::allocator<seneca::Character*> >::push_back(seneca::Character*&&) (stl_vector.h:1204)
-==88907==    by 0x404270: seneca::Guild::addMember(seneca::Character*) (guild.h:69)
-==88907==    by 0x40234E: main (tester_1.cpp:125)
-==88907== 
-==88907== 64 bytes in 1 blocks are still reachable in loss record 4 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x40639F: __gnu_cxx::new_allocator<seneca::Character*>::allocate(unsigned long, void const*) (new_allocator.h:115)
-==88907==    by 0x40622E: std::allocator_traits<std::allocator<seneca::Character*> >::allocate(std::allocator<seneca::Character*>&, unsigned long) (alloc_traits.h:460)
-==88907==    by 0x406001: std::_Vector_base<seneca::Character*, std::allocator<seneca::Character*> >::_M_allocate(unsigned long) (stl_vector.h:346)
-==88907==    by 0x405A6B: void std::vector<seneca::Character*, std::allocator<seneca::Character*> >::_M_realloc_insert<seneca::Character*>(__gnu_cxx::__normal_iterator<seneca::Character**, std::vector<seneca::Character*, std::allocator<seneca::Character*> > >, seneca::Character*&&) (vector.tcc:440)
-==88907==    by 0x405485: seneca::Character*& std::vector<seneca::Character*, std::allocator<seneca::Character*> >::emplace_back<seneca::Character*>(seneca::Character*&&) (vector.tcc:121)
-==88907==    by 0x4048A9: std::vector<seneca::Character*, std::allocator<seneca::Character*> >::push_back(seneca::Character*&&) (stl_vector.h:1204)
-==88907==    by 0x403C24: seneca::Team::addMember(seneca::Character const*) (team.h:69)
-==88907==    by 0x40203E: main (tester_1.cpp:94)
-==88907== 
-==88907== 64 bytes in 1 blocks are still reachable in loss record 5 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x40639F: __gnu_cxx::new_allocator<seneca::Character*>::allocate(unsigned long, void const*) (new_allocator.h:115)
-==88907==    by 0x40622E: std::allocator_traits<std::allocator<seneca::Character*> >::allocate(std::allocator<seneca::Character*>&, unsigned long) (alloc_traits.h:460)
-==88907==    by 0x406001: std::_Vector_base<seneca::Character*, std::allocator<seneca::Character*> >::_M_allocate(unsigned long) (stl_vector.h:346)
-==88907==    by 0x405A6B: void std::vector<seneca::Character*, std::allocator<seneca::Character*> >::_M_realloc_insert<seneca::Character*>(__gnu_cxx::__normal_iterator<seneca::Character**, std::vector<seneca::Character*, std::allocator<seneca::Character*> > >, seneca::Character*&&) (vector.tcc:440)
-==88907==    by 0x405485: seneca::Character*& std::vector<seneca::Character*, std::allocator<seneca::Character*> >::emplace_back<seneca::Character*>(seneca::Character*&&) (vector.tcc:121)
-==88907==    by 0x4048A9: std::vector<seneca::Character*, std::allocator<seneca::Character*> >::push_back(seneca::Character*&&) (stl_vector.h:1204)
-==88907==    by 0x403C24: seneca::Team::addMember(seneca::Character const*) (team.h:69)
-==88907==    by 0x4020ED: main (tester_1.cpp:102)
-==88907== 
-==88907== 72 bytes in 1 blocks are still reachable in loss record 6 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x407BA0: seneca::Archer<seneca::Crossbow>::clone() const (archer.h:44)
-==88907==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
-==88907==    by 0x40200C: main (tester_1.cpp:92)
-==88907== 
-==88907== 72 bytes in 1 blocks are still reachable in loss record 7 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x407BA0: seneca::Archer<seneca::Crossbow>::clone() const (archer.h:44)
-==88907==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
-==88907==    by 0x402089: main (tester_1.cpp:98)
-==88907== 
-==88907== 72 bytes in 1 blocks are still reachable in loss record 8 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x4078CE: seneca::Archer<seneca::Bow>::clone() const (archer.h:44)
-==88907==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
-==88907==    by 0x4020A2: main (tester_1.cpp:99)
-==88907== 
-==88907== 80 bytes in 1 blocks are still reachable in loss record 9 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x408804: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:52)
-==88907==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
-==88907==    by 0x401FC1: main (tester_1.cpp:89)
-==88907== 
-==88907== 80 bytes in 1 blocks are still reachable in loss record 10 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x408346: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:52)
-==88907==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
-==88907==    by 0x401FF3: main (tester_1.cpp:91)
-==88907== 
-==88907== 80 bytes in 1 blocks are still reachable in loss record 11 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x406E7E: seneca::Barbarian<seneca::InfiniteHealth, seneca::Fireball, seneca::BareHands>::clone() const (barbarian.h:51)
-==88907==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
-==88907==    by 0x40203E: main (tester_1.cpp:94)
-==88907== 
-==88907== 80 bytes in 1 blocks are still reachable in loss record 12 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x407E82: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:52)
-==88907==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
-==88907==    by 0x402070: main (tester_1.cpp:97)
-==88907== 
-==88907== 80 bytes in 1 blocks are still reachable in loss record 13 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x408346: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:52)
-==88907==    by 0x40425D: seneca::Guild::addMember(seneca::Character*) (guild.h:69)
-==88907==    by 0x402325: main (tester_1.cpp:124)
-==88907== 
-==88907== 88 bytes in 1 blocks are still reachable in loss record 14 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x4074F8: seneca::Barbarian<double, seneca::Bersek, seneca::Sword>::clone() const (barbarian.h:51)
-==88907==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
-==88907==    by 0x402025: main (tester_1.cpp:93)
-==88907== 
-==88907== 88 bytes in 1 blocks are still reachable in loss record 15 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x4071BA: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:51)
-==88907==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
-==88907==    by 0x4020D4: main (tester_1.cpp:101)
-==88907== 
-==88907== 88 bytes in 1 blocks are still reachable in loss record 16 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x406A78: seneca::Barbarian<double, seneca::Fireball, seneca::Sword>::clone() const (barbarian.h:51)
-==88907==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
-==88907==    by 0x4020ED: main (tester_1.cpp:102)
-==88907== 
-==88907== 88 bytes in 1 blocks are still reachable in loss record 17 of 17
-==88907==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==88907==    by 0x406A78: seneca::Barbarian<double, seneca::Fireball, seneca::Sword>::clone() const (barbarian.h:51)
-==88907==    by 0x40425D: seneca::Guild::addMember(seneca::Character*) (guild.h:69)
-==88907==    by 0x40234E: main (tester_1.cpp:125)
-==88907== 
-==88907== LEAK SUMMARY:
-==88907==    definitely lost: 0 bytes in 0 blocks
-==88907==    indirectly lost: 0 bytes in 0 blocks
-==88907==      possibly lost: 0 bytes in 0 blocks
-==88907==    still reachable: 1,165 bytes in 17 blocks
-==88907==         suppressed: 0 bytes in 0 blocks
-==88907== 
-==88907== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==102113== Memcheck, a memory error detector
+==102113== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==102113== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==102113== Command: ws
+==102113== Parent PID: 66299
+==102113== 
+==102113== 
+==102113== Process terminating with default action of signal 2 (SIGINT)
+==102113==    at 0x580DB9E: __write_nocancel (in /usr/lib64/libc-2.17.so)
+==102113==    by 0x57982F2: _IO_file_write@@GLIBC_2.2.5 (in /usr/lib64/libc-2.17.so)
+==102113==    by 0x5799B0D: _IO_do_write@@GLIBC_2.2.5 (in /usr/lib64/libc-2.17.so)
+==102113==    by 0x579A002: _IO_file_overflow@@GLIBC_2.2.5 (in /usr/lib64/libc-2.17.so)
+==102113==    by 0x5795BD8: putc (in /usr/lib64/libc-2.17.so)
+==102113==    by 0x4F5A468: sputc (streambuf:441)
+==102113==    by 0x4F5A468: sputc (streambuf:431)
+==102113==    by 0x4F5A468: std::ostream::put(char) (ostream.tcc:163)
+==102113==    by 0x4F5A643: std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&) (ostream:682)
+==102113==    by 0x40294B: main (tester_1.cpp:217)
+==102113== 
+==102113== HEAP SUMMARY:
+==102113==     in use at exit: 1,165 bytes in 17 blocks
+==102113==   total heap usage: 61 allocs, 44 frees, 75,973 bytes allocated
+==102113== 
+==102113== 17 bytes in 1 blocks are still reachable in loss record 1 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x405DC1: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (basic_string.tcc:219)
+==102113==    by 0x405942: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct_aux<char const*>(char const*, char const*, std::__false_type) (basic_string.h:247)
+==102113==    by 0x4052F2: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*) (basic_string.h:266)
+==102113==    by 0x4046C6: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) (basic_string.h:527)
+==102113==    by 0x4037D9: seneca::Team::Team(char const*) (team.h:20)
+==102113==    by 0x401B64: main (tester_1.cpp:62)
+==102113== 
+==102113== 20 bytes in 1 blocks are still reachable in loss record 2 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x405DC1: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (basic_string.tcc:219)
+==102113==    by 0x405942: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct_aux<char const*>(char const*, char const*, std::__false_type) (basic_string.h:247)
+==102113==    by 0x4052F2: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*) (basic_string.h:266)
+==102113==    by 0x4046C6: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) (basic_string.h:527)
+==102113==    by 0x4037D9: seneca::Team::Team(char const*) (team.h:20)
+==102113==    by 0x401B50: main (tester_1.cpp:61)
+==102113== 
+==102113== 32 bytes in 1 blocks are still reachable in loss record 3 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x40639F: __gnu_cxx::new_allocator<seneca::Character*>::allocate(unsigned long, void const*) (new_allocator.h:115)
+==102113==    by 0x40622E: std::allocator_traits<std::allocator<seneca::Character*> >::allocate(std::allocator<seneca::Character*>&, unsigned long) (alloc_traits.h:460)
+==102113==    by 0x406001: std::_Vector_base<seneca::Character*, std::allocator<seneca::Character*> >::_M_allocate(unsigned long) (stl_vector.h:346)
+==102113==    by 0x405A6B: void std::vector<seneca::Character*, std::allocator<seneca::Character*> >::_M_realloc_insert<seneca::Character*>(__gnu_cxx::__normal_iterator<seneca::Character**, std::vector<seneca::Character*, std::allocator<seneca::Character*> > >, seneca::Character*&&) (vector.tcc:440)
+==102113==    by 0x405485: seneca::Character*& std::vector<seneca::Character*, std::allocator<seneca::Character*> >::emplace_back<seneca::Character*>(seneca::Character*&&) (vector.tcc:121)
+==102113==    by 0x4048A9: std::vector<seneca::Character*, std::allocator<seneca::Character*> >::push_back(seneca::Character*&&) (stl_vector.h:1204)
+==102113==    by 0x404270: seneca::Guild::addMember(seneca::Character*) (guild.h:69)
+==102113==    by 0x40234E: main (tester_1.cpp:125)
+==102113== 
+==102113== 64 bytes in 1 blocks are still reachable in loss record 4 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x40639F: __gnu_cxx::new_allocator<seneca::Character*>::allocate(unsigned long, void const*) (new_allocator.h:115)
+==102113==    by 0x40622E: std::allocator_traits<std::allocator<seneca::Character*> >::allocate(std::allocator<seneca::Character*>&, unsigned long) (alloc_traits.h:460)
+==102113==    by 0x406001: std::_Vector_base<seneca::Character*, std::allocator<seneca::Character*> >::_M_allocate(unsigned long) (stl_vector.h:346)
+==102113==    by 0x405A6B: void std::vector<seneca::Character*, std::allocator<seneca::Character*> >::_M_realloc_insert<seneca::Character*>(__gnu_cxx::__normal_iterator<seneca::Character**, std::vector<seneca::Character*, std::allocator<seneca::Character*> > >, seneca::Character*&&) (vector.tcc:440)
+==102113==    by 0x405485: seneca::Character*& std::vector<seneca::Character*, std::allocator<seneca::Character*> >::emplace_back<seneca::Character*>(seneca::Character*&&) (vector.tcc:121)
+==102113==    by 0x4048A9: std::vector<seneca::Character*, std::allocator<seneca::Character*> >::push_back(seneca::Character*&&) (stl_vector.h:1204)
+==102113==    by 0x403C24: seneca::Team::addMember(seneca::Character const*) (team.h:69)
+==102113==    by 0x40203E: main (tester_1.cpp:94)
+==102113== 
+==102113== 64 bytes in 1 blocks are still reachable in loss record 5 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x40639F: __gnu_cxx::new_allocator<seneca::Character*>::allocate(unsigned long, void const*) (new_allocator.h:115)
+==102113==    by 0x40622E: std::allocator_traits<std::allocator<seneca::Character*> >::allocate(std::allocator<seneca::Character*>&, unsigned long) (alloc_traits.h:460)
+==102113==    by 0x406001: std::_Vector_base<seneca::Character*, std::allocator<seneca::Character*> >::_M_allocate(unsigned long) (stl_vector.h:346)
+==102113==    by 0x405A6B: void std::vector<seneca::Character*, std::allocator<seneca::Character*> >::_M_realloc_insert<seneca::Character*>(__gnu_cxx::__normal_iterator<seneca::Character**, std::vector<seneca::Character*, std::allocator<seneca::Character*> > >, seneca::Character*&&) (vector.tcc:440)
+==102113==    by 0x405485: seneca::Character*& std::vector<seneca::Character*, std::allocator<seneca::Character*> >::emplace_back<seneca::Character*>(seneca::Character*&&) (vector.tcc:121)
+==102113==    by 0x4048A9: std::vector<seneca::Character*, std::allocator<seneca::Character*> >::push_back(seneca::Character*&&) (stl_vector.h:1204)
+==102113==    by 0x403C24: seneca::Team::addMember(seneca::Character const*) (team.h:69)
+==102113==    by 0x4020ED: main (tester_1.cpp:102)
+==102113== 
+==102113== 72 bytes in 1 blocks are still reachable in loss record 6 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x407BA0: seneca::Archer<seneca::Crossbow>::clone() const (archer.h:44)
+==102113==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
+==102113==    by 0x40200C: main (tester_1.cpp:92)
+==102113== 
+==102113== 72 bytes in 1 blocks are still reachable in loss record 7 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x407BA0: seneca::Archer<seneca::Crossbow>::clone() const (archer.h:44)
+==102113==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
+==102113==    by 0x402089: main (tester_1.cpp:98)
+==102113== 
+==102113== 72 bytes in 1 blocks are still reachable in loss record 8 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x4078CE: seneca::Archer<seneca::Bow>::clone() const (archer.h:44)
+==102113==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
+==102113==    by 0x4020A2: main (tester_1.cpp:99)
+==102113== 
+==102113== 80 bytes in 1 blocks are still reachable in loss record 9 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x408804: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:52)
+==102113==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
+==102113==    by 0x401FC1: main (tester_1.cpp:89)
+==102113== 
+==102113== 80 bytes in 1 blocks are still reachable in loss record 10 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x408346: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:52)
+==102113==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
+==102113==    by 0x401FF3: main (tester_1.cpp:91)
+==102113== 
+==102113== 80 bytes in 1 blocks are still reachable in loss record 11 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x406E7E: seneca::Barbarian<seneca::InfiniteHealth, seneca::Fireball, seneca::BareHands>::clone() const (barbarian.h:51)
+==102113==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
+==102113==    by 0x40203E: main (tester_1.cpp:94)
+==102113== 
+==102113== 80 bytes in 1 blocks are still reachable in loss record 12 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x407E82: seneca::Rogue<seneca::InfiniteHealth, seneca::Bersek, seneca::Bersek>::clone() const (rogue.h:52)
+==102113==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
+==102113==    by 0x402070: main (tester_1.cpp:97)
+==102113== 
+==102113== 80 bytes in 1 blocks are still reachable in loss record 13 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x408346: seneca::Rogue<double, seneca::Fireball, seneca::Fireball>::clone() const (rogue.h:52)
+==102113==    by 0x40425D: seneca::Guild::addMember(seneca::Character*) (guild.h:69)
+==102113==    by 0x402325: main (tester_1.cpp:124)
+==102113== 
+==102113== 88 bytes in 1 blocks are still reachable in loss record 14 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x4074F8: seneca::Barbarian<double, seneca::Bersek, seneca::Sword>::clone() const (barbarian.h:51)
+==102113==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
+==102113==    by 0x402025: main (tester_1.cpp:93)
+==102113== 
+==102113== 88 bytes in 1 blocks are still reachable in loss record 15 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x4071BA: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:51)
+==102113==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
+==102113==    by 0x4020D4: main (tester_1.cpp:101)
+==102113== 
+==102113== 88 bytes in 1 blocks are still reachable in loss record 16 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x406A78: seneca::Barbarian<double, seneca::Fireball, seneca::Sword>::clone() const (barbarian.h:51)
+==102113==    by 0x403C11: seneca::Team::addMember(seneca::Character const*) (team.h:69)
+==102113==    by 0x4020ED: main (tester_1.cpp:102)
+==102113== 
+==102113== 88 bytes in 1 blocks are still reachable in loss record 17 of 17
+==102113==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==102113==    by 0x406A78: seneca::Barbarian<double, seneca::Fireball, seneca::Sword>::clone() const (barbarian.h:51)
+==102113==    by 0x40425D: seneca::Guild::addMember(seneca::Character*) (guild.h:69)
+==102113==    by 0x40234E: main (tester_1.cpp:125)
+==102113== 
+==102113== LEAK SUMMARY:
+==102113==    definitely lost: 0 bytes in 0 blocks
+==102113==    indirectly lost: 0 bytes in 0 blocks
+==102113==      possibly lost: 0 bytes in 0 blocks
+==102113==    still reachable: 1,165 bytes in 17 blocks
+==102113==         suppressed: 0 bytes in 0 blocks
+==102113== 
+==102113== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

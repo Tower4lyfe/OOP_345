@@ -1,22 +1,86 @@
-In file included from tester_1.cpp:11:
-team.h: In constructor 'seneca::Team::Team(seneca::Team&&)':
-team.h:13:21: warning: 'seneca::Team::m_name' will be initialized after [-Wreorder]
-   13 |         std::string m_name;
-      |                     ^~~~~~
-team.h:12:33: warning:   'std::vector<seneca::Character*> seneca::Team::m_members' [-Wreorder]
-   12 |         std::vector<Character*> m_members;
-      |                                 ^~~~~~~~~
-team.h:42:9: warning:   when initialized here [-Wreorder]
-   42 |         Team(Team&& other) noexcept : m_name(std::move(other.m_name)), m_members(std::move(other.m_members)) {
-      |         ^~~~
-In file included from tester_1.cpp:13:
-guild.h: In constructor 'seneca::Guild::Guild(seneca::Guild&&)':
-guild.h:12:21: warning: 'seneca::Guild::m_name' will be initialized after [-Wreorder]
-   12 |         std::string m_name;
-      |                     ^~~~~~
-guild.h:11:33: warning:   'std::vector<seneca::Character*> seneca::Guild::m_members' [-Wreorder]
-   11 |         std::vector<Character*> m_members;
-      |                                 ^~~~~~~~~
-guild.h:41:9: warning:   when initialized here [-Wreorder]
-   41 |         Guild(Guild&& other) noexcept : m_name(std::move(other.m_name)), m_members(std::move(other.m_members)) {
-      |         ^~~~~
+In file included from barbarian.h:5,
+                 from tester_1.cpp:15:
+characterTpl.h: In instantiation of 'seneca::CharacterTpl<T>::CharacterTpl(const char*, int) [with T = seneca::SuperHealth]':
+rogue.h:22:100:   required from 'seneca::Rogue<T, FirstAbility_t, SecondAbility_t>::Rogue(const char*, int, int, int) [with T = seneca::SuperHealth; FirstAbility_t = seneca::Heal; SecondAbility_t = seneca::Fireball]'
+tester_1.cpp:65:102:   required from here
+characterTpl.h:19:74: error: no matching function for call to 'seneca::SuperHealth::SuperHealth(int&)'
+   19 |             : Character(name), m_healthMax(healthMax), m_health(healthMax) {}
+      |                                                                          ^
+In file included from abilities.h:5,
+                 from tester_1.cpp:5:
+health.h:10:8: note: candidate: 'constexpr seneca::SuperHealth::SuperHealth()'
+   10 |  class SuperHealth
+      |        ^~~~~~~~~~~
+health.h:10:8: note:   candidate expects 0 arguments, 1 provided
+health.h:10:8: note: candidate: 'constexpr seneca::SuperHealth::SuperHealth(const seneca::SuperHealth&)'
+health.h:10:8: note:   no known conversion for argument 1 from 'int' to 'const seneca::SuperHealth&'
+health.h:10:8: note: candidate: 'constexpr seneca::SuperHealth::SuperHealth(seneca::SuperHealth&&)'
+health.h:10:8: note:   no known conversion for argument 1 from 'int' to 'seneca::SuperHealth&&'
+In file included from barbarian.h:5,
+                 from tester_1.cpp:15:
+characterTpl.h: In instantiation of 'seneca::CharacterTpl<T>::CharacterTpl(const char*, int) [with T = seneca::InfiniteHealth]':
+rogue.h:22:100:   required from 'seneca::Rogue<T, FirstAbility_t, SecondAbility_t>::Rogue(const char*, int, int, int) [with T = seneca::InfiniteHealth; FirstAbility_t = seneca::Bersek; SecondAbility_t = seneca::Bersek]'
+tester_1.cpp:67:102:   required from here
+characterTpl.h:19:74: error: no matching function for call to 'seneca::InfiniteHealth::InfiniteHealth(int&)'
+   19 |             : Character(name), m_healthMax(healthMax), m_health(healthMax) {}
+      |                                                                          ^
+In file included from abilities.h:5,
+                 from tester_1.cpp:5:
+health.h:48:9: note: candidate: 'constexpr seneca::InfiniteHealth::InfiniteHealth()'
+   48 |  struct InfiniteHealth
+      |         ^~~~~~~~~~~~~~
+health.h:48:9: note:   candidate expects 0 arguments, 1 provided
+health.h:48:9: note: candidate: 'constexpr seneca::InfiniteHealth::InfiniteHealth(const seneca::InfiniteHealth&)'
+health.h:48:9: note:   no known conversion for argument 1 from 'int' to 'const seneca::InfiniteHealth&'
+health.h:48:9: note: candidate: 'constexpr seneca::InfiniteHealth::InfiniteHealth(seneca::InfiniteHealth&&)'
+health.h:48:9: note:   no known conversion for argument 1 from 'int' to 'seneca::InfiniteHealth&&'
+In file included from barbarian.h:5,
+                 from tester_1.cpp:15:
+characterTpl.h: In instantiation of 'int seneca::CharacterTpl<T>::getHealth() const [with T = double]':
+characterTpl.h:21:13:   required from here
+characterTpl.h:21:58: error: request for member 'getHealth' in '((const seneca::CharacterTpl<double>*)this)->seneca::CharacterTpl<double>::m_health', which is of non-class type 'const double'
+   21 |         int getHealth() const override { return m_health.getHealth(); }
+      |                                                 ~~~~~~~~~^~~~~~~~~
+characterTpl.h: In instantiation of 'void seneca::CharacterTpl<T>::setHealth(int) [with T = double]':
+characterTpl.h:22:14:   required from here
+characterTpl.h:22:56: error: request for member 'setHealth' in '((seneca::CharacterTpl<double>*)this)->seneca::CharacterTpl<double>::m_health', which is of non-class type 'double'
+   22 |         void setHealth(int health) override { m_health.setHealth(std::max(0, health)); } // Ensure health doesn't go below 0
+      |                                               ~~~~~~~~~^~~~~~~~~
+characterTpl.h: In instantiation of 'void seneca::CharacterTpl<T>::setHealthMax(int) [with T = double]':
+characterTpl.h:24:14:   required from here
+characterTpl.h:27:22: error: request for member 'setHealth' in '((seneca::CharacterTpl<double>*)this)->seneca::CharacterTpl<double>::m_health', which is of non-class type 'double'
+   27 |             m_health.setHealth(health);
+      |             ~~~~~~~~~^~~~~~~~~
+characterTpl.h: In instantiation of 'int seneca::CharacterTpl<T>::getHealth() const [with T = seneca::InfiniteHealth]':
+characterTpl.h:21:13:   required from here
+characterTpl.h:21:58: error: 'const struct seneca::InfiniteHealth' has no member named 'getHealth'
+   21 |         int getHealth() const override { return m_health.getHealth(); }
+      |                                                 ~~~~~~~~~^~~~~~~~~
+characterTpl.h: In instantiation of 'void seneca::CharacterTpl<T>::setHealth(int) [with T = seneca::InfiniteHealth]':
+characterTpl.h:22:14:   required from here
+characterTpl.h:22:56: error: 'struct seneca::InfiniteHealth' has no member named 'setHealth'
+   22 |         void setHealth(int health) override { m_health.setHealth(std::max(0, health)); } // Ensure health doesn't go below 0
+      |                                               ~~~~~~~~~^~~~~~~~~
+characterTpl.h: In instantiation of 'void seneca::CharacterTpl<T>::setHealthMax(int) [with T = seneca::InfiniteHealth]':
+characterTpl.h:24:14:   required from here
+characterTpl.h:27:22: error: 'struct seneca::InfiniteHealth' has no member named 'setHealth'
+   27 |             m_health.setHealth(health);
+      |             ~~~~~~~~~^~~~~~~~~
+characterTpl.h: In instantiation of 'int seneca::CharacterTpl<T>::getHealth() const [with T = seneca::SuperHealth]':
+characterTpl.h:21:13:   required from here
+characterTpl.h:21:58: error: 'const class seneca::SuperHealth' has no member named 'getHealth'; did you mean 'SuperHealth'?
+   21 |         int getHealth() const override { return m_health.getHealth(); }
+      |                                                 ~~~~~~~~~^~~~~~~~~
+      |                                                 SuperHealth
+characterTpl.h: In instantiation of 'void seneca::CharacterTpl<T>::setHealth(int) [with T = seneca::SuperHealth]':
+characterTpl.h:22:14:   required from here
+characterTpl.h:22:56: error: 'class seneca::SuperHealth' has no member named 'setHealth'; did you mean 'SuperHealth'?
+   22 |         void setHealth(int health) override { m_health.setHealth(std::max(0, health)); } // Ensure health doesn't go below 0
+      |                                               ~~~~~~~~~^~~~~~~~~
+      |                                               SuperHealth
+characterTpl.h: In instantiation of 'void seneca::CharacterTpl<T>::setHealthMax(int) [with T = seneca::SuperHealth]':
+characterTpl.h:24:14:   required from here
+characterTpl.h:27:22: error: 'class seneca::SuperHealth' has no member named 'setHealth'; did you mean 'SuperHealth'?
+   27 |             m_health.setHealth(health);
+      |             ~~~~~~~~~^~~~~~~~~
+      |             SuperHealth
