@@ -16,7 +16,8 @@ namespace seneca {
 
     public:
         Rogue(const char* name, int healthMax, int baseAttack, int baseDefense)
-            : CharacterTpl<T>(name, healthMax), m_baseAttack(baseAttack), m_baseDefense(baseDefense) {}
+    : CharacterTpl<T>(name, healthMax), m_baseDefense(baseDefense), m_baseAttack(baseAttack) {}
+
 
         int getAttackAmnt() const override {
             return m_baseAttack + 2 * static_cast<int>(m_weapon);
