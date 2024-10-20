@@ -5,6 +5,7 @@
 #include "weapons.h"
 #include <iostream>
 
+
 namespace seneca {
     template <typename T, typename FirstAbility_t, typename SecondAbility_t>
     class Rogue : public CharacterTpl<T> {

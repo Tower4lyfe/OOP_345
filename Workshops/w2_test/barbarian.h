@@ -5,6 +5,7 @@
 #include <iostream>
 #include "health.h"
 
+
 namespace seneca {
     template <typename T, typename Ability_t, typename Weapon_t>
     class Barbarian : public CharacterTpl<T> {

@@ -5,6 +5,7 @@
 #include "health.h"
 #include <iostream>
 
+
 namespace seneca {
     template <typename Weapon_t>
     class Archer : public CharacterTpl<seneca::SuperHealth> {
