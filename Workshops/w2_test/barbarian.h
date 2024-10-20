@@ -28,11 +28,14 @@ namespace seneca
 
 void attack(Character* enemy) override
 {
-    int total_attack = this->getAttackAmnt() + static_cast<int>(m_weapon1) + static_cast<int>(m_weapon2);
+    int total_attack = this->getAttackAmnt() + static_cast<int>(m_weapon1) / 2 + static_cast<int>(m_weapon2) / 2;
     m_ability.transformDamageDealt(total_attack); // Modify total_attack using the ability
+    std::cout << "TESTING!!!! WEAPON 1 DAMAGE IS: " << static_cast<int>(m_weapon1)
+    << "\nTESTING!!!! WEAPON 2 DAMAGE IS: " << static_cast<int>(m_weapon2);
     std::cout << this->getName() << " attacks " << enemy->getName() << " with both weapons for " << total_attack << " damage!\n";
-    enemy->takeDamage(total_attack); // Apply the modified total_attack value
+    enemy->takeDamage(total_attack);
 }
+
 
 
 

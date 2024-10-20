@@ -15,15 +15,18 @@ namespace seneca
     public:
         Team(const std::string& name) : m_name(name) {}
 
-        void addMember(Character* character)
-        {
-            for (const auto& member : m_members)
-            {
-                if (member == character)
-                    return;
-            }
-            m_members.push_back(character);
-        }
+void addMember(Character* character)
+{
+    for (const auto& member : m_members)
+    {
+        if (member == character)
+            return;
+    }
+    m_members.push_back(character);
+    int newHealth = character->getHealth() + 200;
+    character->setHealth(std::min(newHealth, character->getHealthMax())); // Ensure health does not exceed max health
+}
+
 
         void removeMember(const std::string& name)
         {
