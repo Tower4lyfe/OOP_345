@@ -1,65 +1,32 @@
+// characterTpl.h
 #ifndef SENECA_CHARACTERTPL_H
 #define SENECA_CHARACTERTPL_H
 
 #include "character.h"
 #include "health.h"
-#include <iostream>
 
-namespace seneca {
+namespace seneca
+{
     template <typename T>
-    class CharacterTpl : public Character {
-        int m_healthMax;
+    class CharacterTpl : public Character
+    {
+    private:
         T m_health;
 
     public:
-        CharacterTpl(const char* name, int healthMax) : Character(name), m_healthMax(healthMax) {
-            if constexpr (std::is_same_v<T, SuperHealth> || std::is_same_v<T, InfiniteHealth>) {
-                m_health = T();
-            } else {
-                m_health = healthMax;
-            }
-        }
+        CharacterTpl(const char* name, int healthMax)
+            : Character(name), m_health(healthMax, healthMax) {} 
 
-        void takeDamage(int dmg) override {
-            m_health -= dmg;
-            if (static_cast<int>(m_health) <= 0) {
-                std::cout << getName() << " has been defeated!" << std::endl;
-            } else {
-                std::cout << getName() << " took " << dmg << " damage, " << static_cast<int>(m_health) << " health remaining." << std::endl;
-            }
-        }
+        int getHealth() const override { return m_health.getHealth(); }
+        void setHealth(int health) override { m_health.setHealth(health); }
+        int getHealthMax() const override { return m_health.getMaxHealth(); }
+        void setHealthMax(int health) override { m_health.setHealth(health); }
 
-        int getHealth() const override {
-            return static_cast<int>(m_health);
-        }
-
-        int getHealthMax() const override {
-            return m_healthMax;
-        }
-
-        void setHealth(int health) override {
-            m_health = health;
-        }
-
-        void setHealthMax(int health) override {
-            m_healthMax = health;
-            m_health = health;
-        }
-
-        int getAttackAmnt() const override {
-            return 0; // Default implementation, should be overridden by derived classes
-        }
-
-        int getDefenseAmnt() const override {
-            return 0; // Default implementation, should be overridden by derived classes
-        }
-
-        void attack(Character* enemy) override {
-            // Default implementation, should be overridden by derived classes
-        }
-
-        Character* clone() const override {
-            return new CharacterTpl<T>(*this);
+        void takeDamage(int dmg) override
+        {
+            int reduced_dmg = dmg - getDefenseAmnt();
+            if (reduced_dmg > 0)
+                setHealth(getHealth() - reduced_dmg);
         }
     };
 }
