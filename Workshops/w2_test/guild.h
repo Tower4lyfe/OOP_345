@@ -15,18 +15,27 @@ namespace seneca
     public:
         Guild(const std::string& name) : m_name(name) {}
 
-void addMember(Character* character)
-{
-    for (const auto& member : m_members)
-    {
-        if (member == character)
-            return;
-    }
-    m_members.push_back(character);
-    int newHealth = character->getHealth() + 200;
-    character->setHealth(std::min(newHealth, character->getHealthMax())); // Ensure health does not exceed max health
-}
+        ~Guild()
+        {
+            // Properly deallocate memory for each member if Guild owns the characters
+            for (auto member : m_members)
+            {
+                delete member;
+            }
+            m_members.clear();
+        }
 
+        void addMember(Character* character)
+        {
+            for (const auto& member : m_members)
+            {
+                if (member == character)
+                    return;
+            }
+            m_members.push_back(character);
+            int newHealth = character->getHealth() + 200;
+            character->setHealth(std::min(newHealth, character->getHealthMax())); // Ensure health does not exceed max health
+        }
 
         void removeMember(const std::string& name)
         {
@@ -34,7 +43,9 @@ void addMember(Character* character)
             {
                 if ((*it)->getName() == name)
                 {
-                    (*it)->setHealth((*it)->getHealth() - 200); // Reduce health when leaving a guild
+                    int reducedHealth = std::max(0, (*it)->getHealth() - 200); // Ensure health does not drop below 0
+                    (*it)->setHealth(reducedHealth);
+                    delete *it;  // Properly delete the character if Guild owns it
                     m_members.erase(it);
                     break;
                 }

@@ -16,30 +16,49 @@ namespace seneca
         Dagger m_dagger;
         int m_baseAttack;
         int m_baseDefense;
+
     public:
         Rogue(const char* name, int healthMax, int baseAttack, int baseDefense)
             : CharacterTpl<T>(name, healthMax), m_baseAttack(baseAttack), m_baseDefense(baseDefense) {}
 
-        int getAttackAmnt() const override { return m_baseAttack; }
-        int getDefenseAmnt() const override { return m_baseDefense; }
+        int getAttackAmnt() const override
+        {
+            return m_baseAttack; // Base attack value without abilities or dagger modifiers
+        }
 
-        Character* clone() const override { return new Rogue<T, FirstAbility_t, SecondAbility_t>(*this); }
-    
+        int getDefenseAmnt() const override
+        {
+            return m_baseDefense; // Base defense value
+        }
 
-void attack(Character* enemy) override
-{
-    int total_attack = this->getAttackAmnt() + static_cast<int>(m_dagger);
-    m_ability1.transformDamageDealt(total_attack);
-    m_ability2.transformDamageDealt(total_attack); // Apply both ability transformations
-    std::cout << this->getName() << " attacks " << enemy->getName() << " with dagger for " << total_attack << " damage!\n";
-    enemy->takeDamage(total_attack); // Apply the modified total_attack value
-}
+        Character* clone() const override
+        {
+            return new Rogue<T, FirstAbility_t, SecondAbility_t>(*this);
+        }
 
+        void attack(Character* enemy) override
+        {
+            std::cout << this->getName() << " is attacking " << enemy->getName() << ".\n";
+
+            int total_attack = this->getAttackAmnt() + static_cast<int>(m_dagger);
+
+            // Modify total attack using abilities
+            m_ability1.transformDamageDealt(total_attack);
+            m_ability2.transformDamageDealt(total_attack);
+
+            std::cout << "Rogue deals " << total_attack << " damage with dagger!\n";
+            enemy->takeDamage(total_attack);
+        }
 
         void takeDamage(int dmg) override
         {
+            std::cout << this->getName() << " is attacked for " << dmg << " damage.\n";
+
+            // Modify damage using abilities
             m_ability1.transformDamageReceived(dmg);
             m_ability2.transformDamageReceived(dmg);
+
+            // Reduce health by modified damage
             CharacterTpl<T>::takeDamage(dmg);
         }
     };

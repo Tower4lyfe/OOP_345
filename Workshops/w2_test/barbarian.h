@@ -1,3 +1,4 @@
+
 #ifndef SENECA_BARBARIAN_H
 #define SENECA_BARBARIAN_H
 
@@ -12,37 +13,50 @@ namespace seneca
     {
     private:
         Ability_t m_ability;
-        Weapon_t m_weapon1;
-        Weapon_t m_weapon2;
+        Weapon_t m_weapons[2];
         int m_baseAttack;
         int m_baseDefense;
+
     public:
         Barbarian(const char* name, int healthMax, int baseAttack, int baseDefense, Weapon_t primaryWeapon, Weapon_t secondaryWeapon)
-            : CharacterTpl<T>(name, healthMax), m_weapon1(primaryWeapon), m_weapon2(secondaryWeapon), m_baseAttack(baseAttack), m_baseDefense(baseDefense) {}
+            : CharacterTpl<T>(name, healthMax), m_baseAttack(baseAttack), m_baseDefense(baseDefense)
+        {
+            m_weapons[0] = primaryWeapon;
+            m_weapons[1] = secondaryWeapon;
+        }
 
-        int getAttackAmnt() const override { return m_baseAttack; }
+        int getAttackAmnt() const override
+        {
+            return m_baseAttack + static_cast<int>(m_weapons[0]) / 2 + static_cast<int>(m_weapons[1]) / 2;
+        }
+
         int getDefenseAmnt() const override { return m_baseDefense; }
 
         Character* clone() const override { return new Barbarian<T, Ability_t, Weapon_t>(*this); }
-    
 
-void attack(Character* enemy) override
-{
-    int total_attack = this->getAttackAmnt() + static_cast<int>(m_weapon1) / 2 + static_cast<int>(m_weapon2) / 2;
-    m_ability.transformDamageDealt(total_attack); // Modify total_attack using the ability
-    std::cout << "TESTING!!!! WEAPON 1 DAMAGE IS: " << static_cast<int>(m_weapon1)
-    << "\nTESTING!!!! WEAPON 2 DAMAGE IS: " << static_cast<int>(m_weapon2);
-    std::cout << this->getName() << " attacks " << enemy->getName() << " with both weapons for " << total_attack << " damage!\n";
-    enemy->takeDamage(total_attack);
-}
+        void attack(Character* enemy) override
+        {
+            std::cout << this->getName() << " is attacking " << enemy->getName() << ".\n";
+            m_ability.useAbility(this);  // Use ability to activate beneficial effects
 
+            int total_attack = getAttackAmnt();
+            m_ability.transformDamageDealt(total_attack);  // Enhance damage with ability effects
 
-
+            std::cout << "Barbarian deals " << total_attack << " melee damage!\n";
+            enemy->takeDamage(total_attack);
+        }
 
         void takeDamage(int dmg) override
         {
-            m_ability.transformDamageReceived(dmg);
-            CharacterTpl<T>::takeDamage(dmg);
+            std::cout << this->getName() << " is attacked for " << dmg << " damage.\n";
+            std::cout << "Barbarian has a defense of " << m_baseDefense << ". Reducing damage received.\n";
+
+            int reduced_dmg = dmg - m_baseDefense;
+            reduced_dmg = std::max(0, reduced_dmg);
+
+            m_ability.transformDamageReceived(reduced_dmg);  // Further reduce damage using ability
+
+            CharacterTpl<T>::takeDamage(reduced_dmg);
         }
     };
 }
