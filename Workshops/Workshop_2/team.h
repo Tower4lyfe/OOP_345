@@ -11,16 +11,10 @@ namespace seneca
     {
         std::string m_name; //wasn't sure cstring or string, so I went with string 
         Character** m_members;
-        //added to mimic vector with just array
-        size_t m_memberCount;
-        size_t m_capacity;
-
-        void resize(size_t newCapacity);
-
-        
+        size_t m_memberCount; 
 
         public:
-        Team(const std::string& name) : m_name(name), m_members(nullptr), m_memberCount(0), m_capacity(0) {};
+        Team(const std::string& name) : m_name(name), m_members(nullptr), m_memberCount(0) {m_members = new Character*[1];};
         //RULE OF 5
         ~Team();
         Team(const Team&other);

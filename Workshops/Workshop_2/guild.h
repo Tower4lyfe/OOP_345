@@ -14,7 +14,7 @@ namespace seneca
         size_t m_memberCount; 
 
         public:
-        Guild(const std::string& name) : m_name(name), m_members(nullptr), m_memberCount(0) {};
+        Guild(const std::string& name) : m_name(name), m_members(nullptr), m_memberCount(0) {m_members = new Character*[1];};
         //RULE OF 5
         ~Guild();
         Guild(const Guild&other);
