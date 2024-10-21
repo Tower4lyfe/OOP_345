@@ -103,28 +103,31 @@ namespace seneca
         int newHealthMax = c->getHealthMax() + 300;
         c->setHealthMax(newHealthMax);
 
-        m_members[m_memberCount++] = c->clone(); //this is the annoying part
+        m_members[m_memberCount++] = c; //this is the annoying part
     }
 
 
 //
-    void Guild::removeMember(const std::string& c)
+    void Guild::removeMember(const std::string& name)
+{
+    for (size_t i = 0; i < m_memberCount; ++i)
+    {
+        if (m_members[i]->getName() == name)
         {
-            for (size_t i = 0; i < m_memberCount; ++i)
+            // Reduce the max health when removing from the guild
+            m_members[i]->setHealthMax(m_members[i]->getHealthMax() - 300);
+
+            // Shift elements to fill the gap left by the removed member
+            for (size_t j = i; j < m_memberCount - 1; ++j)
             {
-                if (m_members[i]->getName() == c)
-                {
-                    m_members[i] = nullptr;
-                    delete m_members[i];
-                    for (size_t j = i; j < m_memberCount - 1; ++j)
-                    {
-                        m_members[j] = m_members[j + 1];
-                    }
-                    --m_memberCount;
-                    break;
-                }
+                m_members[j] = m_members[j + 1];
             }
+
+            --m_memberCount;
+            break;
         }
+    }
+}
 
 
     Character* Guild::operator[](size_t index) const
