@@ -103,46 +103,49 @@ namespace seneca
         int newHealthMax = c->getHealthMax() + 300;
         c->setHealthMax(newHealthMax);
 
-        m_members[m_memberCount++] = c; //this is the annoying part
+        m_members[m_memberCount++] = c->clone(); //this is the annoying part
     }
 
 
 // same thing as team module, very tedious, probably better to use two variables for the array current size and optimal
-    void Guild::removeMember(const std::string& c)
-    {
-        for (size_t i = 0; i < m_memberCount; ++i)
+    void Guild::removeMember(const std::string& name)
         {
-            if (m_members[i]->getName() == c)
+            for (size_t i = 0; i < m_memberCount; ++i)
             {
-                m_members[i] = nullptr;
-                delete m_members[i];
-
-                for (size_t j = i; j < m_memberCount - 1; ++j)
+                if (m_members[i]->getName() == name)
                 {
-                    m_members[j] = m_members[j + 1];
-                }
-                --m_memberCount;
+                    // Decrease maximum health by 300
+                    int reducedHealthMax = (m_members[i]->getHealthMax() > 300) ? (m_members[i]->getHealthMax() - 300) : 0;
+                    m_members[i]->setHealthMax(reducedHealthMax);
 
-                if (m_memberCount > 0)
-                {
-                    Character** newMembers = new Character*[m_memberCount];
-                    for (size_t k = 0; k < m_memberCount; ++k)
+                    // Shift the remaining members to fill the gap
+                    for (size_t j = i; j < m_memberCount - 1; ++j)
                     {
-                        newMembers[k] = m_members[k];
+                        m_members[j] = m_members[j + 1];
                     }
-                    delete[] m_members;
-                    m_members = newMembers;
-                }
-                else
-                {
-                    delete[] m_members;
-                    m_members = nullptr;
-                }
+                    --m_memberCount;
 
-                break;
+                    // Resize the array
+                    if (m_memberCount > 0)
+                    {
+                        Character** newMembers = new Character*[m_memberCount];
+                        for (size_t k = 0; k < m_memberCount; ++k)
+                        {
+                            newMembers[k] = m_members[k];
+                        }
+                        delete[] m_members;
+                        m_members = newMembers;
+                    }
+                    else
+                    {
+                        delete[] m_members;
+                        m_members = nullptr;
+                    }
+
+                    break;
+                }
             }
         }
-    }
 
 
     Character* Guild::operator[](size_t index) const
