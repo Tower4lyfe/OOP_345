@@ -11,6 +11,7 @@ namespace seneca
                 delete m_members[i];
             }
             delete[] m_members;
+            m_memberCount = 0;
         }
 
         Guild::Guild(const Guild&other)
