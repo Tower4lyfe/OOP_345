@@ -134,7 +134,7 @@ namespace seneca
     void Guild::showMembers() const
     {
         if (m_capacity == 0)
-            std::cout << "No Guild.\n";
+            std::cout << "No guild.\n";
         else
         {
             std::cout << "[Guild] " << m_name << "\n";
