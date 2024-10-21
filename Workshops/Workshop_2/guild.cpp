@@ -1,130 +1,137 @@
-// guild.cpp
 #include "guild.h"
 #include <iostream>
 
 namespace seneca
 {
-//The BIG FIVE:
 
-//Change  team to Guild and you got yourself some RULE OF FIVE
-//I hate valgrind
-Guild::~Guild()
-        {
-            delete[] m_members;
-            m_memberCount = 0;
-            m_capacity = 0;
-        }
+    Guild::Guild(const std::string& name) : m_name(name), m_memberCount(0)
+    {
+        m_members = new Character*[1]; 
+    }
 
-    Guild::Guild(const Guild& other) : m_name(other.m_name), m_memberCount(other.m_memberCount), m_capacity(other.m_capacity)
+
+    Guild::~Guild()
+    {
+        delete[] m_members;
+        m_memberCount = 0;
+    }
+
+
+    Guild::Guild(const Guild& other) : m_name(other.m_name), m_memberCount(other.m_memberCount)
     {
         m_members = new Character*[m_memberCount];
         for (size_t i = 0; i < m_memberCount; ++i)
         {
-            m_members[i] = other.m_members[i]->clone();
+            m_members[i] = other.m_members[i];
         }
     }
+
 
     Guild& Guild::operator=(const Guild& other)
     {
         if (this != &other)
+        {
+            delete[] m_members;
+
+            m_name = other.m_name;
+            m_memberCount = other.m_memberCount;
+            m_members = new Character*[m_memberCount];
+            for (size_t i = 0; i < m_memberCount; ++i)
             {
-                // Delete existing members
-                for (size_t i = 0; i < m_memberCount; ++i)
-                {
-                    delete m_members[i];
-                }
-                delete[] m_members;
-
-                // Copy from other
-                m_name = other.m_name;
-                m_memberCount = other.m_memberCount;
-                m_capacity = other.m_capacity;
-
-                m_members = new Character*[m_capacity];
-                for (size_t i = 0; i < m_memberCount; ++i)
-                {
-                    m_members[i] = other.m_members[i]->clone();
-                }
+                m_members[i] = other.m_members[i];
             }
-            return *this;
+        }
+        return *this;
     }
 
-    Guild::Guild(Guild&& other) noexcept : m_name(std::move(other.m_name)), m_members(other.m_members), m_memberCount(other.m_memberCount), m_capacity(other.m_capacity)
+
+    Guild::Guild(Guild&& other) noexcept : m_name(std::move(other.m_name)), m_members(other.m_members), m_memberCount(other.m_memberCount)
     {
         other.m_members = nullptr;
         other.m_memberCount = 0;
-        other.m_capacity = 0;
     }
+
 
     Guild& Guild::operator=(Guild&& other) noexcept
     {
         if (this != &other)
-            {
-                // Delete existing members
-                for (size_t i = 0; i < m_memberCount; ++i)
-                {
-                    delete m_members[i];
-                }
-                delete[] m_members;
+        {
+            delete[] m_members;
 
-                // Move from other
-                m_name = std::move(other.m_name);
-                m_members = other.m_members;
-                m_memberCount = other.m_memberCount;
-                m_capacity = other.m_capacity;
+            m_name = std::move(other.m_name);
+            m_members = other.m_members;
+            m_memberCount = other.m_memberCount;
 
-                other.m_members = nullptr;
-                other.m_memberCount = 0;
-                other.m_capacity = 0;
-            }
-            return *this;
+            other.m_members = nullptr;
+            other.m_memberCount = 0;
+        }
+        return *this;
     }
 
-    //NOT THE BIG FIVE:
-    //This one is actually different
+ 
     void Guild::addMember(Character* c)
     {
         for (size_t i = 0; i < m_memberCount; ++i)
         {
             if (m_members[i]->getName() == c->getName())
-                return;
-        }//no replicate
-        
-        if (m_memberCount == m_capacity)
-        {
-            size_t newCapacity = (m_capacity == 0) ? 2 : m_capacity * 2;
-            resize(newCapacity);
+                return; 
         }
 
-        //set the max health before cloning 
+
+        Character** newMembers = new Character*[m_memberCount + 1];
+        for (size_t i = 0; i < m_memberCount; ++i)
+        {
+            newMembers[i] = m_members[i];
+        }
+        delete[] m_members;
+        m_members = newMembers;
+
+
         int newHealthMax = c->getHealthMax() + 300;
         c->setHealthMax(newHealthMax);
 
-        m_members[m_memberCount++] = c; //this is the annoying part
+        m_members[m_memberCount++] = c;
     }
 
-
-//
-    void Guild::removeMember(const std::string& name)
-{
-    for (size_t i = 0; i < m_memberCount; ++i)
+    // I HATE VALGRIND
+    void Guild::removeMember(const std::string& c)
     {
-        if (m_members[i]->getName() == name)
+        for (size_t i = 0; i < m_memberCount; ++i)
         {
-
-            m_members[i]->setHealthMax(m_members[i]->getHealthMax() - 300);
-            // Shift elements to fill the gap left by the removed member
-            for (size_t j = i; j < m_memberCount - 1; ++j)
+            if (m_members[i]->getName() == c)
             {
-                m_members[j] = m_members[j + 1];
-            }
+                // Decrease maximum health by 300
+                int reducedHealthMax = (m_members[i]->getHealthMax() > 300) ? (m_members[i]->getHealthMax() - 300) : 0;
+                m_members[i]->setHealthMax(reducedHealthMax);
 
-            --m_memberCount;
-            break;
+                // Shift the remaining members to fill the gap
+                for (size_t j = i; j < m_memberCount - 1; ++j)
+                {
+                    m_members[j] = m_members[j + 1];
+                }
+                --m_memberCount;
+
+                // Resize the array
+                if (m_memberCount > 0)
+                {
+                    Character** newMembers = new Character*[m_memberCount];
+                    for (size_t k = 0; k < m_memberCount; ++k)
+                    {
+                        newMembers[k] = m_members[k];
+                    }
+                    delete[] m_members;
+                    m_members = newMembers;
+                }
+                else
+                {
+                    delete[] m_members;
+                    m_members = nullptr;
+                }
+
+                break;
+            }
         }
     }
-}
-
 
     Character* Guild::operator[](size_t index) const
     {
@@ -132,6 +139,7 @@ Guild::~Guild()
             return m_members[index];
         return nullptr;
     }
+
 
     void Guild::showMembers() const
     {
@@ -142,7 +150,7 @@ Guild::~Guild()
             std::cout << "[Guild] " << m_name << "\n";
             for (size_t i = 0; i < m_memberCount; ++i)
             {
-                std::cout << *m_members[i] << std::endl; //Yah, it works..
+                std::cout << *m_members[i] << std::endl;
             }
         }
     }
