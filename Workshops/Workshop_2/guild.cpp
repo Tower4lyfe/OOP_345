@@ -150,7 +150,7 @@ namespace seneca
             std::cout << "[Guild] " << m_name << "\n";
             for (size_t i = 0; i < m_memberCount; ++i)
             {
-                std::cout <<"\t" << i+1 << ": " *m_members[i] << std::endl;
+                std::cout <<"\t" << i+1 << ": " << *m_members[i] << std::endl;
             }
         }
     }
