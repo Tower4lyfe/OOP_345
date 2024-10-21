@@ -8,8 +8,10 @@ namespace seneca
             for (size_t i = 0; i < m_memberCount; ++i)
             {
                 delete m_members[i];
+                m_members[i] = nullptr;
             }
             delete[] m_members;
+            m_members=nullptr;
             m_memberCount = 0;
         }
 
