@@ -7,16 +7,23 @@ namespace seneca
 //The BIG FIVE:
 
 //Change  team to Guild and you got yourself some RULE OF FIVE
-    Guild::~Guild()
+//I hate valgrind
+Guild::~Guild()
+{
+    for (size_t i = 0; i < m_memberCount; ++i)
     {
-        for (size_t i = 0; i < m_memberCount; ++i)
+        // Ensure that only guild-owned members are deleted.
+        if (m_members[i] != nullptr)
         {
             delete m_members[i];
+            m_members[i] = nullptr;
         }
-        delete[] m_members;
-        m_capacity = 0;
-        m_memberCount = 0;
     }
+    delete[] m_members;
+    m_members = nullptr;
+    m_capacity = 0;
+    m_memberCount = 0;
+}
 
     Guild::Guild(const Guild& other) : m_name(other.m_name), m_memberCount(other.m_memberCount), m_capacity(other.m_capacity)
     {
