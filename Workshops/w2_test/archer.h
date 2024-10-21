@@ -3,6 +3,7 @@
 
 #include "characterTpl.h"
 #include "weapons.h"
+#include "health.h"
 
 namespace seneca
 {
