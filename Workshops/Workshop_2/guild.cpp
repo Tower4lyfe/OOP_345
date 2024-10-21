@@ -112,6 +112,8 @@ namespace seneca
             if (m_members[i]->getName() == name)
             {
                 m_members[i]->setHealthMax(m_members[i]->getHealthMax() - 300); // Decrease max health when removing from guild
+                m_members[i] = nullptr;
+                delete m_members[i];
                 for (size_t j = i; j < m_memberCount - 1; ++j)
                 {
                     m_members[j] = m_members[j + 1];
