@@ -92,52 +92,31 @@ namespace seneca
             if (m_members[i]->getName() == c->getName())
                 return;
         }
-        
+
         if (m_memberCount == m_capacity)
         {
             size_t newCapacity = (m_capacity == 0) ? 2 : m_capacity * 2;
             resize(newCapacity);
         }
 
-        //set the max health before cloning 
-        int newHealthMax = c->getHealthMax() + 300;
-        c->setHealthMax(newHealthMax);
-
-        m_members[m_memberCount++] = c->clone();
+        c->setHealthMax(c->getHealthMax() + 300); // Increase max health when adding to guild
+        m_members[m_memberCount++] = c; // Store the pointer without cloning
     }
 
 
-// same thing as team module, very tedious, probably better to use two variables for the array current size and optimal
-    void Guild::removeMember(const std::string& c)
+//  Valgrind hate his 
+    void Guild::removeMember(const std::string& name)
     {
         for (size_t i = 0; i < m_memberCount; ++i)
         {
-            if (m_members[i]->getName() == c)
+            if (m_members[i]->getName() == name)
             {
-                delete m_members[i];
-
+                m_members[i]->setHealthMax(m_members[i]->getHealthMax() - 300); // Decrease max health when removing from guild
                 for (size_t j = i; j < m_memberCount - 1; ++j)
                 {
                     m_members[j] = m_members[j + 1];
                 }
                 --m_memberCount;
-
-                if (m_memberCount > 0)
-                {
-                    Character** newMembers = new Character*[m_memberCount];
-                    for (size_t k = 0; k < m_memberCount; ++k)
-                    {
-                        newMembers[k] = m_members[k];
-                    }
-                    delete[] m_members;
-                    m_members = newMembers;
-                }
-                else
-                {
-                    delete[] m_members;
-                    m_members = nullptr;
-                }
-
                 break;
             }
         }
