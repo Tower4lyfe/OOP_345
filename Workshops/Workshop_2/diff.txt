@@ -1,0 +1,14 @@
+In line number 18 of your output:
+The output should be:
+    1: Quick Silver            Health: 100% ( 950/ 950)  Attack:   58  Defense:   77
+^
+But your output is: 
+	1: Quick Silver            Health: 100% ( 950/ 950)  Attack:   58  Defense:   77
+^
+
+Unmatched character details:
+The character in column 1 is supposed to be:
+  [Space] ASCII code(32)
+but you printed
+  [Tab (\t)] ASCII code(9)
+
