@@ -103,7 +103,7 @@ namespace seneca
         int newHealthMax = c->getHealthMax() + 300;
         c->setHealthMax(newHealthMax);
 
-        m_members[m_memberCount++] = c;
+        m_members[m_memberCount++] = c->clone();
     }
 
 
@@ -111,24 +111,36 @@ namespace seneca
     void Guild::removeMember(const std::string& c)
     {
         for (size_t i = 0; i < m_memberCount; ++i)
+        {
+            if (m_members[i]->getName() == c)
             {
-                if (m_members[i]->getName() == c)
+                delete m_members[i];
+
+                for (size_t j = i; j < m_memberCount - 1; ++j)
                 {
-                    int reducedMaxHealth = m_members[i]->getHealthMax() - 300;
-                    m_members[i] -> setHealthMax(reducedMaxHealth);
-
-                    m_members[i] = nullptr;
-                    delete m_members[i];
-
-                    
-                    for (size_t j = i; j < m_memberCount - 1; ++j)
-                    {
-                        m_members[j] = m_members[j + 1];
-                    }
-                    --m_memberCount;
-                    break;
+                    m_members[j] = m_members[j + 1];
                 }
+                --m_memberCount;
+
+                if (m_memberCount > 0)
+                {
+                    Character** newMembers = new Character*[m_memberCount];
+                    for (size_t k = 0; k < m_memberCount; ++k)
+                    {
+                        newMembers[k] = m_members[k];
+                    }
+                    delete[] m_members;
+                    m_members = newMembers;
+                }
+                else
+                {
+                    delete[] m_members;
+                    m_members = nullptr;
+                }
+
+                break;
             }
+        }
     }
 
 
