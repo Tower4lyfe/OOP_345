@@ -4,13 +4,12 @@
 
 namespace seneca
 {
-    // Constructor
+//The BIG FIVE:
     Guild::Guild(const std::string& name) : m_name(name), m_memberCount(0)
     {
         m_members = new Character*[1];
     }
 
-    // Destructor
     Guild::~Guild()
     {
         for (size_t i = 0; i < m_memberCount; ++i)
@@ -20,7 +19,6 @@ namespace seneca
         delete[] m_members;
     }
 
-    // Copy Constructor
     Guild::Guild(const Guild& other) : m_name(other.m_name), m_memberCount(other.m_memberCount)
     {
         m_members = new Character*[m_memberCount];
@@ -30,7 +28,6 @@ namespace seneca
         }
     }
 
-    // Copy Assignment Operator
     Guild& Guild::operator=(const Guild& other)
     {
         if (this != &other)
@@ -52,14 +49,12 @@ namespace seneca
         return *this;
     }
 
-    // Move Constructor
     Guild::Guild(Guild&& other) noexcept : m_name(std::move(other.m_name)), m_members(other.m_members), m_memberCount(other.m_memberCount)
     {
         other.m_members = nullptr;
         other.m_memberCount = 0;
     }
 
-    // Move Assignment Operator
     Guild& Guild::operator=(Guild&& other) noexcept
     {
         if (this != &other)
@@ -80,12 +75,12 @@ namespace seneca
         return *this;
     }
 
-    // Add Member
-    void Guild::addMember(Character* character)
+    //NOT THE BIG FIVE:
+    void Guild::addMember(Character* c)
     {
         for (size_t i = 0; i < m_memberCount; ++i)
         {
-            if (m_members[i]->getName() == character->getName())
+            if (m_members[i]->getName() == c->getName())
                 return;
         }
 
@@ -97,18 +92,20 @@ namespace seneca
         delete[] m_members;
         m_members = newMembers;
 
-        int newHealthMax = character->getHealthMax() + 300;
-        character->setHealthMax(newHealthMax);
+        //set the max health before cloning 
+        int newHealthMax = c->getHealthMax() + 300;
+        c->setHealthMax(newHealthMax);
 
-        m_members[m_memberCount++] = character->clone();
+        m_members[m_memberCount++] = c->clone();
     }
 
-    // Remove Member
-    void Guild::removeMember(const std::string& name)
+
+// same thing as team module, very tedious, probably better to use two variables for the array current size and optimal size
+    void Guild::removeMember(const std::string& c)
     {
         for (size_t i = 0; i < m_memberCount; ++i)
         {
-            if (m_members[i]->getName() == name)
+            if (m_members[i]->getName() == c)
             {
                 delete m_members[i];
 
@@ -139,7 +136,7 @@ namespace seneca
         }
     }
 
-    // Access Operator
+
     Character* Guild::operator[](size_t index) const
     {
         if (index < m_memberCount)
@@ -147,7 +144,6 @@ namespace seneca
         return nullptr;
     }
 
-    // Show Members
     void Guild::showMembers() const
     {
         if (m_memberCount == 0)
@@ -157,7 +153,7 @@ namespace seneca
             std::cout << "[Guild] " << m_name << "\n";
             for (size_t i = 0; i < m_memberCount; ++i)
             {
-                std::cout << *m_members[i] << std::endl;
+                std::cout << *m_members[i] << std::endl; //Yah, it works..
             }
         }
     }
