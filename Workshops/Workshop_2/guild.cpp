@@ -85,69 +85,47 @@ namespace seneca
 
     //NOT THE BIG FIVE:
     //This one is actually different
-    void addMember(Character* character)
+    void Guild::addMember(Character* c)
+    {
+        for (size_t i = 0; i < m_memberCount; ++i)
         {
-            for (size_t i = 0; i < m_memberCount; ++i)
-            {
-                if (m_members[i]->getName() == character->getName())
-                    return; // Prevent adding duplicate characters by name
-            }
-
-            // Resize if necessary
-            Character** newMembers = new Character*[m_memberCount + 1];
-            for (size_t i = 0; i < m_memberCount; ++i)
-            {
-                newMembers[i] = m_members[i];
-            }
-            delete[] m_members;
-            m_members = newMembers;
-
-            // Increase maximum health by 300
-            int newHealthMax = character->getHealthMax() + 300;
-            character->setHealthMax(newHealthMax);
-
-            m_members[m_memberCount++] = character;
+            if (m_members[i]->getName() == c->getName())
+                return;
+        }//no replicate
+        
+        if (m_memberCount == m_capacity)
+        {
+            size_t newCapacity = (m_capacity == 0) ? 2 : m_capacity * 2;
+            resize(newCapacity);
         }
 
-        // Remove Member
-        void removeMember(const std::string& name)
-        {
-            for (size_t i = 0; i < m_memberCount; ++i)
-            {
-                if (m_members[i]->getName() == name)
-                {
-                    // Decrease maximum health by 300
-                    int reducedHealthMax = (m_members[i]->getHealthMax() > 300) ? (m_members[i]->getHealthMax() - 300) : 0;
-                    m_members[i]->setHealthMax(reducedHealthMax);
+        //set the max health before cloning 
+        int newHealthMax = c->getHealthMax() + 300;
+        c->setHealthMax(newHealthMax);
 
-                    // Shift the remaining members to fill the gap
+        m_members[m_memberCount++] = c; //this is the annoying part
+    }
+
+
+// same thing as team module, very tedious, probably better to use two variables for the array current size and optimal
+    void Guild::removeMember(const std::string& c)
+    {
+        for (size_t i = 0; i < m_memberCount; ++i)
+            {
+                if (m_members[i]->getName() == c)
+                {
+                    m_members[i]->setHealthMax(m_members[i]->getHealthMax()-300);
+                    m_members[i] = m_members[i]->clone();
+                    delete m_members[i];
                     for (size_t j = i; j < m_memberCount - 1; ++j)
                     {
                         m_members[j] = m_members[j + 1];
                     }
                     --m_memberCount;
-
-                    // Resize the array
-                    if (m_memberCount > 0)
-                    {
-                        Character** newMembers = new Character*[m_memberCount];
-                        for (size_t k = 0; k < m_memberCount; ++k)
-                        {
-                            newMembers[k] = m_members[k];
-                        }
-                        delete[] m_members;
-                        m_members = newMembers;
-                    }
-                    else
-                    {
-                        delete[] m_members;
-                        m_members = nullptr;
-                    }
-
                     break;
                 }
             }
-        }
+    }
 
 
     Character* Guild::operator[](size_t index) const
