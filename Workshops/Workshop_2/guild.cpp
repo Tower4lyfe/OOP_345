@@ -4,7 +4,7 @@
 namespace seneca
 {
 
-    Guild::Guild(const std::string& name) : m_name(name), m_memberCount(0)
+    Guild::Guild(const std::string& name) : m_name(name), m_memberCount(0),m_capacity(1)
     {
         m_members = new Character*[1]; 
     }
@@ -12,17 +12,19 @@ namespace seneca
 
     Guild::~Guild()
     {
+        //you never really own the objects, so you don't delete them in for loop
         delete[] m_members;
         m_memberCount = 0;
+        m_capacity = 0;
     }
 
 
-    Guild::Guild(const Guild& other) : m_name(other.m_name), m_memberCount(other.m_memberCount)
+    Guild::Guild(const Guild& other) : m_name(other.m_name), m_memberCount(other.m_memberCount), m_capacity(other.m_capacity)
     {
-        m_members = new Character*[m_memberCount];
+        m_members = new Character*[m_capacity];
         for (size_t i = 0; i < m_memberCount; ++i)
         {
-            m_members[i] = other.m_members[i];
+            m_members[i] = other.m_members[i]; // it should be clone
         }
     }
 
@@ -33,9 +35,13 @@ namespace seneca
         {
             delete[] m_members;
 
+            //shallow
             m_name = other.m_name;
             m_memberCount = other.m_memberCount;
-            m_members = new Character*[m_memberCount];
+            m_capacity = other.m_capacity;
+
+            //deep
+            m_members = new Character*[m_capacity];         
             for (size_t i = 0; i < m_memberCount; ++i)
             {
                 m_members[i] = other.m_members[i];
@@ -45,10 +51,12 @@ namespace seneca
     }
 
 
-    Guild::Guild(Guild&& other) noexcept : m_name(std::move(other.m_name)), m_members(other.m_members), m_memberCount(other.m_memberCount)
+    Guild::Guild(Guild&& other) noexcept 
+    : m_name(std::move(other.m_name)), m_members(other.m_members), m_memberCount(other.m_memberCount), m_capacity(other.m_capacity)
     {
         other.m_members = nullptr;
         other.m_memberCount = 0;
+        other.m_capacity = 0;
     }
 
 
@@ -61,9 +69,11 @@ namespace seneca
             m_name = std::move(other.m_name);
             m_members = other.m_members;
             m_memberCount = other.m_memberCount;
+            m_capacity = other.m_capacity;
 
             other.m_members = nullptr;
             other.m_memberCount = 0;
+            other.m_capacity = 0;
         }
         return *this;
     }
@@ -71,20 +81,15 @@ namespace seneca
  
     void Guild::addMember(Character* c)
     {
+        //no duplicate
         for (size_t i = 0; i < m_memberCount; ++i)
         {
             if (m_members[i]->getName() == c->getName())
                 return; 
         }
 
-
-        Character** newMembers = new Character*[m_memberCount + 1];
-        for (size_t i = 0; i < m_memberCount; ++i)
-        {
-            newMembers[i] = m_members[i];
-        }
-        delete[] m_members;
-        m_members = newMembers;
+        if (m_memberCount == m_capacity)
+            resize(m_capacity*2);
 
 
         int newHealthMax = c->getHealthMax() + 300;
@@ -109,24 +114,9 @@ namespace seneca
                 {
                     m_members[j] = m_members[j + 1];
                 }
+                
                 --m_memberCount;
-
-                // Resize the array
-                if (m_memberCount > 0)
-                {
-                    Character** newMembers = new Character*[m_memberCount];
-                    for (size_t k = 0; k < m_memberCount; ++k)
-                    {
-                        newMembers[k] = m_members[k];
-                    }
-                    delete[] m_members;
-                    m_members = newMembers;
-                }
-                else
-                {
-                    delete[] m_members;
-                    m_members = nullptr;
-                }
+                m_members[m_memberCount] = nullptr; // no duplicate at the end
 
                 break;
             }
@@ -143,7 +133,7 @@ namespace seneca
 
     void Guild::showMembers() const
     {
-        if (m_memberCount == 0)
+        if (m_capacity == 0)
             std::cout << "No Guild.\n";
         else
         {

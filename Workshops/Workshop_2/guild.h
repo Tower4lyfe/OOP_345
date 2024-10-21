@@ -12,7 +12,24 @@ namespace seneca
     private:
         std::string m_name;
         Character** m_members;  // Dynamically allocated array for storing members
-        size_t m_memberCount = 0;  // Keeps track of the number of members
+        size_t m_memberCount;
+        size_t m_capacity;  // Keeps track of the number of members
+
+        void resize(size_t newCapacity)
+        {
+            //new vessel for our INJECTION
+            Character** newMembers = new Character*[newCapacity];
+
+            for (size_t i = 0; i < m_memberCount; ++i)
+            {
+                newMembers[i] = m_members[i];
+            }
+            //Kill the old body
+            delete[] m_members;
+            //MOVE IT 
+            m_members = newMembers;
+            m_capacity = newCapacity;
+        }
 
     public:
         Guild(const std::string& name);
