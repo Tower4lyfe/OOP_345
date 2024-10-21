@@ -144,7 +144,7 @@ namespace seneca
                 std::cout << "[Team] " << m_name << "\n";
                 for(size_t i = 0; i < m_memberCount; ++i)
                 {
-                    std::cout << *m_members[i] << std::endl; //I think this works?
+                    std::cout <<"\t" << i+1 << ": " *m_members[i] << std::endl; //I think this works?
                 }
             }
         }
