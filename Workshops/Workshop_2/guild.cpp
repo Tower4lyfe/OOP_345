@@ -114,6 +114,7 @@ namespace seneca
         {
             if (m_members[i]->getName() == c)
             {
+                m_members[i] = nullptr;
                 delete m_members[i];
 
                 for (size_t j = i; j < m_memberCount - 1; ++j)
