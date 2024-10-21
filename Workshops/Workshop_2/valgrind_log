@@ -1,113 +1,113 @@
-==155283== Memcheck, a memory error detector
-==155283== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==155283== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==155283== Command: ws
-==155283== Parent PID: 153265
-==155283== 
-==155283== Invalid read of size 8
-==155283==    at 0x40690F: seneca::Team::~Team() (team.cpp:10)
-==155283==    by 0x402D23: main (tester_1.cpp:62)
-==155283==  Address 0x5afe5c0 is 0 bytes inside a block of size 88 free'd
-==155283==    at 0x4C2B6DF: operator delete(void*, unsigned long) (vg_replace_malloc.c:595)
-==155283==    by 0x40453C: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::~Barbarian() (barbarian.h:9)
-==155283==    by 0x407341: seneca::Guild::~Guild() (guild.cpp:11)
-==155283==    by 0x402D05: main (tester_1.cpp:117)
-==155283==  Block was alloc'd at
-==155283==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==155283==    by 0x4050D4: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:31)
-==155283==    by 0x406E12: seneca::Team::addMember(seneca::Character const*) (team.cpp:96)
-==155283==    by 0x40212E: main (tester_1.cpp:101)
-==155283== 
-==155283== Jump to the invalid address stated on the next line
-==155283==    at 0x0: ???
-==155283==    by 0x402D23: main (tester_1.cpp:62)
-==155283==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
-==155283== 
-==155283== 
-==155283== Process terminating with default action of signal 11 (SIGSEGV)
-==155283==  Bad permissions for mapped region at address 0x0
-==155283==    at 0x0: ???
-==155283==    by 0x402D23: main (tester_1.cpp:62)
-==155283== 
-==155283== HEAP SUMMARY:
-==155283==     in use at exit: 437 bytes in 8 blocks
-==155283==   total heap usage: 59 allocs, 51 frees, 75,671 bytes allocated
-==155283== 
-==155283== 17 bytes in 1 blocks are still reachable in loss record 1 of 8
-==155283==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==155283==    by 0x4F6BD1E: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (basic_string.tcc:219)
-==155283==    by 0x403984: seneca::Team::Team(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (team.h:17)
-==155283==    by 0x401BA0: main (tester_1.cpp:62)
-==155283== 
-==155283== 20 bytes in 1 blocks are still reachable in loss record 2 of 8
-==155283==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==155283==    by 0x4F6BD1E: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (basic_string.tcc:219)
-==155283==    by 0x403984: seneca::Team::Team(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (team.h:17)
-==155283==    by 0x401B3F: main (tester_1.cpp:61)
-==155283== 
-==155283== 40 bytes in 1 blocks are still reachable in loss record 3 of 8
-==155283==    at 0x4C2AC38: operator new[](unsigned long) (vg_replace_malloc.c:433)
-==155283==    by 0x406D7E: seneca::Team::addMember(seneca::Character const*) (team.cpp:87)
-==155283==    by 0x402098: main (tester_1.cpp:94)
-==155283== 
-==155283== 40 bytes in 1 blocks are still reachable in loss record 4 of 8
-==155283==    at 0x4C2AC38: operator new[](unsigned long) (vg_replace_malloc.c:433)
-==155283==    by 0x406D7E: seneca::Team::addMember(seneca::Character const*) (team.cpp:87)
-==155283==    by 0x402147: main (tester_1.cpp:102)
-==155283== 
-==155283== 72 bytes in 1 blocks are still reachable in loss record 5 of 8
-==155283==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==155283==    by 0x405A64: seneca::Archer<seneca::Crossbow>::clone() const (archer.h:27)
-==155283==    by 0x406E12: seneca::Team::addMember(seneca::Character const*) (team.cpp:96)
-==155283==    by 0x402066: main (tester_1.cpp:92)
-==155283== 
-==155283== 80 bytes in 1 blocks are still reachable in loss record 6 of 8
-==155283==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==155283==    by 0x406580: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:28)
-==155283==    by 0x406E12: seneca::Team::addMember(seneca::Character const*) (team.cpp:96)
-==155283==    by 0x40201B: main (tester_1.cpp:89)
-==155283== 
-==155283== 80 bytes in 1 blocks are still reachable in loss record 7 of 8
-==155283==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==155283==    by 0x404D8E: seneca::Barbarian<seneca::InfiniteHealth, seneca::Fireball, seneca::BareHands>::clone() const (barbarian.h:31)
-==155283==    by 0x406E12: seneca::Team::addMember(seneca::Character const*) (team.cpp:96)
-==155283==    by 0x402098: main (tester_1.cpp:94)
-==155283== 
-==155283== 88 bytes in 1 blocks are still reachable in loss record 8 of 8
-==155283==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==155283==    by 0x40541C: seneca::Barbarian<double, seneca::Bersek, seneca::Sword>::clone() const (barbarian.h:31)
-==155283==    by 0x406E12: seneca::Team::addMember(seneca::Character const*) (team.cpp:96)
-==155283==    by 0x40207F: main (tester_1.cpp:93)
-==155283== 
-==155283== LEAK SUMMARY:
-==155283==    definitely lost: 0 bytes in 0 blocks
-==155283==    indirectly lost: 0 bytes in 0 blocks
-==155283==      possibly lost: 0 bytes in 0 blocks
-==155283==    still reachable: 437 bytes in 8 blocks
-==155283==         suppressed: 0 bytes in 0 blocks
-==155283== 
-==155283== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
-==155283== 
-==155283== 1 errors in context 1 of 2:
-==155283== Jump to the invalid address stated on the next line
-==155283==    at 0x0: ???
-==155283==    by 0x402D23: main (tester_1.cpp:62)
-==155283==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
-==155283== 
-==155283== 
-==155283== 1 errors in context 2 of 2:
-==155283== Invalid read of size 8
-==155283==    at 0x40690F: seneca::Team::~Team() (team.cpp:10)
-==155283==    by 0x402D23: main (tester_1.cpp:62)
-==155283==  Address 0x5afe5c0 is 0 bytes inside a block of size 88 free'd
-==155283==    at 0x4C2B6DF: operator delete(void*, unsigned long) (vg_replace_malloc.c:595)
-==155283==    by 0x40453C: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::~Barbarian() (barbarian.h:9)
-==155283==    by 0x407341: seneca::Guild::~Guild() (guild.cpp:11)
-==155283==    by 0x402D05: main (tester_1.cpp:117)
-==155283==  Block was alloc'd at
-==155283==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
-==155283==    by 0x4050D4: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:31)
-==155283==    by 0x406E12: seneca::Team::addMember(seneca::Character const*) (team.cpp:96)
-==155283==    by 0x40212E: main (tester_1.cpp:101)
-==155283== 
-==155283== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==157340== Memcheck, a memory error detector
+==157340== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==157340== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==157340== Command: ws
+==157340== Parent PID: 153265
+==157340== 
+==157340== Invalid read of size 8
+==157340==    at 0x40690F: seneca::Team::~Team() (team.cpp:10)
+==157340==    by 0x402D23: main (tester_1.cpp:62)
+==157340==  Address 0x5afe5c0 is 0 bytes inside a block of size 88 free'd
+==157340==    at 0x4C2B6DF: operator delete(void*, unsigned long) (vg_replace_malloc.c:595)
+==157340==    by 0x40453C: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::~Barbarian() (barbarian.h:9)
+==157340==    by 0x40734D: seneca::Guild::~Guild() (guild.cpp:11)
+==157340==    by 0x402D05: main (tester_1.cpp:117)
+==157340==  Block was alloc'd at
+==157340==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==157340==    by 0x4050D4: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:31)
+==157340==    by 0x406E1E: seneca::Team::addMember(seneca::Character const*) (team.cpp:97)
+==157340==    by 0x40212E: main (tester_1.cpp:101)
+==157340== 
+==157340== Jump to the invalid address stated on the next line
+==157340==    at 0x0: ???
+==157340==    by 0x402D23: main (tester_1.cpp:62)
+==157340==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==157340== 
+==157340== 
+==157340== Process terminating with default action of signal 11 (SIGSEGV)
+==157340==  Bad permissions for mapped region at address 0x0
+==157340==    at 0x0: ???
+==157340==    by 0x402D23: main (tester_1.cpp:62)
+==157340== 
+==157340== HEAP SUMMARY:
+==157340==     in use at exit: 437 bytes in 8 blocks
+==157340==   total heap usage: 59 allocs, 51 frees, 75,671 bytes allocated
+==157340== 
+==157340== 17 bytes in 1 blocks are still reachable in loss record 1 of 8
+==157340==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==157340==    by 0x4F6BD1E: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (basic_string.tcc:219)
+==157340==    by 0x403984: seneca::Team::Team(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (team.h:17)
+==157340==    by 0x401BA0: main (tester_1.cpp:62)
+==157340== 
+==157340== 20 bytes in 1 blocks are still reachable in loss record 2 of 8
+==157340==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==157340==    by 0x4F6BD1E: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (basic_string.tcc:219)
+==157340==    by 0x403984: seneca::Team::Team(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (team.h:17)
+==157340==    by 0x401B3F: main (tester_1.cpp:61)
+==157340== 
+==157340== 40 bytes in 1 blocks are still reachable in loss record 3 of 8
+==157340==    at 0x4C2AC38: operator new[](unsigned long) (vg_replace_malloc.c:433)
+==157340==    by 0x406D8A: seneca::Team::addMember(seneca::Character const*) (team.cpp:88)
+==157340==    by 0x402098: main (tester_1.cpp:94)
+==157340== 
+==157340== 40 bytes in 1 blocks are still reachable in loss record 4 of 8
+==157340==    at 0x4C2AC38: operator new[](unsigned long) (vg_replace_malloc.c:433)
+==157340==    by 0x406D8A: seneca::Team::addMember(seneca::Character const*) (team.cpp:88)
+==157340==    by 0x402147: main (tester_1.cpp:102)
+==157340== 
+==157340== 72 bytes in 1 blocks are still reachable in loss record 5 of 8
+==157340==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==157340==    by 0x405A64: seneca::Archer<seneca::Crossbow>::clone() const (archer.h:27)
+==157340==    by 0x406E1E: seneca::Team::addMember(seneca::Character const*) (team.cpp:97)
+==157340==    by 0x402066: main (tester_1.cpp:92)
+==157340== 
+==157340== 80 bytes in 1 blocks are still reachable in loss record 6 of 8
+==157340==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==157340==    by 0x406580: seneca::Rogue<seneca::SuperHealth, seneca::Heal, seneca::Fireball>::clone() const (rogue.h:28)
+==157340==    by 0x406E1E: seneca::Team::addMember(seneca::Character const*) (team.cpp:97)
+==157340==    by 0x40201B: main (tester_1.cpp:89)
+==157340== 
+==157340== 80 bytes in 1 blocks are still reachable in loss record 7 of 8
+==157340==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==157340==    by 0x404D8E: seneca::Barbarian<seneca::InfiniteHealth, seneca::Fireball, seneca::BareHands>::clone() const (barbarian.h:31)
+==157340==    by 0x406E1E: seneca::Team::addMember(seneca::Character const*) (team.cpp:97)
+==157340==    by 0x402098: main (tester_1.cpp:94)
+==157340== 
+==157340== 88 bytes in 1 blocks are still reachable in loss record 8 of 8
+==157340==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==157340==    by 0x40541C: seneca::Barbarian<double, seneca::Bersek, seneca::Sword>::clone() const (barbarian.h:31)
+==157340==    by 0x406E1E: seneca::Team::addMember(seneca::Character const*) (team.cpp:97)
+==157340==    by 0x40207F: main (tester_1.cpp:93)
+==157340== 
+==157340== LEAK SUMMARY:
+==157340==    definitely lost: 0 bytes in 0 blocks
+==157340==    indirectly lost: 0 bytes in 0 blocks
+==157340==      possibly lost: 0 bytes in 0 blocks
+==157340==    still reachable: 437 bytes in 8 blocks
+==157340==         suppressed: 0 bytes in 0 blocks
+==157340== 
+==157340== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==157340== 
+==157340== 1 errors in context 1 of 2:
+==157340== Jump to the invalid address stated on the next line
+==157340==    at 0x0: ???
+==157340==    by 0x402D23: main (tester_1.cpp:62)
+==157340==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==157340== 
+==157340== 
+==157340== 1 errors in context 2 of 2:
+==157340== Invalid read of size 8
+==157340==    at 0x40690F: seneca::Team::~Team() (team.cpp:10)
+==157340==    by 0x402D23: main (tester_1.cpp:62)
+==157340==  Address 0x5afe5c0 is 0 bytes inside a block of size 88 free'd
+==157340==    at 0x4C2B6DF: operator delete(void*, unsigned long) (vg_replace_malloc.c:595)
+==157340==    by 0x40453C: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::~Barbarian() (barbarian.h:9)
+==157340==    by 0x40734D: seneca::Guild::~Guild() (guild.cpp:11)
+==157340==    by 0x402D05: main (tester_1.cpp:117)
+==157340==  Block was alloc'd at
+==157340==    at 0x4C2A593: operator new(unsigned long) (vg_replace_malloc.c:344)
+==157340==    by 0x4050D4: seneca::Barbarian<double, seneca::Heal, seneca::Axe>::clone() const (barbarian.h:31)
+==157340==    by 0x406E1E: seneca::Team::addMember(seneca::Character const*) (team.cpp:97)
+==157340==    by 0x40212E: main (tester_1.cpp:101)
+==157340== 
+==157340== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
