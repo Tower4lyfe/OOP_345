@@ -9,21 +9,11 @@ namespace seneca
 //Change  team to Guild and you got yourself some RULE OF FIVE
 //I hate valgrind
 Guild::~Guild()
-{
-    for (size_t i = 0; i < m_memberCount; ++i)
-    {
-        // Ensure that only guild-owned members are deleted.
-        if (m_members[i] != nullptr)
         {
-            delete m_members[i];
-            m_members[i] = nullptr;
+            delete[] m_members;
+            m_memberCount = 0;
+            m_capacity = 0;
         }
-    }
-    delete[] m_members;
-    m_members = nullptr;
-    m_capacity = 0;
-    m_memberCount = 0;
-}
 
     Guild::Guild(const Guild& other) : m_name(other.m_name), m_memberCount(other.m_memberCount), m_capacity(other.m_capacity)
     {
@@ -121,9 +111,9 @@ Guild::~Guild()
     {
         if (m_members[i]->getName() == name)
         {
-            // Reduce the max health when removing from the guild
-            m_members[i]->setHealthMax(m_members[i]->getHealthMax() - 300);
 
+            m_members[i]->setHealthMax(m_members[i]->getHealthMax() - 300);
+            m_members[i] = nullptr;
             // Shift elements to fill the gap left by the removed member
             for (size_t j = i; j < m_memberCount - 1; ++j)
             {
