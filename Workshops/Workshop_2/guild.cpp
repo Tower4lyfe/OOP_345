@@ -103,7 +103,7 @@ namespace seneca
         int newHealthMax = c->getHealthMax() + 300;
         c->setHealthMax(newHealthMax);
 
-        m_members[m_memberCount++] = c.clone(); //this is the annoying part
+        m_members[m_memberCount++] = c->clone(); //this is the annoying part
     }
 
 
