@@ -113,7 +113,6 @@ Guild::~Guild()
         {
 
             m_members[i]->setHealthMax(m_members[i]->getHealthMax() - 300);
-            m_members[i] = nullptr;
             // Shift elements to fill the gap left by the removed member
             for (size_t j = i; j < m_memberCount - 1; ++j)
             {
