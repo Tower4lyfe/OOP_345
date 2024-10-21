@@ -1,5 +1,5 @@
-// Guild.cpp
-#include "Guild.h"
+// guild.cpp
+#include "guild.h"
 #include <iostream>
 
 namespace seneca
