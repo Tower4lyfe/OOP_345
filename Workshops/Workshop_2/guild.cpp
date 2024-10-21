@@ -107,13 +107,14 @@ namespace seneca
     }
 
 
-// same thing as team module, very tedious, probably better to use two variables for the array current size and optimal
-    void Guild::removeMember(const std::string& name)
+//
+    void Guild::removeMember(const std::string& c)
         {
             for (size_t i = 0; i < m_memberCount; ++i)
             {
-                if (m_members[i]->getName() == name)
+                if (m_members[i]->getName() == c)
                 {
+                    m_members[i] = nullptr;
                     delete m_members[i];
                     for (size_t j = i; j < m_memberCount - 1; ++j)
                     {
