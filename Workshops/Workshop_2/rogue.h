@@ -2,17 +2,19 @@
 #define SENECA_ROGUE_H
 #include "characterTpl.h"
 #include "weapons.h"
+#include "abilities.h"
 
 namespace seneca
 {
     template<typename T, typename FirstAbility_t, typename SecondAbility_t>
     class Rogue : public CharacterTpl<T>
     {
-        int m_baseDefense;
-        int m_baseAttack;
         FirstAbility_t m_firstAbility;
         SecondAbility_t m_secondAbility;
         seneca::Dagger m_weapon; 
+        int m_baseAttack;
+        int m_baseDefense;
+        
 
         public:
         Rogue(const char*name, int healthMax, int baseAttack, int baseDefense):

@@ -8,9 +8,9 @@ namespace seneca
     template<typename T, typename Ability_t, typename Weapon_t>
     class Barbarian : public CharacterTpl<T>
     {
-        int m_baseDefense{0};
-        int m_baseAttack{0};
-        Ability_t m_ability{};
+        int m_baseAttack;
+        int m_baseDefense;    
+        Ability_t m_ability;
         Weapon_t m_weapon[2];
 
         public:

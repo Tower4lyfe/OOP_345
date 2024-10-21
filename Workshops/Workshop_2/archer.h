@@ -9,8 +9,9 @@ namespace seneca
     class Archer : public CharacterTpl<seneca::SuperHealth>
     {
         Weapon_t m_weapon;
-        int m_baseDefense;
         int m_baseAttack;
+        int m_baseDefense;
+        
         
         public:
         //constructor
