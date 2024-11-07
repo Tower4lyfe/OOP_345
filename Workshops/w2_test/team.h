@@ -11,13 +11,13 @@ namespace seneca
     private:
         std::string m_name;
         Character** m_members;
-        size_t m_size;
+        size_t m_memberCount;
         size_t m_capacity;
 
         void resize(size_t newCapacity)
         {
             Character** newMembers = new Character*[newCapacity];
-            for (size_t i = 0; i < m_size; ++i)
+            for (size_t i = 0; i < m_memberCount; ++i)
             {
                 newMembers[i] = m_members[i];
             }
@@ -28,12 +28,12 @@ namespace seneca
 
     public:
         // Constructor
-        Team(const std::string& name) : m_name(name), m_members(nullptr), m_size(0), m_capacity(0) {}
+        Team(const std::string& name) : m_name(name), m_members(nullptr), m_memberCount(0), m_capacity(0) {}
 
         // Destructor
         ~Team()
         {
-            for (size_t i = 0; i < m_size; ++i)
+            for (size_t i = 0; i < m_memberCount; ++i)
             {
                 delete m_members[i];
             }
@@ -41,10 +41,10 @@ namespace seneca
         }
 
         // Copy Constructor
-        Team(const Team& other) : m_name(other.m_name), m_size(other.m_size), m_capacity(other.m_capacity)
+        Team(const Team& other) : m_name(other.m_name), m_memberCount(other.m_memberCount), m_capacity(other.m_capacity)
         {
             m_members = new Character*[m_capacity];
-            for (size_t i = 0; i < m_size; ++i)
+            for (size_t i = 0; i < m_memberCount; ++i)
             {
                 m_members[i] = other.m_members[i]->clone();
             }
@@ -56,7 +56,7 @@ namespace seneca
             if (this != &other)
             {
                 // Delete existing members
-                for (size_t i = 0; i < m_size; ++i)
+                for (size_t i = 0; i < m_memberCount; ++i)
                 {
                     delete m_members[i];
                 }
@@ -64,11 +64,11 @@ namespace seneca
 
                 // Copy from other
                 m_name = other.m_name;
-                m_size = other.m_size;
+                m_memberCount = other.m_memberCount;
                 m_capacity = other.m_capacity;
 
                 m_members = new Character*[m_capacity];
-                for (size_t i = 0; i < m_size; ++i)
+                for (size_t i = 0; i < m_memberCount; ++i)
                 {
                     m_members[i] = other.m_members[i]->clone();
                 }
@@ -78,10 +78,10 @@ namespace seneca
 
         // Move Constructor
         Team(Team&& other) noexcept
-            : m_name(std::move(other.m_name)), m_members(other.m_members), m_size(other.m_size), m_capacity(other.m_capacity)
+            : m_name(std::move(other.m_name)), m_members(other.m_members), m_memberCount(other.m_memberCount), m_capacity(other.m_capacity)
         {
             other.m_members = nullptr;
-            other.m_size = 0;
+            other.m_memberCount = 0;
             other.m_capacity = 0;
         }
 
@@ -91,7 +91,7 @@ namespace seneca
             if (this != &other)
             {
                 // Delete existing members
-                for (size_t i = 0; i < m_size; ++i)
+                for (size_t i = 0; i < m_memberCount; ++i)
                 {
                     delete m_members[i];
                 }
@@ -100,11 +100,11 @@ namespace seneca
                 // Move from other
                 m_name = std::move(other.m_name);
                 m_members = other.m_members;
-                m_size = other.m_size;
+                m_memberCount = other.m_memberCount;
                 m_capacity = other.m_capacity;
 
                 other.m_members = nullptr;
-                other.m_size = 0;
+                other.m_memberCount = 0;
                 other.m_capacity = 0;
             }
             return *this;
@@ -113,34 +113,34 @@ namespace seneca
         // Add Member
         void addMember(Character* character)
         {
-            for (size_t i = 0; i < m_size; ++i)
+            for (size_t i = 0; i < m_memberCount; ++i)
             {
                 if (m_members[i]->getName() == character->getName())
                     return; // Prevent adding duplicate characters by name
             }
 
-            if (m_size == m_capacity)
+            if (m_memberCount == m_capacity)
             {
                 size_t newCapacity = (m_capacity == 0) ? 2 : m_capacity * 2;
                 resize(newCapacity);
             }
 
-            m_members[m_size++] = character->clone();
+            m_members[m_memberCount++] = character->clone();
         }
 
         // Remove Member
         void removeMember(const std::string& name)
         {
-            for (size_t i = 0; i < m_size; ++i)
+            for (size_t i = 0; i < m_memberCount; ++i)
             {
                 if (m_members[i]->getName() == name)
                 {
                     delete m_members[i];
-                    for (size_t j = i; j < m_size - 1; ++j)
+                    for (size_t j = i; j < m_memberCount - 1; ++j)
                     {
                         m_members[j] = m_members[j + 1];
                     }
-                    --m_size;
+                    --m_memberCount;
                     break;
                 }
             }
@@ -149,7 +149,7 @@ namespace seneca
         // Access Operator
         Character* operator[](size_t index) const
         {
-            if (index < m_size)
+            if (index < m_memberCount)
                 return m_members[index];
             return nullptr;
         }
@@ -158,7 +158,7 @@ namespace seneca
         void showMembers() const
         {
             std::cout << "[Team] " << m_name << "\n";
-            for (size_t i = 0; i < m_size; ++i)
+            for (size_t i = 0; i < m_memberCount; ++i)
             {
                 std::cout << "    " << m_members[i]->getName() << "\tHealth: " << m_members[i]->getHealth() << "\tAttack: " << m_members[i]->getAttackAmnt() << "\tDefense: " << m_members[i]->getDefenseAmnt() << "\n";
             }
