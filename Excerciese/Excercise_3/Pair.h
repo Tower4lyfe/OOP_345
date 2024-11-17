@@ -18,6 +18,7 @@ namespace seneca
         {
             return this->m_key==other.m_key;
         }
+        
         friend std::ostream& operator<<(std::ostream& , Pair);
 
     };

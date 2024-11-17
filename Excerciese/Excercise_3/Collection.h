@@ -1,5 +1,6 @@
 #ifndef SENECA_COLLECTION_H
 #define SENECA_COLLECTION_H
+#include "Pair.h"
 
 namespace seneca
 {
@@ -14,12 +15,38 @@ namespace seneca
             size_t size() {return number;}
             void display()const;
             virtual bool add(const T& item);
-            
+            T operator[](size_t index)const;
     };
+
+    template<>
+    Pair Collection<Pair, 100>::default_value{"No Key", "No Value"};
 
     template <typename T, size_t capacity>
     inline void Collection<T, capacity>::display() const
     {
+        for(size_t = index, index < number; index++)
+        {
+            std::cout << m_items[index] << std::endl;
+        }
+    }
+
+    template <typename T, size_t capacity>
+    inline bool Collection<T, capacity>::add(const T &item)
+    {
+        if(number == capacity)
+        {
+            return false;
+        }
+
+        m_items[number++] = item;
+        return true;
+    }
+
+    template <typename T, size_t capacity>
+    inline T Collection<T, capacity>::operator[](size_t index)const
+    {
+        if(index >= number) return default_value;
+        return m_items[index];
     }
 }
 
