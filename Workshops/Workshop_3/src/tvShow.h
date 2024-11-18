@@ -77,7 +77,7 @@ namespace seneca
 
         for(size_t i = 0; i < col.size(); ++i)
         {
-            TvShow* show = col[i];
+            TvShow* show = dynamic_cast<TvShow*>[i];
             if(show && show->m_id == id)
             {
                 TvEpisode episode;
