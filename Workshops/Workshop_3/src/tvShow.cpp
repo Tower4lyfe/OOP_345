@@ -92,54 +92,6 @@ namespace seneca
         return new TvShow(id, title, year, summary);
     }
 
-    template<typename Collection_t>
-    void TvShow::addEpisode(Collection_t& col, const std::string& strEpisode)
-    {
-        if (strEpisode.empty() || strEpisode[0] == '#')
-        {
-            throw std::invalid_argument("Not a valid episode");
-        }
-
-        std::istringstream stream (strEpisode);
-        std::string id, episodeNumStr, seasonStr, episodeInSeasonStr, airDate, lengthStr;
-        std::string title, summary;
-
-        std::getline(stream, id, ',');
-        std::getline(stream, episodeNumStr, ',');
-        std::getline(stream, seasonStr, ',');
-        std::getline(stream, episodeInSeasonStr, ',');
-        std::getline(stream, airDate, ',');
-        std::getline(stream, lengthStr, ',');
-        std::getline(stream, title, ',');
-        std::getline(stream, summary);
-
-        trim(id);
-        trim(episodeNumStr);
-        trim(seasonStr);
-        trim(episodeInSeasonStr);
-        trim(airDate);
-        trim(lengthStr);
-        trim(title);
-        trim(summary);
-
-        unsigned short episodeNum = static_cast<unsigned short>(std::stoi(episodeNumStr));
-        unsigned short season = seasonStr.empty() ? 1 : static_cast<unsigned short>(std::stoi(seasonStr));
-        unsigned short episodeInSeason = static_cast<unsigned short>(std::stoi(episodeInSeasonStr));
-        unsigned int length = static_cast<unsigned int>(std::stoi(lengthStr));
-
-        for(size_t i = 0; i < col.size(); ++i)
-        {
-            auto* show = col[i];
-            if(show && show->m_id == id)
-            {
-                TvEpisode episode(show, episodeNum, episodeInSeason, airDate, length, title, summary);
-                show->m_episodes.push_back(episode);
-                return;
-            }
-        }
-
-        throw std::invalid_argument("Show not found"); //Assuming if we can't find any episodes
-    }
 
     double TvShow::getEpisodeAverageLength()const
     {
