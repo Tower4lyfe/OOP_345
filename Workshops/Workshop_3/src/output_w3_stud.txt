@@ -1,0 +1,94 @@
+Script started on Mon 18 Nov 2024 12:31:22 AM EST
+==25408== Memcheck, a memory error detector
+==25408== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==25408== Using Valgrind-3.21.0 and LibVEX; rerun with -h for copyright info
+==25408== Command: ws
+==25408== 
+[38;5;9mBegin Testing the Program!
+--------------------------[0m
+
+Command Line:
+--------------------------
+  1: ws
+--------------------------
+
+>>>  T1: Loading TV Shows
+==========:==========:==========:==========:==========
+ERROR: Unknown error when processing file record [# Show ID, Title, Release Year, Summary].
+
+[38;5;9m------------------------
+End Testing the Program![0m
+==25408== 
+==25408== HEAP SUMMARY:
+==25408==     in use at exit: 9,006 bytes in 6 blocks
+==25408==   total heap usage: 8 allocs, 2 frees, 82,754 bytes allocated
+==25408== 
+==25408== 20 bytes in 1 blocks are still reachable in loss record 1 of 6
+==25408==    at 0x4C2B87D: operator new(unsigned long) (vg_replace_malloc.c:472)
+==25408==    by 0x4F81D2B: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (basic_string.tcc:225)
+==25408==    by 0x4069EE: seneca::Collection::Collection(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (collection.cpp:10)
+==25408==    by 0x40339D: main (tester_1_prof.cpp:71)
+==25408== 
+==25408== 40 bytes in 1 blocks are still reachable in loss record 2 of 6
+==25408==    at 0x4C2B87D: operator new(unsigned long) (vg_replace_malloc.c:472)
+==25408==    by 0x4F7F079: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) (basic_string.tcc:328)
+==25408==    by 0x4F80767: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_append(char const*, unsigned long) (basic_string.tcc:419)
+==25408==    by 0x4F03FB1: append (basic_string.h:1447)
+==25408==    by 0x4F03FB1: std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char) (istream-string.cc:161)
+==25408==    by 0x404787: void loadMedia<seneca::TvShow>(seneca::Collection&, char const*) (tester_1_prof.cpp:244)
+==25408==    by 0x4033EE: main (tester_1_prof.cpp:76)
+==25408== 
+==25408== 42 bytes in 1 blocks are possibly lost in loss record 3 of 6
+==25408==    at 0x4C2B87D: operator new(unsigned long) (vg_replace_malloc.c:472)
+==25408==    by 0x4F2D0EC: allocate (new_allocator.h:147)
+==25408==    by 0x4F2D0EC: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (cow_string.h:3602)
+==25408==    by 0x4F10156: _S_construct<char const*> (cow_string.h:3161)
+==25408==    by 0x4F10156: _S_construct<char const*> (cow_string.h:3146)
+==25408==    by 0x4F10156: _S_construct_aux<char const*> (cow_string.h:2139)
+==25408==    by 0x4F10156: _S_construct<char const*> (cow_string.h:2160)
+==25408==    by 0x4F10156: basic_string (cow_string.h:605)
+==25408==    by 0x4F10156: std::logic_error::logic_error(char const*) (cow-stdexcept.cc:87)
+==25408==    by 0x4F101F8: std::invalid_argument::invalid_argument(char const*) (cow-stdexcept.cc:93)
+==25408==    by 0x40CDF8: seneca::TvShow::createItem(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (tvShow.cpp:74)
+==25408==    by 0x404754: void loadMedia<seneca::TvShow>(seneca::Collection&, char const*) (tester_1_prof.cpp:248)
+==25408==    by 0x4033EE: main (tester_1_prof.cpp:76)
+==25408== 
+==25408== 144 bytes in 1 blocks are possibly lost in loss record 4 of 6
+==25408==    at 0x4C2B15C: malloc (vg_replace_malloc.c:431)
+==25408==    by 0x4EE997F: __cxa_allocate_exception (eh_alloc.cc:398)
+==25408==    by 0x40CDE8: seneca::TvShow::createItem(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (tvShow.cpp:74)
+==25408==    by 0x404754: void loadMedia<seneca::TvShow>(seneca::Collection&, char const*) (tester_1_prof.cpp:248)
+==25408==    by 0x4033EE: main (tester_1_prof.cpp:76)
+==25408== 
+==25408== 568 bytes in 1 blocks are still reachable in loss record 5 of 6
+==25408==    at 0x4C2B15C: malloc (vg_replace_malloc.c:431)
+==25408==    by 0x5821C4C: __fopen_internal (in /usr/lib64/libc-2.17.so)
+==25408==    by 0x4F0BEAF: std::__basic_file<char>::open(char const*, std::_Ios_Openmode, int) (basic_file.cc:255)
+==25408==    by 0x4F4F839: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream.tcc:184)
+==25408==    by 0x4F50431: open (fstream:667)
+==25408==    by 0x4F50431: std::basic_ifstream<char, std::char_traits<char> >::basic_ifstream(char const*, std::_Ios_Openmode) (fstream:540)
+==25408==    by 0x4046E0: void loadMedia<seneca::TvShow>(seneca::Collection&, char const*) (tester_1_prof.cpp:237)
+==25408==    by 0x4033EE: main (tester_1_prof.cpp:76)
+==25408== 
+==25408== 8,192 bytes in 1 blocks are still reachable in loss record 6 of 6
+==25408==    at 0x4C2CA43: operator new[](unsigned long) (vg_replace_malloc.c:714)
+==25408==    by 0x4F4BBB3: _M_allocate_internal_buffer (fstream.tcc:56)
+==25408==    by 0x4F4BBB3: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (fstream.tcc:49)
+==25408==    by 0x4F4F851: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (fstream.tcc:187)
+==25408==    by 0x4F50431: open (fstream:667)
+==25408==    by 0x4F50431: std::basic_ifstream<char, std::char_traits<char> >::basic_ifstream(char const*, std::_Ios_Openmode) (fstream:540)
+==25408==    by 0x4046E0: void loadMedia<seneca::TvShow>(seneca::Collection&, char const*) (tester_1_prof.cpp:237)
+==25408==    by 0x4033EE: main (tester_1_prof.cpp:76)
+==25408== 
+==25408== LEAK SUMMARY:
+==25408==    definitely lost: 0 bytes in 0 blocks
+==25408==    indirectly lost: 0 bytes in 0 blocks
+==25408==      possibly lost: 186 bytes in 2 blocks
+==25408==    still reachable: 8,820 bytes in 4 blocks
+==25408==                       of which reachable via heuristic:
+==25408==                         stdstring          : 42 bytes in 1 blocks
+==25408==         suppressed: 0 bytes in 0 blocks
+==25408== 
+==25408== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+
+Script done on Mon 18 Nov 2024 12:31:24 AM EST
