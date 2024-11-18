@@ -52,7 +52,7 @@ namespace seneca
   {
     if (strBook.empty() || strBook[0] == '#') 
     {
-      throw std::invalid_argument("Not a valid book.");
+      throw "Not a valid book.";
     }
 
     std::istringstream stream(strBook);

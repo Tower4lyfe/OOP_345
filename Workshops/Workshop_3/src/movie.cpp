@@ -48,7 +48,7 @@ namespace seneca
     {
         if (strMovie.empty() || strMovie[0] == '#')
         {
-            throw std::invalid_argument("Not a valid movie.");
+            throw "Not a valid movie.";
         }
 
         std::istringstream stream(strMovie);
@@ -64,7 +64,7 @@ namespace seneca
 
         if (title.empty() || yearStr.empty())
         {
-            throw std::invalid_argument("Not a valid movie.");
+            throw "Not a valid movie.";
         }
 
         unsigned short year = static_cast<unsigned short>(std::stoi(yearStr));

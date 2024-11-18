@@ -45,7 +45,7 @@ namespace seneca
     {
         if (strEpisode.empty() || strEpisode[0] == '#')
         {
-            throw std::invalid_argument("Not a valid episode");
+            throw "Not a valid episode";
         }
 
         std::istringstream stream (strEpisode);
@@ -60,6 +60,8 @@ namespace seneca
         std::getline(stream, lengthStr, ',');
         std::getline(stream, title, ',');
         std::getline(stream, summary, '\n');
+
+        
 
         trim(id);
         trim(episodeNumStr);
@@ -94,7 +96,7 @@ namespace seneca
             }
         }
 
-        throw std::invalid_argument("Show not found"); //Assuming if we can't find any episodes
+        throw "Show not found"; //Assuming if we can't find any episodes
     }
 }
 

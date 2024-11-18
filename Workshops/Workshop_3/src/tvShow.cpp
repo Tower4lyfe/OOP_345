@@ -77,18 +77,26 @@ namespace seneca
         std::istringstream stream(strShow);
         std::string id, title, yearStr, summary;
 
+        std::cout << "Before GETLINE REACHED.\n";
+
         std::getline(stream, id, ',');
         std::getline(stream, title, ',');
         std::getline(stream, yearStr, ',');
         std::getline(stream, summary);
 
-        MediaItem::trim(id);
-        MediaItem::trim(title);
-        MediaItem::trim(yearStr);
-        MediaItem::trim(summary);
+        std::cout << "After Getline Reached. \n";
+
+        trim(id);
+        trim(title);
+        trim(yearStr);
+        trim(summary);
+
+        std::cout << "Trimmed!\n";
 
         unsigned short year = static_cast<unsigned short>(std::stoi(yearStr));
 
+        std::cout << "Right before return!\n";
+        
         return new TvShow(id, title, year, summary);
     }
 

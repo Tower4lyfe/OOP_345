@@ -21,20 +21,26 @@ namespace seneca
 
     size_t Collection::size()const {return m_items.size();}
 
-    void Collection::setObserver(void(*observer)(const Collection&, const MediaItem&)){m_observer = observer;}
+    void Collection::setObserver(void(*observer)(const Collection&, const MediaItem&))
+    {m_observer = observer;}
 
     Collection& Collection::operator+=(MediaItem* item)
     {
+
         auto it = std::find_if(m_items.begin(), m_items.end(),
         [item](MediaItem* stored)
         {
             return stored->getTitle() == item->getTitle();
         });
 
+
         if(it == m_items.end())
         {
             m_items.push_back(item);
-            if(m_observer){m_observer(*this, *item);}
+            if(m_observer)
+            {
+                m_observer(*this, *item);
+            }
         }else
         {
             delete item;

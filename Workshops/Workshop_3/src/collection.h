@@ -10,7 +10,7 @@ namespace seneca
     {
         std::string m_name;
         std::vector<MediaItem*> m_items;
-        void (*m_observer)(const Collection&, const MediaItem&);
+        void (*m_observer)(const Collection&, const MediaItem&) = nullptr;
 
         public:
         Collection(const std::string & name);
