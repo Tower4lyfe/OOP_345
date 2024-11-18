@@ -45,7 +45,7 @@ namespace seneca
     {
         if (strEpisode.empty() || strEpisode[0] == '#')
         {
-            throw "Not a valid episode";
+            throw "Not a valid episode.";
         }
 
         std::istringstream stream (strEpisode);
