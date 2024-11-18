@@ -1,3 +1,8 @@
+/*
+- ToTsz, Lau,
+- 125497248
+- ttlau3@myseneca.ca
+- Nov 18th, 2024 */
 #ifndef SENECA_BOOK_H
 #define SENECA_BOOK_H
 

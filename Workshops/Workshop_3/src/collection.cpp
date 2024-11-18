@@ -1,9 +1,13 @@
+/*
+- ToTsz, Lau,
+- 125497248
+- ttlau3@myseneca.ca
+- Nov 18th, 2024 */
 #include "collection.h"
 #include "mediaItem.h"
 #include <algorithm>
-#include <cstddef>
 #include <ostream>
-#include <stdexcept>
+
 
 namespace seneca 
 {
