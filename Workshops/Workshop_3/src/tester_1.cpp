@@ -247,7 +247,6 @@ void loadMedia(seneca::Collection& col, const char* filename)
 		{
 			seneca::MediaItem* item = T::createItem(record);
 			col += item;
-			std::cout <<"right after +=\n";
 		}
 		catch (const char* msg)
 		{

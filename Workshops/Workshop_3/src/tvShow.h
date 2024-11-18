@@ -75,7 +75,12 @@ namespace seneca
         unsigned short episodeNum = static_cast<unsigned short>(std::stoi(episodeNumStr));
         unsigned short season = seasonStr.empty() ? 1 : static_cast<unsigned short>(std::stoi(seasonStr));
         unsigned short episodeInSeason = static_cast<unsigned short>(std::stoi(episodeInSeasonStr));
-        unsigned int length = static_cast<unsigned int>(std::stoi(lengthStr));
+
+        unsigned int hours, minutes, seconds;
+        char delimiter;
+        std::stringstream time(lengthStr);
+        time >> hours >> delimiter >> minutes >> delimiter >> seconds;
+        unsigned int length = (hours*3600) + (minutes * 60) + seconds;
 
         for(size_t i = 0; i < col.size(); ++i)
         {
