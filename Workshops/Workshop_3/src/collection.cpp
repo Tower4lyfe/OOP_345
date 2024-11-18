@@ -123,7 +123,7 @@ namespace seneca
     {
         for(const auto* item : collection.m_items)
         {
-            out << *item << "\n";
+            out << *item;
         }
         return out;
     }
