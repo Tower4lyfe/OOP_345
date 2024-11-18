@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <sstream>
 
 
 namespace seneca
@@ -58,7 +59,7 @@ namespace seneca
         std::getline(stream, airDate, ',');
         std::getline(stream, lengthStr, ',');
         std::getline(stream, title, ',');
-        std::getline(stream, summary);
+        std::getline(stream, summary, '\n');
 
         trim(id);
         trim(episodeNumStr);
