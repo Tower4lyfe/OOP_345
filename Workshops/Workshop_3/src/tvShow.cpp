@@ -166,7 +166,7 @@ namespace seneca
 
       std::copy_if
       (m_episodes.begin(), m_episodes.end(), std::back_inserter(buffer),
-      [](TvEpisode& episode)
+      [](const TvEpisode& episode)
       {
         return episode.m_length > 3600;
       });
@@ -174,12 +174,12 @@ namespace seneca
       std::transform
       (
         buffer.begin(), buffer.end(), std::back_inserter(result),
-        [](TvEpisode& epi)
+        [](const TvEpisode& epi)
         {
           return epi.m_title;
         }
       );
-      
+
       return result;
     }
 }
