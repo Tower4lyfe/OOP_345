@@ -1,0 +1,14 @@
+In line number 28 of your output:
+The output should be:
+S | "The Fall of the House of Usher".................. |  8 | 2023 | "To secure their fortune - and future - two ruthless siblings...
+^
+But your output is: 
+
+ ^
+
+Unmatched character details:
+The character in column 2 is supposed to be:
+  [S] ASCII code(83)
+but you printed
+  [Empty Line] ASCII code(0)
+
