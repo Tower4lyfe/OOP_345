@@ -10,7 +10,7 @@ namespace seneca
     {
         std::string m_badWords[ARR_SIZE];
         std::string m_goodWords[ARR_SIZE];
-        size_t m_replacementsCNT[ARR_SIZE];
+        size_t m_replacementsCNT[ARR_SIZE]{0};
         
         public:
         SpellChecker(const char* filename);
