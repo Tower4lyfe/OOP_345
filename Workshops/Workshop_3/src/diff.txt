@@ -1,14 +1,14 @@
-In line number 218 of your output:
+In line number 301 of your output:
 The output should be:
-Spellchecker Statistics
-^
+M | Ghostlight........................................ |      2024 | When a construction worker unexpectedly joins a local theater's production of Romeo and Juliet, the drama onstage starts to mirror his own life.
+                                                                                                                                                                                                                      ^
 But your output is: 
-            teh: 0 replacements
-^
+M | Ghostlight........................................ |      2024 | When a construction worker unexpectedly joins a local theater's production of Romeo and Juliet, the drama onstage starts to mirror his own life."
+                                                                                                                                                                                                                     ^
 
 Unmatched character details:
-The character in column 1 is supposed to be:
-  [S] ASCII code(83)
+The character in column 214 is supposed to be:
+  [Empty Line] ASCII code(0)
 but you printed
-  [Space] ASCII code(32)
+  ["] ASCII code(34)
 
