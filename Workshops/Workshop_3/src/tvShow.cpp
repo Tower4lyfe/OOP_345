@@ -163,13 +163,15 @@ namespace seneca
     {
         std::list<std::string> result; 
 
-        std::copy_if //uses copy_if
-        (
-            m_episodes.begin(), m_episodes.end(),std::back_inserter(result),
-            [](const TvEpisode& episode)
+        std::transform
+        (m_episodes.begin(), m_episodes.end(), std::back_inserter(result),
+        [](const TvEpisode& episode)
+        {
+            if(episode.m_length > 3600)
             {
-                return episode.m_length >= 3600;
+                return episode.m_title;
             }
+        }
         );
 
         return result; 
