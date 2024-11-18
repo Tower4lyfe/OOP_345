@@ -71,7 +71,7 @@ namespace seneca
     {
         if(strShow.empty() || strShow[0] == '#')
         {
-            throw std::invalid_argument("Not a valid show.");
+            throw "Not a valid show.";
         }
 
         std::istringstream stream(strShow);
