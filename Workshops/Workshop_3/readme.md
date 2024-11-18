@@ -3,47 +3,6 @@
 In this workshop, you will create an application to manage movies and books. The information about different media items will be loaded in objects from files, and the object will be managed by collection types using STL collections and algorithms.
 
 
-## Submission Policy
-
-The workshop should contain ***only work done by you this term*** or provided by your professor.  Work done in another term (by you or somebody else), or work done by somebody else and not **clearly identified/cited** is considered plagiarism, in violation of the Academic Integrity Policy.
-
-Every file that you submit must contain (as a comment) at the top **your name**, **your Seneca email**, **Seneca Student ID** and the **date** when you completed the work.
-
-- If the file contains only your work, or work provided to you by your professor, add the following message as a comment at the top of the file:
-
-    > I declare that this submission is the result of my own work and I only copied the code that my professor provided to complete my workshops and assignments. This submitted piece of work has not been shared with any other student or 3rd party content provider.
-
-- If the file contains work that is not yours (you found it online or somebody provided it to you), **write exactly which parts of the assignment are given to you as help, who gave it to you, or which source you received it from.**  By doing this you will only lose the mark for the parts you got help for, and the person helping you will be clear of any wrong doing.
-
-
-
-## Compiling and Testing Your Program
-
-All your code should be compiled using this command on `matrix`:
-
-```bash
-/usr/local/gcc/10.2.0/bin/g++ -Wall -std=c++17 -g -o ws file1.cpp file2.cpp ...
-```
-
-- `-Wall`: compiler will report all warnings
-- `-std=c++17`: the code will be compiled using the C++17 standard
-- `-g`: the executable file will contain debugging symbols, allowing *valgrind* to create better reports
-- `-o ws`: the compiled application will be named `ws`
-
-After compiling and testing your code, run your program as following to check for possible memory leaks (assuming your executable name is `ws`):
-
-```bash
-valgrind --show-error-list=yes --leak-check=full --show-leak-kinds=all --track-origins=yes ws
-```
-
-- `--show-error-list=yes`: show the list of detected errors
-- `--leak-check=full`: check for all types of memory problems
-- `--show-leak-kinds=all`: show all types of memory leaks identified (enabled by the previous flag)
-- `--track-origins=yes`: tracks the origin of uninitialized values (`g++` must use `-g` flag for compilation, so the information displayed here is meaningful).
-
-To check the output, use a program that can compare text files.  Search online for such a program for your platform, or use `diff` available on `matrix`.
-
-
 
 
 ## Multimedia Management System
@@ -509,19 +468,3 @@ the output should look like the one from the `sample_output.txt` file.
 
 
 
-### Submission
-
-To test and demonstrate execution of your program use the same data as shown in the sample output.
-
-Upload the source code to your `matrix` account. Compile and run your code using the latest version of the `g++` compiler (available at `/usr/local/gcc/10.2.0/bin/g++`) and make sure that everything works properly.
-
-Then, run the following command from your account (replace `profname.proflastname` with your professor’s Seneca userid):
-
-  ```bash
-  ~profname.proflastname/submit 345_w3
-  ```
-
-and follow the instructions.
-
-> [!WARNING]
-> Please note that a successful submission does not guarantee full credit for this workshop. If the professor is not satisfied with your implementation, your professor may ask you to resubmit. Resubmissions will attract a penalty.
