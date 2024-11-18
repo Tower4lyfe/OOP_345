@@ -76,44 +76,41 @@ namespace seneca
     void Collection::removeQuotes()
 {
     std::for_each(m_items.begin(), m_items.end(), [](MediaItem* item) 
-        {
+    {
+        // Process title
         std::string title = item->getTitle();
-
         if (!title.empty()) 
         {
-            if (title.size() <= 2&&title.front() == '"'&&title.back() =='"')
+            if (title.size() <= 2 && title.front() == '"' && title.back() == '"') 
             {
                 item->setTitle("");
-            }
+            } 
             else 
             {
-                item->setTitle
-                (
-
-                    title.substr(title.front() == '"' ? 1 : 0, title.size() - (title.back() == '"' ? 2 : 1))
-                );
+                size_t start = title.front() == '"' ? 1 : 0;
+                size_t length = title.size() > start ? title.size() - start - (title.back() == '"' ? 1 : 0) : 0;
+                item->setTitle(title.substr(start, length));
             }
         }
 
+        // Process summary
         std::string summary = item->getSummary();
-
-        if (!summary.empty())
+        if (!summary.empty()) 
         {
-            if (summary.size() <= 2 && summary.front() == '"' && summary.back() == '"')
+            if (summary.size() <= 2 && summary.front() == '"' && summary.back() == '"') 
             {
                 item->setSummary("");
-            }
-            else
+            } 
+            else 
             {
-                item->setSummary
-                (
-
-                    summary.substr(summary.front() == '"' ? 1 : 0, summary.size() - (summary.back() == '"' ? 2 : 1))
-                );
+                size_t start = summary.front() == '"' ? 1 : 0;
+                size_t length = summary.size() > start ? summary.size() - start - (summary.back() == '"' ? 1 : 0) : 0;
+                item->setSummary(summary.substr(start, length));
             }
         }
-        });
+    });
 }
+
 
     void Collection::sort(const std::string &field)
     {
