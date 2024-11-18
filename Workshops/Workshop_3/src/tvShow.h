@@ -77,10 +77,18 @@ namespace seneca
 
         for(size_t i = 0; i < col.size(); ++i)
         {
-            auto* show = col[i];
+            TvShow* show = col[i];
             if(show && show->m_id == id)
             {
-                TvEpisode episode(show, episodeNum, episodeInSeason, airDate, length, title, summary);
+                TvEpisode episode;
+                episode.m_show = show;
+                episode.m_numberOverall = episodeNum;
+                episode.m_season = season;
+                episode.m_numberInSeason = episodeInSeason;
+                episode.m_airDate = airDate;
+                episode.m_length = length;
+                episode.m_title = title;
+                episode.m_summary = summary;
                 show->m_episodes.push_back(episode);
                 return;
             }
