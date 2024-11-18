@@ -161,19 +161,25 @@ namespace seneca
 
     std::list<std::string> TvShow::getLongEpisodes()const
     {
-        std::list<std::string> result; 
+      std::list<std::string> result; 
+      std::list<TvEpisode> buffer; 
 
-        std::transform
-        (m_episodes.begin(), m_episodes.end(), std::back_inserter(result),
-        [](const TvEpisode& episode)
+      std::copy_if
+      (m_episodes.begin(), m_episodes.end(), std::back_inserter(buffer),
+      [](TvEpisode& episode)
+      {
+        return episode.m_length > 3600;
+      });
+
+      std::transform
+      (
+        buffer.begin(), buffer.end(), std::back_inserter(result),
+        [](TvEpisode& epi)
         {
-            if(episode.m_length > 3600)
-            {
-                return episode.m_title;
-            }
+          return epi.m_title;
         }
-        );
-
-        return result; 
+      );
+      
+      return result;
     }
 }
