@@ -5,44 +5,35 @@
 
 namespace seneca
 {
-    template <typename T, size_t capacity = 100>
-    class set : public Collection<T, capacity>
+    constexpr size_t capacity = 100;
+    template <typename T>
+    class Set : public Collection<T, capacity>
     {
         bool add(const T &item)override;  
     };
 
-    template <typename T, size_t capacity>
-    inline bool set<T, capacity>::add(const T &item)
+    template <typename T>
+    inline bool Set<T>::add(const T &item)
     {
-        if(number == capacity)
+
+        for(size_t index = 0; index < this->size(); index++)
         {
-            return false;
+            if(this->operator[](index) == item) return false;
         }
 
-        for(size_t index = 0; index < number; index++)
-        {
-            if(m_items[index] == item) return false;
-        }
-
-        m_items[number++] = item;
-        return true;
+        return Collection<T, capacity>::add(item);
     }
 
     template<>
-    inline bool set<double, capacity>::add(const double &item)
+    inline bool Set<double>::add(const double &item)
     {
-        if(number == capacity)
+
+        for(size_t index = 0; index < this->size(); index++)
         {
-            return false;
+            if(std::fabs(this->operator[](index) - item)<=0.01) return false;
         }
 
-        for(size_t index = 0; index < number; index++)
-        {
-            if(std::fabs(m_items[index] - item)<=0.01) return false;
-        }
-
-        m_items[number++] = item;
-        return true;        
+        return Collection<double, capacity>::add(item);
     }
 
 }
