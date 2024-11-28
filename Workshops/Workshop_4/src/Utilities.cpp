@@ -24,7 +24,7 @@ namespace seneca
         {
             next_pos++;
         }
-        
+
         if (next_pos >= str.length())
         {
             throw "ERROR. No Token.";
@@ -55,5 +55,16 @@ namespace seneca
         }
         
         return token;
+    }
+
+
+    void Utilities::setDelimiter(char newdelimiter)
+    {
+        m_delimiter = newdelimiter;
+    }
+
+    char Utilities::getDelimiter()
+    {
+        return m_delimiter;
     }
 }
