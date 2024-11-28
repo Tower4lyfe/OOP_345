@@ -1,4 +1,5 @@
 #include "Station.h"
+#include <iomanip>
 #include <string>
 
 
@@ -50,6 +51,21 @@ namespace seneca
 
     void Station::display(std::ostream& os, bool full)const
     {
-        
+    
+            os << std::right << std::setfill('0')
+            << std::setw(3) << m_id << " | " 
+            <<std::left << std::setfill(' ')
+            << std::setw(m_widthField) << m_name << " | "
+            << std::right << std::setfill('0') 
+            << std::setw(6)<< m_serialNumber << " | ";
+
+            if(full)
+            {
+                os << std::setw(4) << std::setfill(' ') << m_quantity << " | "
+                << m_description;
+            }
+
+            os << std::endl;
+
     }
 }

@@ -20,6 +20,7 @@ namespace seneca
         std::string token;
         if(str[next_pos] == m_delimiter)
         {
+            next_pos +=1;
             throw "ERROR. No Token.";
         }
 
@@ -27,11 +28,6 @@ namespace seneca
         {
             next_pos++;
         }
-
-        if (next_pos >= str.length())
-        {
-            throw "ERROR. No Token.";
-        }   
 
         size_t nextDelimiter = str.find(m_delimiter, next_pos);
         if(nextDelimiter != std::string::npos)
@@ -47,6 +43,8 @@ namespace seneca
         if (end != std::string::npos)
             token.erase(end + 1);
 
+        if(token.length() > m_widthField)
+            m_widthField = token.length();
         
         if(nextDelimiter == std::string::npos||nextDelimiter + 1 >= str.length())
         {
