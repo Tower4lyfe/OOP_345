@@ -13,7 +13,7 @@ namespace seneca
         Utilities util;
         size_t next_pos = 0;
         bool more = false;
-        m_id = id_generator++;
+        m_id = ++id_generator;
 
         m_name = util.extractToken(str, next_pos, more);
         m_serialNumber = std::stoi(util.extractToken(str, next_pos, more));

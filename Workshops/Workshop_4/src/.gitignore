@@ -6,6 +6,10 @@ utils.o
 ws
 ws_tester_1
 tester
+<<<<<<< HEAD
 diff.txt
 tester_1_output_prof.txt
 tester_1_output_stud.txt
+=======
+main
+>>>>>>> b0997708a9384cd931f19d0318427607ef6b819f
