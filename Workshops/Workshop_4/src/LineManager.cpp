@@ -1,4 +1,3 @@
-#include "lineManager.h"
 #include "LineManager.h"
 #include "Workstation.h"
 #include <algorithm>
@@ -121,7 +120,7 @@ namespace seneca
         });
 
         std::for_each(m_activeLine.begin(), m_activeLine.end(), 
-        [&os](Workstation* station)
+        [](Workstation* station)
         {
             station->attemptToMoveOrder();
         });

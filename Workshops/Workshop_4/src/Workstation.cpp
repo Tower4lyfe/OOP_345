@@ -69,4 +69,9 @@ namespace seneca
             os << this->getItemName() << " --> " << m_pNextStation->getItemName() << "\n";
     }
 
+    void Workstation::setNextStation(Workstation* station)
+    {
+        this->m_pNextStation = station;
+    }
+
 }
