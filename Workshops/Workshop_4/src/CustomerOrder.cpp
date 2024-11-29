@@ -5,7 +5,7 @@
 
 namespace seneca
 {
-    size_t m_widthField = 0;
+    size_t CustomerOrder::m_widthField = 0;
 
     CustomerOrder::CustomerOrder()
     {
