@@ -137,7 +137,7 @@ namespace seneca
     {
         for(size_t i = 0; i < m_cntItem; i++)
         {
-            if(m_lstItem[i]->m_itemName == Station.getItemName())
+            if(m_lstItem[i]->m_itemName != Station.getItemName())
                 continue;
 
             if(Station.getQuantity() > 0)
