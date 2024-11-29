@@ -20,9 +20,11 @@ namespace seneca
         std::string token;
         if(str[next_pos] == m_delimiter)
         {
-            next_pos +=1;
+            //really? what if there are more later?
+            more = false;
             throw "ERROR. No Token.";
         }
+
 
         while(next_pos < str.length() && isspace(str[next_pos]))
         {
