@@ -12,7 +12,7 @@ namespace seneca
         unsigned int m_serialNumber;
         size_t m_quantity;
 
-        static int m_widthField;
+        static size_t m_widthField;
         static int id_generator;
 
         public:

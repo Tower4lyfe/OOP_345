@@ -24,12 +24,16 @@ namespace seneca
         public:
         CustomerOrder();
         ~CustomerOrder();
+        
+        //really weird....
         CustomerOrder(const std::string &); //string
+
         //no copy
         CustomerOrder(const CustomerOrder&) = delete; 
         CustomerOrder operator =(const CustomerOrder&) = delete;
+        
         CustomerOrder(CustomerOrder&&) noexcept;
-        CustomerOrder operator =(CustomerOrder&&) noexcept;
+        CustomerOrder& operator =(CustomerOrder&&) noexcept;
         bool isOrderFilled() const;
         bool isItemFilled(const std::string& itemName)const;
         void fillItem(Station& station, std::ostream& os);

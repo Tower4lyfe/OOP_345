@@ -4,10 +4,11 @@ project(workshop4)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_library (shared_lib STATIC Station.cpp Utilities.cpp)
+add_library(shared_lib STATIC Station.cpp Utilities.cpp)
 
 add_executable(tester tester_1.cpp)
 target_link_libraries(tester shared_lib)
+
 
 add_executable(UnitTestingUtilities UnitTestingUtil.cpp)
 target_link_libraries(UnitTestingUtilities shared_lib)
@@ -15,4 +16,3 @@ target_link_libraries(UnitTestingUtilities shared_lib)
 enable_testing()
 
 add_test(NAME testUtil COMMAND UnitTestingUtilities)
-

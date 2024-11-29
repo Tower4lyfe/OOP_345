@@ -5,7 +5,7 @@
 
 namespace seneca
 {
-    int Station::m_widthField = 0;
+    size_t Station::m_widthField = 0;
     int Station::id_generator = 0;
 
     Station::Station(const std::string& str)
