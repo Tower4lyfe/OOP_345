@@ -1,2 +1,7 @@
 *.exe
 build
+errors.txt
+tester_1_prof.cpp
+utils.o
+ws
+ws_tester_1
