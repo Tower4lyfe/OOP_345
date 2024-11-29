@@ -1,6 +1,8 @@
 #include "lineManager.h"
+#include "LineManager.h"
 #include "Workstation.h"
 #include <algorithm>
+#include <ostream>
 
 
 
@@ -63,8 +65,9 @@ namespace seneca
                 //just be safe.
                 (*currentStation)->setNextStation(nullptr);
             }
-            m_activeLine.push_back(*currentStation);
 	    }
+
+        m_activeLine = stations;
 
 	    fileObj.close();
 
@@ -87,4 +90,57 @@ namespace seneca
 
         m_cntCustomerOrder = g_pending.size();
     }
+
+    void LineManager::reorderStations() 
+    {
+        std::vector<Workstation*> orderedLine;
+
+        Workstation* currentStation = m_firstStation;
+        while (currentStation != nullptr) 
+        {
+            orderedLine.push_back(currentStation);
+            currentStation = currentStation->getNextStation();
+        }
+
+        m_activeLine = std::move(orderedLine);
+    }
+
+    bool LineManager::run(std::ostream& os)
+    {
+        static size_t currentIteration = 1;
+
+        os << "Line Manager Iteration: " << currentIteration << std::endl;
+            
+        (*m_firstStation)+= std::move(g_pending.front());
+        g_pending.pop_front();
+
+        std::for_each(m_activeLine.begin(), m_activeLine.end(), 
+        [&os](Workstation* station)
+        {
+            station->fill(os);
+        });
+
+        std::for_each(m_activeLine.begin(), m_activeLine.end(), 
+        [&os](Workstation* station)
+        {
+            station->attemptToMoveOrder();
+        });
+
+        currentIteration++;
+
+        if(g_completed.size() + g_incomplete.size() == m_cntCustomerOrder)
+            return true;  
+
+        return false;
+    }
+    
+    void LineManager::display(std::ostream& os) const
+    {
+        std::for_each(m_activeLine.begin(), m_activeLine.end(), 
+        [&os](Workstation* station)
+        {
+            station->display(os);
+        });
+    }
+
 }
