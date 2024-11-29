@@ -147,7 +147,7 @@ namespace seneca
                 m_lstItem[i]->m_isFilled = true;
                 os << "    Filled " << m_name
                 << ", " << m_product
-                << "[" << Station.getItemName() << "]"
+                << " [" << Station.getItemName() << "]"
                 << std::endl;
                 Station.updateQuantity();
                 //I don't like breaking here...
@@ -156,7 +156,7 @@ namespace seneca
             {
                 os << "Unable to fill "
                 << m_name << ", " << m_product 
-                << "[" << Station.getItemName() << "]"
+                << " [" << Station.getItemName() << "]"
                 << std::endl;
             }
         }
