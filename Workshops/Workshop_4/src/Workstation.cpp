@@ -50,4 +50,20 @@ namespace seneca
         return false;
     }
 
+    Workstation* Workstation::getNextStation() const
+    {
+        return m_pNextStation;
+    }
+
+    Workstation& Workstation::operator+=(CustomerOrder&& newOrder)
+    {
+        m_orders.emplace_back(newOrder);
+    }
+
+    void Workstation::display(std::ostream& os)const 
+    {
+        
+        os << this->getItemName() 
+    }
+
 }
