@@ -58,12 +58,15 @@ namespace seneca
     Workstation& Workstation::operator+=(CustomerOrder&& newOrder)
     {
         m_orders.emplace_back(newOrder);
+        return *this;
     }
 
     void Workstation::display(std::ostream& os)const 
     {
-        
-        os << this->getItemName() 
+        if (m_pNextStation == nullptr)
+            os << this->getItemName() << " --> End of Line\n";
+        else
+            os << this->getItemName() << " --> " << m_pNextStation->getItemName() << "\n";
     }
 
 }
