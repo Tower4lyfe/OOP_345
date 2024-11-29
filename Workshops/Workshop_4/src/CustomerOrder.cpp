@@ -61,6 +61,11 @@ namespace seneca
             m_widthField = util.getFieldWidth();
     }
 
+    CustomerOrder::CustomerOrder(const CustomerOrder &)
+    {
+        throw "ERROR: Cannot make copies.\n";
+    }
+
     CustomerOrder& CustomerOrder::operator=(CustomerOrder&& obj)noexcept
     {
         if(this == &obj)

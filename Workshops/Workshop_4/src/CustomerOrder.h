@@ -1,7 +1,6 @@
 #ifndef SENECA_CUSTOMERORDER_H
 #define SENECA_CUSTOMERORDER_H
 #include "Station.h"
-#include <vector>
 
 namespace seneca
 {
@@ -30,7 +29,7 @@ namespace seneca
         CustomerOrder(const std::string &); //string
 
         //no copy
-        CustomerOrder(const CustomerOrder&) = delete; 
+        CustomerOrder(const CustomerOrder&); 
         CustomerOrder operator =(const CustomerOrder&) = delete;
         
         CustomerOrder(CustomerOrder&&) noexcept;
