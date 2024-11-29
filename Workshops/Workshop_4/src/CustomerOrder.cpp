@@ -170,7 +170,7 @@ namespace seneca
             os << "[" << std::right << std::setw(6) << std::setfill('0')<< 
             m_lstItem[i]->m_serialnumber << "] " 
             << std::left << std::setw(m_widthField) << std::setfill(' ') << m_lstItem[i]->m_itemName
-            << (m_lstItem[i]->m_isFilled?"- FILLED":"- TO BE FILLED")
+            << (m_lstItem[i]->m_isFilled?" - FILLED":" - TO BE FILLED")
             << std::endl;
         }
     }
