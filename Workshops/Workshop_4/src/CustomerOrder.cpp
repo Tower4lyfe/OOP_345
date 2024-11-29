@@ -1,5 +1,6 @@
 #include "CustomerOrder.h"
 #include <iomanip>
+#include <vector>
 
 
 namespace seneca
