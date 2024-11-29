@@ -1,3 +1,7 @@
+/* - To Tsz, Lau,
+- 125487248,
+- ttlau3@myseneca.ca
+- Nov 28th 2024 */
 #include "CustomerOrder.h"
 #include <iomanip>
 #include <vector>
@@ -151,6 +155,7 @@ namespace seneca
                 << std::endl;
                 Station.updateQuantity();
                 //I don't like breaking here...
+                //What if user has more...
                 break;
             }else
             {
