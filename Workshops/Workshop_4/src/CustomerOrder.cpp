@@ -137,6 +137,7 @@ namespace seneca
     {
         for(size_t i = 0; i < m_cntItem; i++)
         {
+            //This Code is causing problem! But it shouldn't
             if(m_lstItem[i]->m_itemName != Station.getItemName())
                 continue;
 
@@ -144,11 +145,13 @@ namespace seneca
             {
                 m_lstItem[i]->m_serialnumber = Station.getNextSerialNumber();
                 m_lstItem[i]->m_isFilled = true;
-                os << "Filled " << m_name
+                os << "    Filled " << m_name
                 << ", " << m_product
                 << "[" << Station.getItemName() << "]"
                 << std::endl;
                 Station.updateQuantity();
+                //I don't like breaking here...
+                break;
             }else
             {
                 os << "Unable to fill "
