@@ -105,6 +105,7 @@ namespace seneca
         obj.m_product = "";
     }
 
+
     bool CustomerOrder::isOrderFilled() const
     {
         for(size_t i = 0; i < m_cntItem; i++)
@@ -163,9 +164,10 @@ namespace seneca
         os << m_name << " - " << m_product << std::endl;
         for(size_t i = 0; i < m_cntItem; i++)
         {
-            os << "[" << std::setw(6) << 
-            m_lstItem[i]->m_serialnumber << "] - "
-            << (m_lstItem[i]->m_isFilled?"FILLED":"TO BE FILLED")
+            os << "[" << std::right << std::setw(6) << std::setfill('0')<< 
+            m_lstItem[i]->m_serialnumber << "] - " 
+            << std::left << std::setw(m_widthField) << std::setfill(' ') << m_lstItem[i]->m_itemName
+            << (m_lstItem[i]->m_isFilled?"- FILLED":"- TO BE FILLED")
             << std::endl;
         }
     }
