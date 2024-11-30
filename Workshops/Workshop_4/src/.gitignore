@@ -1,3 +1,7 @@
+tester_3_output_prof.txt
+tester_3_output_stud.txt
+tester_3_prof.cpp
+ws_tester_3
 *.exe
 build
 errors.txt

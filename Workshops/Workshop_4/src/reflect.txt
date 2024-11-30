@@ -1,0 +1,13 @@
+I really enjoyed being able to finish the workshop in three different parts.
+
+Not only does it help me move on step by step instead of writing everything then worry about something going terribly wrong later and have no idea where to find it. I can actually go through them steps by steps, just like how we were taught in the software testing class. 
+
+In my personal opinion, this workshop is the easiest among the three that I did.(I did not do workshop 1) Partially because it is splits into three different part, and partially because there are less dynamic memory management. 
+
+I understand that some of the practices for concepts are provided in the Excercises, but I was also expecting a more complicateed and comprehensive workshop that would allow us to utilize the concepts we recently learnt, such as Multi-threading and smart pointer. I understand that this is not a data structure class, but knowing most of us here will be taking it next semester, I think it would have been very interesting to perhaps write our own implementation of one of the stl container. I had made a personal attemp at creating my doubly linked list, and I find it plenty helpful at helping me understanding the underlying concept. 
+
+For this workshop specifically, like you mentioned, debuggin is rather important. That said, I find myself getting lost with my debugger not knowing where to properly set up my breakpoint and drowning in the code written by myself. I was very close to finish tester3 in one run, but a tiny little missing condition in a if statement took 4 hours of my life away. 
+
+Also, I sometimes find the wording of the instruction a bit confusing, not vague, but confusing. 
+
+Overall, I find the workshops challenging enough for me to learn through it while not getting too frustrated.
