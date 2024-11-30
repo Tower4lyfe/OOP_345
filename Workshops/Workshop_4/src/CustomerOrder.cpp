@@ -176,7 +176,7 @@ namespace seneca
                 break;
             }else
             {
-                os << "Unable to fill "
+                os << "    Unable to fill "
                 << m_name << ", " << m_product 
                 << " [" << Station.getItemName() << "]"
                 << std::endl;
