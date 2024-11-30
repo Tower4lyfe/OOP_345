@@ -1,3 +1,7 @@
+/* - To Tsz, Lau,
+- 125487248,
+- ttlau3@myseneca.ca
+- Nov 29th 2024 */
 #ifndef SENECA_LINEMANAGER_H
 #define SENECA_LINEMANAGER_H
 #include "Workstation.h"

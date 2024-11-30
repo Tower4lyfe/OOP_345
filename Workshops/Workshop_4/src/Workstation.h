@@ -1,3 +1,7 @@
+/* - To Tsz, Lau,
+- 125487248,
+- ttlau3@myseneca.ca
+- Nov 29th 2024 */
 #ifndef SENECA_WORKSTATION_H
 #define SENECA_WORKSTATION_H
 #include <deque>
