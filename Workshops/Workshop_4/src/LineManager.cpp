@@ -36,6 +36,13 @@ namespace seneca
             std::string currentStationName = util.extractToken(line, next_pos, more);
             std::string nextStationName = more? util.extractToken(line, next_pos, more) : "";
 
+            // int line = 1;
+            // std::cout << "======== Debug ===================" << std::endl;
+            // std::cout << line << " currentStationName: " << currentStationName << std::endl;
+            // std::cout << line << "nextStationName " << nextStationName << std::endl;
+            // std::cout << "=================================" << std::endl;
+            // line++;
+
             //find if to find station that fits the name
             auto currentStation = std::find_if(stations.begin(), stations.end(), 
             [&currentStationName](Workstation* station)
@@ -64,9 +71,10 @@ namespace seneca
                 //just be safe.
                 (*currentStation)->setNextStation(nullptr);
             }
+
+            m_activeLine.push_back(*currentStation);
 	    }
 
-        m_activeLine = stations;
 
 	    fileObj.close();
 
@@ -109,9 +117,12 @@ namespace seneca
         static size_t currentIteration = 1;
 
         os << "Line Manager Iteration: " << currentIteration << std::endl;
-            
-        (*m_firstStation)+= std::move(g_pending.front());
-        g_pending.pop_front();
+        
+        if(!g_pending.empty())
+        {    
+            (*m_firstStation)+= std::move(g_pending.front());
+            g_pending.pop_front();
+        }
 
         std::for_each(m_activeLine.begin(), m_activeLine.end(), 
         [&os](Workstation* station)
@@ -122,8 +133,12 @@ namespace seneca
         std::for_each(m_activeLine.begin(), m_activeLine.end(), 
         [](Workstation* station)
         {
+            // std::cout << "\n====attempToMove====\n";
+            // std::cout << "Station Name: " << station->getItemName() << std::endl;
+            // std::cout << "==========\n";
             station->attemptToMoveOrder();
         });
+        
 
         currentIteration++;
 

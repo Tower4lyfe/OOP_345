@@ -24,6 +24,10 @@ namespace seneca
 
     bool Workstation::attemptToMoveOrder()
     {
+        //Added for tester3
+        if(m_orders.empty())
+            return false;
+
         auto& currentOrder = m_orders.front();
 
         if(currentOrder.isItemFilled(this->getItemName())
@@ -33,16 +37,16 @@ namespace seneca
             {
                 if(currentOrder.isOrderFilled())
                 {
-                    g_completed.emplace_back(currentOrder);
+                    g_completed.emplace_back(std::move(currentOrder));
                     m_orders.pop_front();
                     return true;
                 }
 
-                g_incomplete.emplace_back(currentOrder);
+                g_incomplete.emplace_back(std::move(currentOrder));
                 m_orders.pop_front();
                 return true;
             }
-            m_pNextStation->m_orders.emplace_back(currentOrder);
+            m_pNextStation->m_orders.emplace_back(std::move(currentOrder));
             m_orders.pop_front();
             return true;
         }
@@ -57,7 +61,7 @@ namespace seneca
 
     Workstation& Workstation::operator+=(CustomerOrder&& newOrder)
     {
-        m_orders.emplace_back(newOrder);
+        m_orders.emplace_back(std::move(newOrder));
         return *this;
     }
 

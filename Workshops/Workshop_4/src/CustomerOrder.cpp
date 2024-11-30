@@ -127,9 +127,23 @@ namespace seneca
     {
         for(size_t i = 0; i < m_cntItem; i ++)
         {
-            if(m_lstItem[i]->m_itemName == itemName
+            //Debugging
+            // std::cout << "\n=========Debug============\n";
+            // std::cout << "m_lstItem[" << i << "]"
+            // << "in isItemFilled is: " << m_lstItem[i]->m_itemName
+            // <<std::endl;
+            // std::cout << "====================\n";
+
+            std::string itemInList = m_lstItem[i]->m_itemName;
+
+            if(itemInList == itemName
             &&!m_lstItem[i]->m_isFilled)
             {
+                // std::cout << "\nm_lstItem[" << i << "]: "
+                // << itemInList 
+                // << " is Not Filled. Will return false.\n"
+                // << "Item Name is: " << itemName << std::endl;
+ 
                 return false;
             }
         }
@@ -145,7 +159,8 @@ namespace seneca
             if(m_lstItem[i]->m_itemName != Station.getItemName())
                 continue;
 
-            if(Station.getQuantity() > 0)
+            //THE MISSING SECOND CONDITION COST ME 4 HOURS...HOW? AM I STUPID?
+            if(Station.getQuantity() > 0&&!m_lstItem[i]->m_isFilled)
             {
                 m_lstItem[i]->m_serialnumber = Station.getNextSerialNumber();
                 m_lstItem[i]->m_isFilled = true;
@@ -165,6 +180,7 @@ namespace seneca
                 << std::endl;
             }
         }
+        //Nothing in the order can be filled by this station
     }
 
     void CustomerOrder::display(std::ostream& os)const
