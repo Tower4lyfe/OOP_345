@@ -156,11 +156,13 @@ namespace seneca
         for(size_t i = 0; i < m_cntItem; i++)
         {
             //This Code is causing problem! But it shouldn't
-            if(m_lstItem[i]->m_itemName != Station.getItemName())
+            //THE MISSING SECOND CONDITION COST ME 4 HOURS...HOW? AM I STUPID?
+            if(m_lstItem[i]->m_itemName != Station.getItemName()
+            || m_lstItem[i]->m_isFilled)
                 continue;
 
-            //THE MISSING SECOND CONDITION COST ME 4 HOURS...HOW? AM I STUPID?
-            if(Station.getQuantity() > 0&&!m_lstItem[i]->m_isFilled)
+            
+            if(Station.getQuantity() > 0)
             {
                 m_lstItem[i]->m_serialnumber = Station.getNextSerialNumber();
                 m_lstItem[i]->m_isFilled = true;
